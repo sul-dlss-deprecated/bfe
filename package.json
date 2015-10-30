@@ -15,7 +15,7 @@
   "main": "src/bfe",
   "repository": {
     "type": "git",
-    "url": "http://github.com/lcnetdev/bfe.git"
+    "url": "git+ssh://git@github.com/lcnetdev/bfe.git"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

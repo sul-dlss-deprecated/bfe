@@ -1,3 +1,5 @@
 tmp
 examples
 node_modules
+package.json
+builds/*
