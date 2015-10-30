@@ -1,3 +1,6 @@
 tmp
 examples
 node_modules
+package.json
+builds/*
+static/profiles/bibframe/resources/*.json
