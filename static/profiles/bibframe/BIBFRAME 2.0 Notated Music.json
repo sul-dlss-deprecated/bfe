@@ -351,7 +351,7 @@
           }
         ],
         "resourceLabel": "BIBFRAME Work",
-        "resourceURI": "/static/profiles/bibframe/resources/Work",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Work",
         "remark": "Graphic, non-realized representations of musical works intended to be perceived visually."
       },
       {
@@ -697,7 +697,7 @@
           }
         ],
         "id": "profile:bf2:RDAExpression:NotatedMusic",
-        "resourceURI": "/static/profiles/bibframe/resources/hasExpression",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/hasExpression",
         "resourceLabel": "RDA Expression"
       },
       {
@@ -1176,7 +1176,7 @@
           }
         ],
         "resourceLabel": "RDA Manifestation / BIBFRAME Instance - NotatedMusic",
-        "resourceURI": "/static/profiles/bibframe/resources/hasInstance"
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/hasInstance"
       },
       {
         "id": "profile:bf2:HeldItem:NotatedMusic",
@@ -1472,7 +1472,7 @@
           }
         ],
         "id": "profile:bf2:identifier:NotatedMusic",
-        "resourceURI": "/static/profiles/bibframe/resources/Identifier",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Identifier",
         "resourceLabel": "ISBN, ISMN, UPC, Music Publisher/Plate, Distributor  Numbers"
       },
       {
@@ -1544,7 +1544,7 @@
           }
         ],
         "id": "profile:bf2:MediumOfPerformanceCombining",
-        "resourceURI": "/static/profiles/bibframe/resources/musicMedium",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/musicMedium",
         "resourceLabel": "Medium of Performance: Combining Facets"
       },
       {
@@ -1713,7 +1713,7 @@
           }
         ],
         "id": "profile:bf2:MediumOfPerformanceIndividual",
-        "resourceURI": "/static/profiles/bibframe/resources/musicMedium",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/musicMedium",
         "resourceLabel": "Medium of Performance: Individual Facets"
       },
       {
@@ -1776,7 +1776,7 @@
           }
         ],
         "id": "profile:bf2:MusicPlate:NotatedMusic",
-        "resourceURI": "/static/profiles/bibframe/resources/MusicPlate",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/MusicPlate",
         "resourceLabel": "Music Plate Number"
       },
       {
@@ -2131,7 +2131,7 @@
           }
         ],
         "resourceLabel": "RDA Work Elements - NotatedMusic",
-        "resourceURI": "/static/profiles/bibframe/resources/Work",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Work",
         "remark": "Graphic, non-realized representations of musical works intended to be perceived visually."
       },
       {
@@ -2465,7 +2465,7 @@
         ],
         "id": "profile:bf2:Expression:NotatedMusic",
         "resourceLabel": "RDA Expression Elements - NotatedMusic",
-        "resourceURI": "/static/profiles/bibframe/resources/hasExpression"
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/hasExpression"
       },
       {
         "propertyTemplates": [
