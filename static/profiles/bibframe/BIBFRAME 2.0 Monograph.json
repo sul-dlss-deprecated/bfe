@@ -27,8 +27,7 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:relator:NotatedMusic",
-                "profile:bf2:relator:NotatedMusic2"
+		"profile:bf2:Person:Agents"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
