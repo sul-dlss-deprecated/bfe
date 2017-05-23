@@ -2492,7 +2492,7 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf2:Agents:Contribution"
+                "profile:bf2:Contribution:Agents"
               ],
               "useValuesFrom": [],
               "valueDataType": {}

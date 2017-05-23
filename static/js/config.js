@@ -117,12 +117,12 @@
         }
 
         var config = {
-            /*"logging": {
+            "logging": {
                 "level": "DEBUG",
                 "toConsole": true
-            },*/
+            },
             "baseURI": "http://id.loc.gov/",
-            "profiles": [
+            /*"profiles": [
 		        "static/profiles/bibframe/BIBFRAME 2.0 Agents.json",
       			"static/profiles/bibframe/BIBFRAME 2.0 Agents Contribution.json",
       			"static/profiles/bibframe/BIBFRAME 2.0 Form.json",
@@ -136,6 +136,13 @@
             "static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
   	        "static/profiles/bibframe/BIBFRAME 2.0 Monograph.json"
 
+            ],*/
+	    "profiles": [
+			"static/profiles/bibframe/BIBFRAME 2.0 Agents Contribution.json",
+		        "static/profiles/bibframe/BIBFRAME 2.0 Agents.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Notated Music.json",
+            		"static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
+  	        	"static/profiles/bibframe/BIBFRAME 2.0 Monograph.json"
             ],
             "startingPoints": [
                         {"menuGroup": "Notated Music",

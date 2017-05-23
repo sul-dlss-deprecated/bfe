@@ -3,7 +3,7 @@
     "resourceTemplates": [
       {
         "resourceURI": "http://www.loc.gov/standards/mads/rdf/v1.html#PersonalName",
-        "id": "profile:bf2:Agent:Person",
+        "id": "profile:bf2:Person:Agents",
         "resourceLabel": "Person",
         "propertyTemplates": [
           {
