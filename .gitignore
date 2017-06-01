@@ -3,3 +3,5 @@ examples
 node_modules
 package.json
 builds/*
+stanford
+stanford.html
