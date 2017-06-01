@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2010, Ajax.org B.V.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *     * Redistributions of source code must retain the above copyright
@@ -14,7 +14,7 @@
  *     * Neither the name of Ajax.org B.V. nor the
  *       names of its contributors may be used to endorse or promote products
  *       derived from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -65,7 +65,7 @@ var _define = function(module, deps, payload) {
         _define.modules = {};
         _define.payloads = {};
     }
-    
+
     _define.payloads[module] = payload;
     _define.modules[module] = null;
 };
@@ -160,7 +160,7 @@ var lookup = function(parentId, moduleName) {
 function exportAce(ns) {
     var require = function(module, callback) {
         return _require("", module, callback);
-    };    
+    };
 
     var root = global;
     if (ns) {
@@ -193,7 +193,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
     require("src/lib/bootstrap.min"); // modals
     require("src/lib/typeahead.jquery.min");
     // require("lib/rdf_store_min");
-    
+
     var editorconfig = {};
     var bfestore = require("src/bfestore");
     var bfelog = require("src/bfelogging");
@@ -203,22 +203,22 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
     var startingPoints = [];
     var formTemplates = [];
     //var lookups = [];
-    
+
     var tabIndices = 1;
-    
+
     var loadtemplates = [];
     var loadtemplatesANDlookupsCount = 0;
     var loadtemplatesANDlookupsCounter = 0;
-    
+
     var lookupstore = [];
     var lookupcache = [];
-    
+
     var editordiv;
 
     var csrf;
-    
+
     var forms = [];
-    
+
     var lookups = {
                 "http://id.loc.gov/authorities/names": {
                     "name": "LCNAF",
@@ -253,7 +253,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     "load": require("src/lookups/rdaformatnotemus")
                 }
             };
-    
+
     /*
     The following two bits of code come from the Ace Editor code base.
     Included here to make 'building' work correctly.  See:
@@ -267,14 +267,14 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
     *
     **/
     exports.require = require;
-    
+
     exports.setConfig = function(config) {
-                    
+
         editorconfig = config;
-        
+
         // Set up logging
         bfelog.init(editorconfig);
-        
+
         for (var i=0; i < config.profiles.length; i++) {
             var file = config.profiles[i];
             bfelog.addMsg(new Error(), "INFO", "Loading profile: " + config.profiles[i]);
@@ -290,13 +290,13 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         resourceTemplates.push(data.Profile.resourceTemplates[rt]);
                     }
                 },
-                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
                     bfelog.addMsg(new Error(), "ERROR", "FAILED to load profile: " + file);
                     bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
                 }
             });
         }
-        
+
         if (config.lookups !== undefined) {
             loadtemplatesANDlookupsCount = loadtemplatesANDlookupsCount + Object.keys(config.lookups).length;
             config.lookups.foreach(function(lu){
@@ -310,7 +310,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             editorconfig.baseURI = window.location.protocol + "//" + window.location.host + "/";
         }
         bfelog.addMsg(new Error(), "INFO", "baseURI is " + editorconfig.baseURI);
-        
+
         if (config.load !== undefined) {
             loadtemplatesANDlookupsCount = loadtemplatesANDlookupsCount + config.load.length;
             config.load.forEach(function(l){
@@ -341,12 +341,12 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             //loadtemplate.data = tempstore;
                             cbLoadTemplates();
                         },
-                        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
                             bfelog.addMsg(new Error(), "ERROR", "FAILED to load external source: " + l.source.location);
                             bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
                         }
                     });
-                
+
                 } else {
                     cbLoadTemplates();
                 }
@@ -354,9 +354,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         }
 
     };
-    
+
     exports.fulleditor = function (config, id) {
-        
+
         editordiv = document.getElementById(id);
 
         var $containerdiv = $('<div class="container-fluid"><h2>Bibframe Editor Workspace</h2></div>');
@@ -375,7 +375,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         var $formdiv = $('<div>', {id: "bfeditor-formdiv", class: "col-md-10 main"});
         //var optiondiv = $('<div>', {id: "bfeditor-optiondiv", class: "col-md-2"});
         var $rowdiv = $('<div>', {class: "row"});
-        
+
         var $loader = $('<div><br /><br /><h2>Loading...</h2><div class="progress progress-striped active">\
                         <div class="progress-bar progress-bar-info" id="bfeditor-loader" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 20%">\
                             <span class="sr-only">80% Complete</span>\
@@ -383,13 +383,13 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     </div>');
         if($.fn.dataTable.isDataTable('#table_id')){
             var table = $('#table_id').DataTable();
-        } else {            
+        } else {
             var $datatable = $('<table id="table_id" class="display"><thead><tr><th>id</th><th>name</th><th>title</th><th>comment</th><th>modified</th><th>edit</th></tr></thead></table>');
             var table = $(function () {
             $('#table_id').DataTable({
              "processing": true,
              "ajax": {
-                "url":"http://mlvlp04.loc.gov:3000/verso/api/bfs",
+                "url":config.dataURL,
                 "dataSrc":""
              },
              "columns": [
@@ -398,9 +398,11 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                  { "data": "rdf",
                    "render": function(data,type,full,meta){
                        var text = "";
-                       if (_.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/title"]}).length > 0)
-                            text = _.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/title"]})[1];
-                       return text["http://id.loc.gov/ontologies/bibframe/title"][0]["@value"];
+                       if (_.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/titleValue"]}).length > 0){
+                         text = _.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/titleValue"]})[0];
+                       }
+                       return text["http://id.loc.gov/ontologies/bibframe/titleValue"][0]["@value"];
+
                     }
                  },
                  { "data": "rdf",
@@ -411,12 +413,12 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                              return text.length > 40 ? text.substr(0,38)+"..." : text;
                             }
                  },
-                 { "data": "modified", 
+                 { "data": "modified",
                    "width": "10%",
                    "render": function(data, type,row){
                         var d = new Date(data);
                         return d.getDate() +'-'+ (d.getMonth()+1) +'-'+ d.getFullYear() + ' ' + d.getHours()+':'+d.getMinutes();
-                    }                       
+                    }
                  },
                  { "data": "url",
                    "width":"10%",
@@ -425,21 +427,21 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                    "sortable": false,
                    "render": function ( td, cellData, rowData, row ) {
                     //             return '<a href="'+data+'">edit</a>';
-                    
+
                         return '<div class="btn-group" id="retrieve-btn"><button id="bfeditor-retrieve'+rowData.id+'" type="button" class="btn btn-default">Edit</button> \
                          <button id="bfeditor-delete'+rowData.id+'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#bfeditor-deleteConfirm'+rowData.id+'">Delete</button> \
                          </div>'
                     },
-                    "createdCell": function (td, cellData, rowData, row, col){                        
+                    "createdCell": function (td, cellData, rowData, row, col){
                         var useguid = guid();
                         var loadtemplate = {};
                         var tempstore = [];
-                        
+
                         bfestore.store = [];
                         loadtemplates = [];
                         //default
                         var spoints = editorconfig.startingPoints[0].menuItems[2];
-                        var bTypes = [];                        
+                        var bTypes = [];
                         rowData.rdf.forEach(function(t){
                             if(t["@type"] !== undefined && t["@type"].length > 0 && t["@id"].indexOf("_:b")){
                                 //console.log(t["@id"] + " " +t["@type"][0]);
@@ -453,7 +455,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         if (findRt[0] !== undefined){
                             spoints = _.where(editorconfig.startingPoints, { menuItems:[{type:bTypes}] })[0].menuItems[2];
                         }
-                        var temptemplates = [];                        
+                        var temptemplates = [];
                         spoints.useResourceTemplates.forEach(function(l){
                             var useguid = guid();
                             var loadtemplate = {};
@@ -494,7 +496,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                        $(td).find("#bfeditor-deleteConfirmButton"+rowData.id).click(function(){
                             if (editorconfig.deleteId.callback !== undefined) {
                                 editorconfig.deleteId.callback(rowData.id, editorconfig.getCSRF.callback(), bfelog);
-                                var table = $('#table_id').DataTable();                                
+                                var table = $('#table_id').DataTable();
                                 //table.row($(this).parents('tr')).remove().draw();
                                 bfestore.store = [];
                                 //table.ajax.reload();
@@ -515,9 +517,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         });
         $browsediv.append($datatable);
         }
-        
+
         $formdiv.append($loader);
-        
+
         $menudiv.append("<h3>Create Resource</h3>");
         $rowdiv.append($menudiv);
         $rowdiv.append($formdiv);
@@ -548,7 +550,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         loadtemplate.data = [];
                         temptemplates.push(loadtemplate);
                      });
-        
+
                     var loadtemplates = temptemplates;
                     var url = $(this.parentElement).find("#bfeditor-loaduriInput").val();
                     editorconfig.retrieve.callback(url,bfestore,bfelog,cbLoadTemplates);
@@ -563,7 +565,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             }
         });
 
-        
+
 
         $tabcontentdiv.append($browsediv);
         $tabcontentdiv.append($creatediv);
@@ -573,9 +575,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
 
         $(editordiv).append($containerdiv);
 
-        
+
         this.setConfig(config);
-        
+
         for (var h=0; h < config.startingPoints.length; h++) {
             var sp = config.startingPoints[h];
             var $menuul = $('<ul>', {class: "nav nav-sidebar"});
@@ -606,7 +608,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             }
             $menudiv.append($menuul);
         }
-    
+
         // Debug div
         if (editorconfig.logging !== undefined && editorconfig.logging.level !== undefined && editorconfig.logging.level == "DEBUG") {
             var $debugdiv = $('<div id="bfeditor-debugdiv" class="col-md-12 main panel-group">\
@@ -618,10 +620,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             var $debugpre = $('#bfeditor-debug');
             $debugpre.html(JSON.stringify(profiles, undefined, " "));
         }
-        
+
         var $footer = $('<footer>', {class: "footer"});
         $(editordiv).append($footer);
-        
+
         if (loadtemplatesANDlookupsCount === 0) {
             // There was nothing to load, so we need to get rid of the loader.
             $formdiv.html("");
@@ -634,24 +636,24 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             "bfelog": bfelog,
         };
     };
-    
+
     exports.editor = function (config, id) {
-        
+
         this.setConfig(config);
-        
+
         editordiv = document.getElementById(id);
-        
+
         var $formdiv = $('<div>', {id: "bfeditor-formdiv", class: "col-md-12"});
-        
+
         //var optiondiv = $('<div>', {id: "bfeditor-optiondiv", class: "col-md-2"});
-        
+
         var $rowdiv = $('<div>', {class: "row"});
-        
+
         $rowdiv.append($formdiv);
         //rowdiv.append(optiondiv);
 
         $(editordiv).append($rowdiv);
-    
+
         // Debug div
         if (editorconfig.logging !== undefined && editorconfig.logging.level !== undefined && editorconfig.logging.level == "DEBUG") {
             var $debugdiv = $('<div>', {class: "col-md-12"});
@@ -661,7 +663,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             $(editordiv).append($debugdiv);
             $debugpre.html(JSON.stringify(profiles, undefined, " "));
         }
-        
+
         var $footer = $('<div>', {class: "col-md-12"});
         $(editordiv).append($footer);
 
@@ -672,7 +674,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             "bfelog": bfelog,
         };
     };
-    
+
     function setLookup(r) {
         if (r.scheme !== undefined) {
             bfelog.addMsg(new Error(), "INFO", "Setting up scheme " + r.scheme);
@@ -684,7 +686,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             bfelog.addMsg(new Error(), "WARN", "Loading lookup FAILED", r);
         }
     }
-        
+
     function cbLoadTemplates() {
         $("#bfeditor-loader").width($("#bfeditor-loader").width()+5+"%");
         loadtemplatesANDlookupsCounter++;
@@ -701,15 +703,15 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     <button id="bfeditor-preview" type="button" class="btn btn-primary">Preview</button> \
                 </div>');
                 form.form.append($exitButtonGroup);
-                
+
                 $("#bfeditor-cancel", form.form).click(function(){
-                    $('#bfeditor-formdiv').empty();                    
+                    $('#bfeditor-formdiv').empty();
                     $('[href=#browse]').tab('show');
                     bfeditor.bfestore.store = [];
                     $('#table_id').DataTable().ajax.reload();
                 });
                 $("#bfeditor-cancel", form.form).attr("tabindex", tabIndices++);
-                
+
                 $("#bfeditor-preview", form.form).click(function(){
                      var humanized = bfeditor.bfestore.store2text();
                      //var n3 = bfeditor.bfestore.store2n3();
@@ -756,13 +758,13 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             var dirhash = guid();
                             var save_json = {};
                             save_json.name = dirhash;
-                            save_json.profile = "http://mlvlp04.loc.gov:3000/bf/static/profiles/bibframe/BIBFRAME 2.0 Serial.json";
-                            save_json.url = "http://mlvlp04.loc.gov:3000/bf/data/" + dirhash;
+                            save_json.profile = config.saveJsonProfile;
+                            save_json.url = config.saveJsonUrl + dirhash;
                             createDate = new Date().toUTCString();
                             save_json.created = createDate;
                             save_json.modified = createDate;
                             save_json.rdf = bfeditor.bfestore.store2jsonldExpanded();
-    
+
                             editorconfig.save.callback(save_json,editorconfig.getCSRF.callback(),bfelog);
                         } else {
                             //save disabled
@@ -782,7 +784,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
 
                 });
                 $("#bfeditor-exitpreview", form.form).attr("tabindex", tabIndices++);
-                
+
                 $("#bfeditor-formdiv").html("");
                 $("#bfeditor-formdiv").append(form.form);
                 $("#bfeditor-debug").html(JSON.stringify(bfeditor.bfestore.store, undefined, " "));
@@ -790,12 +792,12 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             }
         }
     }
-    
+
     function menuSelect (spid) {
         //store = new rdfstore.Store();
         var spnums = spid.replace('sp-', '').split("_");
         var spoints = editorconfig.startingPoints[spnums[0]].menuItems[spnums[1]];
-        
+
         bfeditor.bfestore.store = [];
         loadtemplatesCounter = 0;
         loadtemplatesCount = spoints.useResourceTemplates.length;
@@ -815,7 +817,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         });
         cbLoadTemplates();
     }
-    
+
     /*
     loadTemplates is an array of objects, each with this structure:
         {
@@ -827,9 +829,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         }
     */
     function getForm (loadTemplates) {
-        
+
         var rt, property;
-        
+
         // Create the form object.
         var fguid = guid();
         var fobject = {};
@@ -838,7 +840,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         fobject.resourceTemplates = [];
         fobject.resourceTemplateIDs = [];
         fobject.formTemplates = [];
-        
+
         // Load up the requested templates, add seed data.
         for (var urt=0; urt < loadTemplates.length; urt++) {
             //console.log(loadTemplates[urt]);
@@ -856,7 +858,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 } else {
                     //fobject.resourceTemplates[urt].defaulturi = whichrt(fobject.resourceTemplates[urt], editorconfig.baseURI) + loadTemplates[urt].templateGUID;
                 }
-                
+
                 fobject.resourceTemplateIDs[urt] = rt[0].id;
             } else {
                 bfelog.addMsg(new Error(), "WARN", "Unable to locate resourceTemplate. Verify the resourceTemplate ID is correct.");
@@ -872,13 +874,13 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             var $resourcedivheading = $('<h3>' + rt.resourceLabel + '</h3>');
             $resourcediv.append($resourcedivheading);
             rt.propertyTemplates.forEach(function(property) {
-                
+
                 // Each property needs to be uniquely identified, separate from
                 // the resourceTemplate.
                 var pguid = guid();
                 property.guid = pguid;
                 property.display = "true";
-                
+
                 var $formgroup = $('<div>', {class: "form-group row"});
                 var $saves = $('<div class="form-group row"><div class="btn-toolbar col-sm-12" role="toolbar"></div></div></div>');
                 if ((/^http/).test(property.remark))
@@ -886,11 +888,11 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 else
                     var $label = $('<label for="' + property.guid + '" class="col-sm-3 control-label" title="'+ property.remark + '">' + property.propertyLabel +'</label>');
 
-                
+
                 if (property.type == "literal") {
-                    
+
                     var $input = $('<div class="col-sm-8"><input type="text" class="form-control" id="' + property.guid + '" placeholder="' + property.propertyLabel + '" tabindex="' + tabIndices++ + '"></div>');
-        
+
                     $input.find("input").keyup(function(e) {
                         if (e.keyCode == 54 && e.ctrlKey && e.altKey){
                             var text = this.value;
@@ -899,17 +901,17 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             this.value = this.value + "\u2117";
                         }
                     });
-                    
+
                     var $button = $('<div class="btn-group btn-group-md span1"><button type="button" class="btn btn-default" tabindex="' + tabIndices++ + '">&#10133;</button></div>');
 
                     $button.click(function(){
-                        setLiteral(fobject.id, rt.useguid, property.guid);                        
+                        setLiteral(fobject.id, rt.useguid, property.guid);
                     });
-                    
+
                     var enterHandler = function(event){
                         if(event.keyCode == 13){
                             setLiteral(fobject.id, rt.useguid, property.guid);
-                            if($("#"+property.guid).parent().parent().next().find("input:not('.tt-hint')").length){                                
+                            if($("#"+property.guid).parent().parent().next().find("input:not('.tt-hint')").length){
                                 $("#"+property.guid).parent().parent().next().find("input:not('.tt-hint')").focus();
                             } else {
                                 $("[id^=bfeditor-modalSave]").focus();
@@ -926,9 +928,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     $formgroup.append($button);
                     //$formgroup.append($saves);
                 }
-                
+
                 if (property.type == "resource") {
-                    
+
                     if (_.has(property, "valueConstraint")) {
                         if (_.has(property.valueConstraint, "valueTemplateRefs") && !_.isEmpty(property.valueConstraint.valueTemplateRefs)) {
                             /*
@@ -963,7 +965,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                     var vt = valueTemplates[0];
                                     //console.log(vt);
                                     var $b = $('<button type="button" class="btn btn-default" tabindex="' + tabIndices++ + '">' + vt.resourceLabel + '</button>');
-                                    
+
                                     var fid = fobject.id;
                                     var rtid = rt.useguid;
                                     var pid = property.guid;
@@ -978,23 +980,23 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                 }
                             }
                             $buttondiv.append($buttongrp);
-                            
+
                             $formgroup.append($label);
                             $buttondiv.append($saves);
                             $formgroup.append($buttondiv);
                             //$formgroup.append($saves);
                         } else if (_.has(property.valueConstraint, "useValuesFrom")) {
-                            
+
                             // Let's supress the lookup unless it is in a modal for now.
                             if (rt.embedType != "modal" && forEachFirst && property.propertyLabel.match(/lookup/i)) {
                                 forEachFirst = false;
                                 return;
                             }
-                                
+
                             var $inputdiv = $('<div class="col-sm-8"></div>');
                             $input = $('<input type="text" class="typeahead form-control" data-propertyguid="' + property.guid + '" id="' + property.guid + '" placeholder="' + property.propertyLabel + '" tabindex="' + tabIndices++ + '">');
                             var $input_page = $('<input type="hidden" id="'+property.guid+'_page" class="typeaheadpage" value="1">');
-                                
+
                             $inputdiv.append($input);
                             $inputdiv.append($input_page);
 
@@ -1009,8 +1011,8 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             $formgroup.append($inputdiv);
                             //formgroup.append(button);
                             //$formgroup.append($saves);
-                            
-                            
+
+
                             /*
                             // If the first conditional is active, is this even necessary?
                             if (rt.embedType == "modal" && forEachFirst && property.propertyLabel.match(/lookup/i)) {
@@ -1025,7 +1027,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                 $input.prop("disabled", true);
                             }
                             */
-                            
+
                             if (rt.embedType == "modal" && forEachFirst && property.propertyLabel.match(/lookup/i)) {
                                 // This is the first propertty *and* it is a look up.
                                 // Let's treat it special-like.
@@ -1034,36 +1036,36 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                 $formgroup.append($saveLookup);
                                 $formgroup.append($spacer);
                             }
-                        
-                            
+
+
                         } else {
                             // Type is resource, so should be a URI, but there is
-                            // no "value template reference" or "use values from vocabularies" 
+                            // no "value template reference" or "use values from vocabularies"
                             // reference for it so just create label field
                             $input = $('<div class="col-sm-8"><input class="form-control" id="' + property.guid + '" placeholder="' + property.propertyLabel + '" tabindex="' + tabIndices++ + '"></div>');
-                    
+
                             var $button = $('<div class="col-sm-1"><button type="button" class="btn btn-default" tabindex="' + tabIndices++ + '">Set</button></div>');
                             $button.click(function(){
                                 setResourceFromLabel(fobject.id, rt.useguid, property.guid);
                             });
-                            
+
                             $formgroup.append($label);
                             $input.append($saves);
                             $formgroup.append($input);
                             $formgroup.append($button);
                             //$formgroup.append($saves);
-                    
+
                         }
                     } else {
                         // Type is resource, so should be a URI, but there is
                         // no constraint for it so just create a label field.
                         var $input = $('<div class="col-sm-8"><input class="form-control" id="' + property.guid + '" placeholder="' + property.propertyLabel + '" tabindex="' + tabIndices++ + '"></div>');
-                    
+
                         $button = $('<div class="col-sm-1"><button type="button" class="btn btn-default" tabindex="' + tabIndices++ + '">Set</button></div>');
                             $button.click(function(){
                                 setResourceFromLabel(fobject.id, rt.useguid, property.guid);
                         });
-                            
+
                         $formgroup.append($label);
                         $input.append($saves);
                         $formgroup.append($input);
@@ -1071,7 +1073,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         //$formgroup.append($saves);
                     }
                 }
-                
+
                 $resourcediv.append($formgroup);
                 forEachFirst = false;
             });
@@ -1082,11 +1084,11 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         // OK now we need to populate the form with data, if appropriate.
         fobject.resourceTemplates.forEach(function(rt) {
             //check for match...maybe do this earlier
-            
+
             if (_.where(bfestore.store,{"o":rt.resourceURI}).length > 0) {
                 rt.defaulturi =  _.where(bfestore.store,{"o":rt.resourceURI})[0].s;
             }
-      
+
             if (rt.data.length === 0 && _.where(bfestore.store,{"o":rt.resourceURI}).length === 0) {
                 // Assume a fresh form, no pre-loaded data.
                 var id = guid();
@@ -1107,7 +1109,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 fobject.store.push(triple);
                 bfestore.store.push(triple);
                 rt.guid = rt.useguid;
-                
+
                 rt.propertyTemplates.forEach(function(property) {
                     if (_.has(property, "valueConstraint")) {
                         if (_.has(property.valueConstraint, "valueTemplateRefs") && !_.isEmpty(property.valueConstraint.valueTemplateRefs)) {
@@ -1118,10 +1120,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                 //console.log(property.propertyURI);
                                 //console.log(vtrs);
                                 /*
-                                    The following will be true, for example, when two 
-                                    profiles are to be rendered in one form.  Say that 
-                                    this "property" is "instanceOf" and this "rt" is 
-                                    an Instance (e.g. "rt:Instance:ElectronicBook").  
+                                    The following will be true, for example, when two
+                                    profiles are to be rendered in one form.  Say that
+                                    this "property" is "instanceOf" and this "rt" is
+                                    an Instance (e.g. "rt:Instance:ElectronicBook").
                                     Also a Work (e.g. "rt:Work:EricBook") is to be displayed.
                                     This litle piece of code associates the Instance
                                     with the Work in the store.
@@ -1143,9 +1145,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             }
                         }
                     }
-                });                
+                });
             } else {
-                // This will likely be insufficient - we'll need the entire 
+                // This will likely be insufficient - we'll need the entire
                 // pre-loaded store in this 'first' form.
                 rt.data.forEach(function(t) {
                     var triple = {};
@@ -1157,10 +1159,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 });
 
             }
-            
+
             // Populate form with pre-loaded data.
             bfelog.addMsg(new Error(), "DEBUG", "Populating form with pre-loaded data, if any");
-            rt.propertyTemplates.forEach(function(property){preloadData(property,rt,form,fobject)});                        
+            rt.propertyTemplates.forEach(function(property){preloadData(property,rt,form,fobject)});
         });
 
         forms.push(fobject);
@@ -1177,10 +1179,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         }
         if (propsdata[0] !== undefined) {
             // If this property exists for this resource in the pre-loaded data
-            // then we need to make it appear.                    
+            // then we need to make it appear.
             bfelog.addMsg(new Error(), "DEBUG", "Found pre-loaded data for " + property.propertyURI);
             propsdata.forEach(function (pd){loadPropsdata(pd,property,form,fobject)});
-        
+
         } else if (_.has(property, "valueConstraint")) {
             // Otherwise - if the property is not found in the pre-loaded data
             // then do we have a default value?
@@ -1200,21 +1202,21 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 triple.otype = "uri";
                 fobject.store.push(triple);
                 bfestore.store.push(triple);
-                
+
                 //set the label
                 var label = {};
                 label.s = triple.o; //http://id.loc.gov/vocabulary/mediaTypes/n
                 label.otype = "literal";
                 label.p = "http://www.w3.org/2000/01/rdf-schema#label";
                 label.o =  property.valueConstraint.defaultLiteral;
-                
+
                 fobject.store.push(label);
                 bfestore.store.push(label);
 
                 // set the form
                 var $formgroup = $("#" + property.guid, form).closest(".form-group");
                 var $save = $formgroup.find(".btn-toolbar").eq(0);
-                
+
                 var displaydata = "";
                 if (_.has(property.valueConstraint, "defaultLiteral")) {
                     displaydata = property.valueConstraint.defaultLiteral;
@@ -1225,7 +1227,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     editable = false;
                 }
                 var bgvars = {
-                    "tguid": triple.guid , 
+                    "tguid": triple.guid ,
                     "tlabelhover": displaydata,
                     "tlabel": displaydata,
                     "fobjectid": fobject.id,
@@ -1235,7 +1237,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 };
                 var $buttongroup = editDeleteButtonGroup(bgvars);
                 $save.append($buttongroup);
-                
+
                 if (property.valueConstraint.repeatable !== undefined && property.valueConstraint.repeatable == "false") {
                     var $el = $("#" + property.guid, form);
                     if ($el.is("input")) {
@@ -1248,7 +1250,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         });
                     }
                 }
-                
+
             }
         }
     }
@@ -1326,8 +1328,8 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         }
         triples.push(pd);
 
-        var bgvars = { 
-            "tguid": pd.guid, 
+        var bgvars = {
+            "tguid": pd.guid,
             "tlabelhover": displaydata,
             "tlabel": displaydata,
             "fobjectid": fobject.id,
@@ -1335,7 +1337,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             "triples": triples
         };
         var $buttongroup = editDeleteButtonGroup(bgvars);
-        
+
         $save.append($buttongroup);
         if (property.valueConstraint !== undefined && property.valueConstraint.repeatable !== undefined && property.valueConstraint.repeatable == "false") {
             var $el = $("#" + property.guid, form);
@@ -1351,14 +1353,14 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         }
     }
 
-    
+
     // callingformobjectid is as described
     // loadtemplate is the template objet to load.
     // resourceURI is the resourceURI to assign or to edit
     // inputID is the ID of hte DOM element within the loadtemplate form
     // triples is the base data.
     function openModal(callingformobjectid, loadtemplate, resourceURI, inputID, triples) {
-        
+
         // Modals
         var modal = '<div class="modal fade" id="bfeditor-modal-modalID" tabindex="' + tabIndices++ + '" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> \
             <div class="modal-dialog"> \
@@ -1375,11 +1377,11 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 </div> \
             </div> \
         </div> ';
-                
+
         bfelog.addMsg(new Error(), "DEBUG", "Opening modal for resourceURI " + resourceURI);
         bfelog.addMsg(new Error(), "DEBUG", "inputID of DOM element / property when opening modal: " + inputID);
         bfelog.addMsg(new Error(), "DEBUG", "callingformobjectid when opening modal: " + callingformobjectid);
-        
+
         var useguid = guid();
         var triplespassed = [];
         if (triples.length === 0) {
@@ -1396,7 +1398,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     triplepassed.o = resourceURI;
                     triplepassed.otype = "uri";
                     triplespassed.push(triplepassed);
-                    
+
                     triplepassed = {};
                     triplepassed.s = resourceURI;
                     triplepassed.rtID = loadtemplate.id;
@@ -1418,17 +1420,17 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             embedType: "modal",
             data: triplespassed
         }]);
-        
+
         var m = $(modal.replace(/modalID/g, form.formobject.id));
         $(editordiv).append(m);
 
-        $('#bfeditor-modalbody-' + form.formobject.id).append(form.form);        
+        $('#bfeditor-modalbody-' + form.formobject.id).append(form.form);
         $('#bfeditor-modaltitle-' + form.formobject.id).html(loadtemplate.resourceLabel);
         $('#bfeditor-form-'+form.formobject.id+' > div > h3').remove();
-            
+
         $('#bfeditor-modal-' + form.formobject.id).modal('show');
         $('#bfeditor-modalCancel-' + form.formobject.id).attr("tabindex", tabIndices++);
-            
+
         $('#bfeditor-modalSave-' + form.formobject.id).click(function(){
             triples.forEach(function(triple) {
                 removeTriple(callingformobjectid, inputID, null, triple);
@@ -1450,15 +1452,15 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         $('#bfeditor-modal-' + form.formobject.id).on("hide.bs.modal", function() {
             $(this).empty();
         });
-        
+
         $( ".typeahead", form.form ).each(function() {
             setTypeahead(this);
         });
-                    
+
         $("#bfeditor-debug").html(JSON.stringify(bfeditor.bfestore.store, undefined, " "));
         $("#bfeditor-modal-" + form.formobject.id + " input:not('.tt-hint'):first").focus()
     }
-   
+
     function setResourceFromModal(formobjectID, modalformid, resourceID, propertyguid, data) {
         /*
         console.log("Setting resource from modal");
@@ -1483,12 +1485,12 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 var $formgroup = $("#" + propertyguid, callingformobject.form).closest(".form-group");
                 var save = $formgroup.find(".btn-toolbar")[0];
                 //console.log(formgroup);
-                
+
                 bfelog.addMsg(new Error(), "DEBUG", "Selected property from calling form: " + properties[0].propertyURI);
-                var temp = _.find(data, function(t){ 
+                var temp = _.find(data, function(t){
                     if (t.p.match(/label|^title$|titleValue/i)){
-                         return t; 
-                    } 
+                         return t;
+                    }
                 });
 
                 var tlabel = _.where(temp,{"s":properties[0].propertyURI});
@@ -1502,7 +1504,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         if (data[i].otype === "literal"){
                             if (displaydata === undefined) {
                                 displaydata = "";
-                            } 
+                            }
                             displaydata += data[i].o + " ";
                         }
                     }
@@ -1520,7 +1522,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             "s": displayuri
                         }
                         data.push(triple);
-                    }                                
+                    }
                 }
 
                 data.forEach(function(t) {
@@ -1529,10 +1531,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 });
 
                 bfestore.storeDedup();
-                
+
                 var connector = _.where(data, {"p": properties[0].propertyURI});
-                var bgvars = { 
-                        "tguid": connector[0].guid, 
+                var bgvars = {
+                        "tguid": connector[0].guid,
                         "tlabelhover": displaydata,
                         "tlabel": displaydata,
                         "tlabelURI":displayuri,
@@ -1541,23 +1543,23 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         "triples": data
                     };
                 var $buttongroup = editDeleteButtonGroup(bgvars);
-                    
+
                 $(save).append($buttongroup);
                 //$("#" + propertyguid, callingformobject.form).val("");
                 if (properties[0].repeatable !== undefined && properties[0].repeatable == "false") {
                     $("#" + propertyguid, callingformobject.form).attr("disabled", true);
                 }
-                    
+
             }
         });
         // Remove the form?
         //forms = _.without(forms, _.findWhere(forms, {"id": formobjectID}));
         $('#bfeditor-modalSave-' + modalformid).off('click');
         $('#bfeditor-modal-' + modalformid).modal('hide');
-    
+
         $("#bfeditor-debug").html(JSON.stringify(bfeditor.bfestore.store, undefined, " "));
     }
-    
+
     function editDeleteButtonGroup(bgvars) {
         /*
             vars should be an object, structured thusly:
@@ -1569,7 +1571,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 triples: []
             }
         */
-        
+
         var display, $buttongroup = $('<div>', {id: bgvars.tguid, class: "btn-group btn-group-xs"});
         if (!_.isUndefined(bgvars.tlabel)){
           if (bgvars.tlabel.length > 40) {
@@ -1580,14 +1582,14 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         } else {
             display = "example";
         }
-        
+
         var $displaybutton = $('<button type="button" class="btn btn-default" title="' + bgvars.tlabelhover + '">'+display+'</button>');
         //check for non-blanknode
         if (bgvars.tlabelURI !== undefined && bgvars.tlabelURI.match("^!_:b")) {
             $displaybutton = $('<button type="button" class="btn btn-default" title="' + bgvars.tlabelhover + '"><a href="'+bgvars.tlabelURI+'">' + display +'</a></button>');
         }
         $buttongroup.append($displaybutton);
-        
+
         if ( bgvars.editable === undefined || bgvars.editable === true ) {
             //var $editbutton = $('<button type="button" class="btn btn-warning">e</button>');
             var $editbutton = $('<button class="btn btn-warning" type="button"> <span class="glyphicon glyphicon-pencil"></span></button>');
@@ -1600,7 +1602,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             });
             $buttongroup.append($editbutton);
          }
-            var $delbutton = $('<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-trash"></span> </button>');  
+            var $delbutton = $('<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-trash"></span> </button>');
 //          var $delbutton = $('<button type="button" class="btn btn-danger">x</button>');
             $delbutton.click(function(){
                 if (bgvars.triples.length === 1) {
@@ -1610,11 +1612,11 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                 }
             });
             $buttongroup.append($delbutton);
-        
-        
+
+
         return $buttongroup;
     }
-    
+
     function setLiteral(formobjectID, resourceID, inputID) {
         var formobject = _.where(forms, {"id": formobjectID});
         formobject = formobject[0];
@@ -1635,15 +1637,15 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     triple.o = data;
                     triple.otype = "literal";
                     //triple.olang = "";
-                    
+
                     bfestore.store.push(triple);
                     formobject.store.push(triple);
-                    
+
                     var formgroup = $("#" + inputID, formobject.form).closest(".form-group");
                     var save = $(formgroup).find(".btn-toolbar")[0];
-                    
-                    var bgvars = { 
-                        "tguid": triple.guid, 
+
+                    var bgvars = {
+                        "tguid": triple.guid,
                         "tlabel": data,
                         "tlabelhover": data,
                         "fobjectid": formobjectID,
@@ -1651,20 +1653,20 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         "triples": [triple]
                     };
                     var $buttongroup = editDeleteButtonGroup(bgvars);
-                    
+
                     $(save).append($buttongroup);
                     $("#" + inputID, formobject.form).val("");
                     if (properties[0].repeatable !== undefined && properties[0].repeatable == "false") {
                         $("#" + inputID, formobject.form).attr("disabled", true);
                     }
 
-                    
+
                 }
             });
         }
         $("#bfeditor-debug").html(JSON.stringify(bfestore.store, undefined, " "));
     }
-    
+
     function setResourceFromLabel(formobjectID, resourceID, inputID) {
         var formobject = _.where(forms, {"id": formobjectID});
         formobject = formobject[0];
@@ -1684,15 +1686,15 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     triple.p = properties[0].propertyURI;
                     triple.o = data;
                     triple.otype = "uri";
-                    
+
                     bfestore.store.push(triple);
                     formobject.store.push(triple);
-                    
+
                     var $formgroup = $("#" + inputID, formobject.form).closest(".form-group");
                     var save = $formgroup.find(".btn-toolbar")[0];
-                                
-                    var bgvars = { 
-                        "tguid": triple.guid, 
+
+                    var bgvars = {
+                        "tguid": triple.guid,
                         "tlabel": triple.o,
                         "tlabelhover": triple.o,
                         "fobjectid": formobjectID,
@@ -1700,19 +1702,19 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                         "triples": [triple]
                     };
                     var $buttongroup = editDeleteButtonGroup(bgvars);
-                    
+
                     $(save).append($buttongroup);
                     $("#" + inputID, formobject.form).val("");
                     if (properties[0].repeatable !== undefined && properties[0].repeatable == "false") {
                         $("#" + inputID, formobject.form).attr("disabled", true);
                     }
-                    
+
                 }
             });
         }
         $("#bfeditor-debug").html(JSON.stringify(bfestore.store, undefined, " "));
     }
-    
+
     function setTypeahead(input) {
         //var form = $(input).closest("form").eq(0);
         var formid = $(input).closest("form").eq(0).attr("id");
@@ -1724,7 +1726,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             formobject.pageid = pageid;
         }
         //console.log(formid);
-            
+
         var pguid = $(input).attr("data-propertyguid");
         var p;
         formobject.resourceTemplates.forEach(function(t) {
@@ -1741,14 +1743,14 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         // var lups = _.where(lookups, {"scheme": uvf});
             var lu = lookups[uvf];
 
-            if(lu===undefined){                
-                lu=buildLookup(uvf);                
+            if(lu===undefined){
+                lu=buildLookup(uvf);
                 lookups[uvf] = lu;
             }
 
             bfelog.addMsg(new Error(), "DEBUG", "Setting typeahead scheme: " + uvf);
             bfelog.addMsg(new Error(), "DEBUG", "Lookup is", lu);
-                    
+
             var dshash = {};
             dshash.name = lu.name;
             dshash.source = function(query, process) {
@@ -1758,7 +1760,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             dshash.displayKey = 'value';
             dshashes.push(dshash);
         });
-        
+
         bfelog.addMsg(new Error(), "DEBUG", "Data source hashes", dshashes);
         var opts = {
             minLength: 0,
@@ -1812,7 +1814,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             );
         }
         // Need more than 6?  That's crazy talk, man, crazy talk.
-        $( input ).on("typeahead:selected", function(event, suggestionobject, datasetname) {            
+        $( input ).on("typeahead:selected", function(event, suggestionobject, datasetname) {
             bfelog.addMsg(new Error(), "DEBUG", "Typeahead selection made");
             var form = $("#" + event.target.id).closest("form").eq(0);
             var formid = $("#" + event.target.id).closest("form").eq(0).attr("id");
@@ -1821,10 +1823,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             $(input).parent().siblings(".typeaheadpage").val(1);
             var resourceid = $(form).children("div").eq(0).attr("id");
             var resourceURI = $(form).find("div[data-uri]").eq(0).attr("data-uri");
-                
+
             var propertyguid = $("#" + event.target.id).attr("data-propertyguid");
             bfelog.addMsg(new Error(), "DEBUG", "propertyguid for typeahead input is " + propertyguid);
-                
+
             var s = editorconfig.baseURI + resourceid;
             var p = "";
             var formobject = _.where(forms, {"id": formid});
@@ -1836,7 +1838,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     p = properties[0];
                 }
             });
-                
+
             var lups = _.where(lookups, {"name": datasetname});
             var lu;
             if ( lups[0] !== undefined ) {
@@ -1852,7 +1854,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     }
                     formobject.store.push(t);
                     bfestore.store.push(t);
-                    
+
                     // We only want to show those properties that relate to
                     // *this* resource.
                     if (t.s == resourceURI) {
@@ -1861,10 +1863,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             if ( properties[0] !== undefined ) {
                                 var property = properties[0];
                                 var pguid = property.guid;
-                    
+
                                 var $formgroup = $("#" + pguid, formobject.form).closest(".form-group");
                                 var save = $formgroup.find(".btn-toolbar")[0];
-                            
+
                                 var tlabel = t.o;
                                 if (t.otype == "uri") {
                                     var resourcedata = _.where(returntriples, {"s": t.o});
@@ -1885,12 +1887,12 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                     }
 
                                 }
-                            
+
                                 var setTriples = [t];
                                 if (resourcedata !== undefined && resourcedata[0] !== undefined) {
                                     setTriples = resourcedata;
                                 }
-                        
+
 
 
 
@@ -1898,9 +1900,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                 if (property.valueConstraint.editable !== undefined && property.valueConstraint.editable === "false") {
                                     editable = false;
                                 }
-                                var bgvars = { 
+                                var bgvars = {
                                     "editable": editable,
-                                    "tguid": t.guid, 
+                                    "tguid": t.guid,
                                     "tlabel": tlabel,
                                     "tlabelhover": tlabel,
                                     "fobjectid": formobject.id,
@@ -1908,13 +1910,13 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                     "triples": setTriples
                                 };
                                 var $buttongroup = editDeleteButtonGroup(bgvars);
-                            
+
                                 $(save).append($buttongroup);
-                    
+
                                 $("#" + pguid, formobject.form).val("");
                                 $("#" + pguid, formobject.form).typeahead('val', "");
                                 $("#" + pguid, formobject.form).typeahead('close');
-                    
+
                                 if (property.valueConstraint !== undefined && property.valueConstraint.repeatable !== undefined && property.valueConstraint.repeatable == "false") {
                                     var $el = $("#" + pguid, formobject.form);
                                     if ($el.is("input")) {
@@ -1941,12 +1943,12 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         var lcshared = require("src/lookups/lcshared");
         var cache = [];
         var lu = {};
-        lu.name = name.substr(name.lastIndexOf('/') + 1);;        
+        lu.name = name.substr(name.lastIndexOf('/') + 1);;
         var scheme = name;
         var source = function(query, process){
             return lcshared.simpleQuery(query, cache, scheme, process);
         }
-    
+
         var getResource = function(subjecturi, propertyuri, selected, process) {
             if(scheme.indexOf("ml38281") > 0){
                 selected.uri = selected.uri.replace("gov/", "gov/ml38281/");
@@ -1956,7 +1958,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         lu.load = {scheme,source,getResource};
         return lu;
     }
-    
+
     function editTriple(formobjectID, inputID, t) {
         var formobject = _.where(forms, {"id": formobjectID});
         formobject = formobject[0];
@@ -1990,7 +1992,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         bfestore.store = _.without(bfestore.store, _.findWhere(bfestore.store, {guid: t.guid}));
         $("#bfeditor-debug").html(JSON.stringify(bfestore.store, undefined, " "));
     }
-    
+
     function editTriples(formobjectID, inputID, tguid, triples) {
         bfelog.addMsg(new Error(), "DEBUG", "Editing triples", triples);
         var resourceTypes = _.where(triples, {"p": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"});
@@ -2003,7 +2005,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
             // function openModal(callingformobjectid, rtguid, propertyguid, template) {
             var callingformobject = _.where(forms, {"id": formobjectID});
             callingformobject = callingformobject[0];
-            
+
             var templates = _.where(resourceTemplates, {"id": resourceTypes[0].rtID});
             if (templates[0] !== undefined) {
                 // The subject of the resource matched with the "type"
@@ -2013,9 +2015,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         } else {
             removeTriples(formobjectID, inputID, tguid, triples);
         }
-        
+
     }
-    
+
     function removeTriple(formobjectID, inputID, tguid, t) {
         var formobject = _.where(forms, {"id": formobjectID});
         formobject = formobject[0];
@@ -2054,7 +2056,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         bfestore.store = _.without(bfestore.store, _.findWhere(bfestore.store, {guid: t.guid}));
         $("#bfeditor-debug").html(JSON.stringify(bfestore.store, undefined, " "));
     }
-    
+
     function removeTriples(formobjectID, inputID,tID, triples) {
         bfelog.addMsg(new Error(), "DEBUG", "Removing triples for formobjectID: " + formobjectID + " and inputID: " + inputID, triples);
         triples.forEach(function(triple) {
@@ -2066,7 +2068,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
     * Generate string which matches python dirhash
     * @returns {String} the generated string
     * @example GCt1438871386
-    *  
+    *
     */
     function guid() {
         function _randomChoice() {
@@ -2090,7 +2092,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
     function whichrt(rt, baseURI){
         //for resource templates, determine if they are works, instances, or other
         var returnval = "_:bnode";
-        
+
         $.ajax({
             type: "GET",
             async: false,
@@ -2120,7 +2122,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
 
     }
 
-    
+
 });
 
 ;(function(){function n(n,t,e){e=(e||0)-1;for(var r=n?n.length:0;++e<r;)if(n[e]===t)return e;return-1}function t(t,e){var r=typeof e;if(t=t.l,"boolean"==r||null==e)return t[e]?0:-1;"number"!=r&&"string"!=r&&(r="object");var u="number"==r?e:m+e;return t=(t=t[r])&&t[u],"object"==r?t&&-1<n(t,e)?0:-1:t?0:-1}function e(n){var t=this.l,e=typeof n;if("boolean"==e||null==n)t[n]=true;else{"number"!=e&&"string"!=e&&(e="object");var r="number"==e?n:m+n,t=t[e]||(t[e]={});"object"==e?(t[r]||(t[r]=[])).push(n):t[r]=true
@@ -2185,9 +2187,9 @@ bfe.define('src/bfestore', ['require', 'exports', 'module' , 'src/lib/lodash.min
     require("src/lib/lodash.min");
 
     exports.store = [];
-    
+
     exports.storeDedup = function() {
-        exports.store = _.uniq(exports.store, function(t) { 
+        exports.store = _.uniq(exports.store, function(t) {
             if (t.olang !== undefined) {
                 return t.s + t.p + t.o + t.otype + t.olang
             } else if (t.odatatype !== undefined) {
@@ -2198,13 +2200,13 @@ bfe.define('src/bfestore', ['require', 'exports', 'module' , 'src/lib/lodash.min
         });
         return exports.store;
     }
-    
+
     exports.jsonld2store = function(jsonld) {
-        jsonld.forEach(function(resource){
+        Array.from(jsonld).forEach(function(resource){
             var s = typeof resource["@id"] !== 'undefined' ? resource["@id"] : '_:b' + guid();
             for (var p in resource) {
                 if (p !== "@id") {
-                    resource[p].forEach(function(o) {
+                    Array.from(resource[p]).forEach(function(o) {
                         var tguid = guid();
                         var triple = {};
                         triple.guid = tguid;
@@ -2244,7 +2246,7 @@ bfe.define('src/bfestore', ['require', 'exports', 'module' , 'src/lib/lodash.min
         return exports.store;
     }
 
-    
+
     exports.store2jsonldExpanded = function() {
         var json = [];
         exports.storeDedup();
@@ -2282,7 +2284,7 @@ bfe.define('src/bfestore', ['require', 'exports', 'module' , 'src/lib/lodash.min
         }
         return json;
     };
-    
+
     exports.store2text = function() {
         var nl = "\n";
         var nlindent = nl + "\t";
@@ -2322,7 +2324,7 @@ bfe.define('src/bfestore', ['require', 'exports', 'module' , 'src/lib/lodash.min
         });
         return predata;
     };
-    
+
     /**
     * Generates a GUID string.
     * @returns {String} The generated GUID.
@@ -2345,13 +2347,13 @@ bfe.define('src/bfelogging', ['require', 'exports', 'module' ], function(require
     var level = "INFO";
     var toConsole = true;
     var domain = window.location.protocol + "//" + window.location.host + "/";
-    
+
     exports.log = [];
-    
+
     exports.getLog = function() {
         return exports.log;
     };
-    
+
     exports.init = function(config) {
         if (config.logging !== undefined) {
             if (config.logging.level !== undefined && config.logging.level == "DEBUG") {
@@ -2365,7 +2367,7 @@ bfe.define('src/bfelogging', ['require', 'exports', 'module' ], function(require
         exports.addMsg(new Error(), "INFO", msg);
         exports.addMsg(new Error(), "INFO", domain);
     };
-    
+
     // acceptable ltypes are:  INFO, DEBUG, WARN, ERROR
     exports.addMsg = function(error, ltype, data, obj) {
         if (error.lineNumber === undefined && error.fileName === undefined) {
@@ -2376,12 +2378,12 @@ bfe.define('src/bfelogging', ['require', 'exports', 'module' ], function(require
                 fileinfo = fileinfo.replace(domain, "");
                 var infoparts = fileinfo.split(":");
                 error.fileName = infoparts[0];
-                error.lineNumber = infoparts[1]; 
+                error.lineNumber = infoparts[1];
             } catch(e) {
                 // Probably IE.
                 error.fileName = "unknown";
-                error.lineNumber = "?";     
-                
+                error.lineNumber = "?";
+
             }
         }
         error.fileName = error.fileName.replace(domain, "");
@@ -2393,7 +2395,7 @@ bfe.define('src/bfelogging', ['require', 'exports', 'module' ], function(require
             consoleOut(ltype, data, error, obj);
         }
     };
-    
+
     function consoleOut(ltype, data, error, obj) {
         if (toConsole) {
             console.log(error.fileName + ":" + error.lineNumber + " -> " + data);
@@ -2405,7 +2407,7 @@ bfe.define('src/bfelogging', ['require', 'exports', 'module' ], function(require
             }
         }
     }
-    
+
     function setMsg(ltype, data, error, obj) {
         var dateTime = new Date();
         var locale = dateTime.toJSON();
@@ -2431,25 +2433,25 @@ bfe.define('src/bfelogging', ['require', 'exports', 'module' ], function(require
 });
 bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups/lcshared'], function(require, exports, module) {
     var lcshared = require("src/lookups/lcshared");
-    
+
     var cache = [];
-    
+
     // This var is required because it is used as an identifier.
     exports.scheme = "http://id.loc.gov/authorities/names";
 
     exports.source = function(query, process, formobject) {
-        
+
         //console.log(JSON.stringify(formobject.store));
-        
+
         var triples = formobject.store;
-        
+
         var type = "";
         var hits = _.where(triples, {"p": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"})
         if ( hits[0] !== undefined ) {
                 type = hits[0].o;
             }
         //console.log("type is " + type);
-        
+
         var scheme = "http://id.loc.gov/authorities/names";
         hits = _.where(triples, {"p": "http://id.loc.gov/ontologies/bibframe/authoritySource"})
         if ( hits[0] !== undefined ) {
@@ -2457,7 +2459,7 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
                 scheme = hits[0].o;
             }
         //console.log("scheme is " + scheme);
-        
+
         var rdftype = "";
         if ( type == "http://www.loc.gov/standards/mads/rdf/v1.html#PersonalName") {
             rdftype = "rdftype:PersonalName";
@@ -2479,7 +2481,7 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
         } else if ( type == "http://id.loc.gov/ontologies/bibframe/role") {
             rdftype = "rdftype:Role";
         }
-                
+
         var q = "";
         if (scheme !== "" && rdftype !== "") {
             q = 'cs:' + scheme + ' AND ' + rdftype;
@@ -2495,7 +2497,7 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
         }
         //console.log('q is ' + q);
         q = encodeURI(q);
-        
+
         if(cache[q]){
             process(cache[q]);
             return;
@@ -2504,7 +2506,7 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
             clearTimeout(this.searching);
             process([]);
         }
-                
+
         this.searching = setTimeout(function() {
             if ( query.length > 2 && query.substr(0,1)!='?') {
                 suggestquery = query;
@@ -2538,15 +2540,15 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
                 return [];
             }
         }, 300); // 300 ms
-        
+
     }
-    
+
     /*
-    
+
         subjecturi hasAuthority selected.uri
         subjecturi  bf:label selected.value
     */
-    exports.getResource = lcshared.getResourceWithAAP;    
+    exports.getResource = lcshared.getResourceWithAAP;
 
 });
 bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(require, exports, module) {
@@ -2578,17 +2580,17 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
 
         return process(triples);
      }
-    
+
     exports.getResourceWithAAP = function(subjecturi, propertyuri, selected, process) {
         var triples = [];
-        
+
         var triple = {};
         triple.s = subjecturi
         triple.p = propertyuri;
         triple.o = selected.uri;
         triple.otype = "uri";
         triples.push(triple);
-        
+
         triple = {};
         triple.s = subjecturi;
         triple.p = "http://www.w3.org/2000/01/rdf-schema#label";
@@ -2597,12 +2599,12 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
         triple.olang = "en";
         triples.push(triple);
 
-        process(triples);    
+        process(triples);
     }
-    
+
     exports.getResourceLabelLookup = function(subjecturi, propertyuri, selected, process) {
         var triples = [];
-        
+
         var triple = {};
         triple.s = subjecturi
         triple.p = propertyuri;
@@ -2662,7 +2664,7 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
         }
             return typeahead_source;
     }
-    
+
     exports.processSuggestions = function(suggestions, query) {
         var typeahead_source = [];
         if ( suggestions[1] !== undefined ) {
@@ -2679,7 +2681,7 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
         //$("#dropdown-footer").text('Total Results:' + suggestions.length);
         return typeahead_source;
     }
-    
+
     exports.processATOM = function(atomjson, query) {
         var typeahead_source = [];
         for (var k in atomjson) {
@@ -2721,7 +2723,7 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
             process([]);
         }
         this.searching = setTimeout(function() {
-            
+
             if ( query === '' || query === ' ') {
                 u = scheme + "/suggest/?count=100&q=";
                 $.ajax({
@@ -2753,23 +2755,23 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
 });
 bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/lookups/lcshared'], function(require, exports, module) {
     var lcshared = require("src/lookups/lcshared");
-    
+
     var cache = [];
 
     exports.scheme = "http://id.loc.gov/authorities/subjects";
 
     exports.source = function(query, process, formobject) {
         //console.log(JSON.stringify(formobject.store));
-        
+
         var triples = formobject.store;
-        
+
         var type = "";
         var hits = _.where(triples, {"p": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"})
         if ( hits[0] !== undefined ) {
                 type = hits[0].o;
             }
         //console.log("type is " + type);
-        
+
         var scheme = "http://id.loc.gov/authorities/subjects";
         hits = _.where(triples, {"p": "http://id.loc.gov/ontologies/bibframe/authoritySource"})
         if ( hits[0] !== undefined ) {
@@ -2777,7 +2779,7 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
                 scheme = hits[0].o;
             }
         //console.log("scheme is " + scheme);
-        
+
         var rdftype = "";
         if ( type == "http://www.loc.gov/standards/mads/rdf/v1.html#Person") {
             rdftype = "rdftype:PersonalName";
@@ -2797,7 +2799,7 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
         } else if ( type == "http://id.loc.gov/ontologies/bibframe/GenreForm") {
             rdftype = "rdftype:GenreForm";
         }
-                
+
         var q = "";
         if (scheme !== "" && rdftype !== "") {
             q = 'cs:' + scheme + ' AND ' + rdftype;
@@ -2813,7 +2815,7 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
         }
         //console.log('q is ' + q);
         q = encodeURI(q);
-        
+
         if(cache[q]){
             process(cache[q]);
             return;
@@ -2822,7 +2824,7 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
             clearTimeout(this.searching);
             process([]);
         }
-                
+
         this.searching = setTimeout(function() {
             if ( query.length > 2 && query.substr(0,1)!="?") {
                 suggestquery = query;
@@ -2854,11 +2856,11 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
                 return [];
             }
         }, 300); // 300 ms
-        
+
     }
-    
+
     /*
-    
+
         subjecturi hasAuthority selected.uri
         subjecturi  bf:label selected.value
     */
@@ -2867,7 +2869,7 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
 });
 bfe.define('src/lookups/lcgenreforms', ['require', 'exports', 'module' , 'src/lookups/lcshared'], function(require, exports, module) {
     var lcshared = require("src/lookups/lcshared");
-    
+
     var cache = [];
 
     exports.scheme = "http://id.loc.gov/authorities/genreForms";
@@ -2875,7 +2877,7 @@ bfe.define('src/lookups/lcgenreforms', ['require', 'exports', 'module' , 'src/lo
     exports.source = function(query, process) {
         var scheme = "http://id.loc.gov/authorities/genreForms";
         var rdftype = "rdftype:GenreForm";
-                
+
         var q = "";
         if (scheme !== "" && rdftype !== "") {
             q = 'cs:' + scheme + ' AND ' + rdftype;
@@ -2891,7 +2893,7 @@ bfe.define('src/lookups/lcgenreforms', ['require', 'exports', 'module' , 'src/lo
         }
         console.log('q is ' + q);
         q = encodeURI(q);
-        
+
         if(cache[q]){
             process(cache[q]);
             return;
@@ -2925,9 +2927,9 @@ bfe.define('src/lookups/lcgenreforms', ['require', 'exports', 'module' , 'src/lo
                 return [];
             }
         }, 300); // 300 ms
-        
+
     }
-    
+
     exports.getResource = lcshared.getResourceWithAAP;
 
 });
@@ -2937,22 +2939,22 @@ bfe.define('src/lookups/lcworks', ['require', 'exports', 'module' ], function(re
 
     // Using twitter's typeahead, store may be completely unnecessary
     var cache = [];
-    
+
     exports.scheme = "http://id.loc.gov/resources/works";
 
     exports.source = function(query, process, formobject) {
-        
+
         var pageobj =  $('#'+formobject.pageid);
         var page = pageobj.val() != undefined ? parseInt(pageobj.val()) : 1;
         var triples = formobject.store;
-        
+
         var type = "";
         var hits = _.where(triples, {"p": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"})
         if ( hits[0] !== undefined ) {
                 type = hits[0].o;
             }
         //console.log("type is " + type);
-        
+
         var scheme = "http://id.loc.gov/resources/works";
         hits = _.where(triples, {"p": "http://id.loc.gov/ontologies/bibframe/authoritySource"})
         if ( hits[0] !== undefined ) {
@@ -2960,10 +2962,10 @@ bfe.define('src/lookups/lcworks', ['require', 'exports', 'module' ], function(re
                 scheme = hits[0].o;
             }
         //console.log("scheme is " + scheme);
-        
+
         //var rdftype = "rdftype:Instance";
         var rdftype = "";
-                
+
         var q = "";
         if (scheme !== "" && rdftype !== "") {
             q = 'cs:' + scheme + '&q=' + rdftype;
@@ -2976,7 +2978,7 @@ bfe.define('src/lookups/lcworks', ['require', 'exports', 'module' ], function(re
         q = q + "&q=scheme:/bibframe&q="+query;
         //console.log('q is ' + q);
         q = encodeURI(q);
-        
+
         if(cache[q]){
             process(cache[q]);
             return;
@@ -2985,7 +2987,7 @@ bfe.define('src/lookups/lcworks', ['require', 'exports', 'module' ], function(re
             clearTimeout(this.searching);
             process([]);
         }
-        
+
         this.searching = setTimeout(function(formobject) {
             if ( query.length > 2 ) {
                 //u = "http://id.loc.gov/ml38281/search/?format=jsonp&start="+page+"&count=50&q=" + q;
@@ -3011,24 +3013,24 @@ bfe.define('src/lookups/lcworks', ['require', 'exports', 'module' ], function(re
             }
         }, 300); // 300 ms
         //return searching;
-        
+
     }
-    
+
     /*
-    
+
         subjecturi hasAuthority selected.uri
         subjecturi  bf:label selected.value
     */
     exports.getResource = function(subjecturi, propertyuri, selected, process) {
         var triples = [];
-        
+
         var triple = {};
         triple.s = subjecturi;
         triple.p = propertyuri;
         triple.o = selected.uri;
         triple.otype = "uri";
         triples.push(triple);
-        
+
         triple = {};
         triple.s = subjecturi
         triple.p = "http://www.w3.org/2000/01/rdf-schema#label";
@@ -3036,7 +3038,7 @@ bfe.define('src/lookups/lcworks', ['require', 'exports', 'module' ], function(re
         triple.otype = "literal";
         triple.olang = "en";
         triples.push(triple);
-        
+
         triple = {};
         triple.s = selected.uri;
         triple.p = "http://www.w3.org/2000/01/rdf-schema#label";
@@ -3088,7 +3090,7 @@ bfe.define('src/lookups/lcworks', ['require', 'exports', 'module' ], function(re
             }
         });
     }
-    
+
     function processATOM(atomjson, query) {
         var typeahead_source = [];
         for (var k in atomjson) {
@@ -3129,13 +3131,13 @@ bfe.define('src/lookups/lcinstances', ['require', 'exports', 'module' ], functio
 
     // Using twitter's typeahead, store may be completely unnecessary
     var cache = [];
-    
+
     exports.scheme = "http://id.loc.gov/resources/instances";
 
     exports.source = function(query, process, formobject) {
 
         var triples = formobject.store;
-        
+
         var type = "";
         var hits = _.where(triples, {"p": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"})
         if ( hits[0] !== undefined ) {
@@ -3143,7 +3145,7 @@ bfe.define('src/lookups/lcinstances', ['require', 'exports', 'module' ], functio
                 type = hits[0].o;
             }
         //console.log("type is " + type);
-        
+
         var scheme = "http://id.loc.gov/ml38281/resources/instances";
         hits = _.where(triples, {"p": "http://id.loc.gov/ontologies/bibframe/authoritySource"})
         if ( hits[0] !== undefined ) {
@@ -3151,10 +3153,10 @@ bfe.define('src/lookups/lcinstances', ['require', 'exports', 'module' ], functio
                 scheme = hits[0].o;
             }
         //console.log("scheme is " + scheme);
-        
+
         //var rdftype = "rdftype:Instance";
         var rdftype = "";
-                
+
         var q = "";
         if (scheme !== "" && rdftype !== "") {
             q = 'cs:' + scheme + '&q=' + rdftype;
@@ -3167,7 +3169,7 @@ bfe.define('src/lookups/lcinstances', ['require', 'exports', 'module' ], functio
         q = q + "&q=scheme:/bibframe&q="+query;
         //console.log('q is ' + q);
         q = encodeURI(q);
-        
+
         if(cache[q]){
             process(cache[q]);
             return;
@@ -3176,7 +3178,7 @@ bfe.define('src/lookups/lcinstances', ['require', 'exports', 'module' ], functio
             clearTimeout(this.searching);
             process([]);
         }
-                
+
         this.searching = setTimeout(function() {
             if ( query.length > 2 ) {
                 u = "http://id.loc.gov/ml38281/search/?format=jsonp&start=1&count=10&q=" + q;
@@ -3198,26 +3200,26 @@ bfe.define('src/lookups/lcinstances', ['require', 'exports', 'module' ], functio
                 return [];
             }
         }, 300); // 300 ms
-        
+
         //return searching;
-        
+
     }
-    
+
     /*
-    
+
         subjecturi hasAuthority selected.uri
         subjecturi  bf:label selected.value
     */
     exports.getResource = function(subjecturi, propertyuri, selected, process) {
         var triples = [];
-        
+
         var triple = {};
         triple.s = subjecturi
         triple.p = propertyuri;
         triple.o = selected.uri;
         triple.otype = "uri";
         triples.push(triple);
-        
+
         triple = {};
         triple.s = subjecturi
         triple.p = "http://www.w3.org/2000/01/rdf-schema#label";
@@ -3225,7 +3227,7 @@ bfe.define('src/lookups/lcinstances', ['require', 'exports', 'module' ], functio
         triple.otype = "literal";
         triple.olang = "en";
         triples.push(triple);
-        
+
         /*
         If you wanted/needed to make another call.
         */
@@ -3265,7 +3267,7 @@ bfe.define('src/lookups/lcinstances', ['require', 'exports', 'module' ], functio
             }
         });
     }
-    
+
     function processATOM(atomjson, query) {
         var typeahead_source = [];
         for (var k in atomjson) {
@@ -3353,13 +3355,13 @@ bfe.define('src/lookups/rdaformatnotemus', ['require', 'exports', 'module' , 'sr
 bfe.define('src/lookups/lcorganizations', ['require', 'exports', 'module' , 'src/lookups/lcshared'], function(require, exports, module) {
     var lcshared = require("src/lookups/lcshared");
     var cache = [];
-    
+
     exports.scheme = "http://id.loc.gov/vocabulary/organizations";
 
     exports.source = function(query, process){
         return lcshared.simpleQuery(query, cache, exports.scheme, process);
     }
-    
+
     exports.getResource = lcshared.getResourceWithAAP;
 
 });
@@ -3384,7 +3386,7 @@ bfe.define('src/lookups/relators', ['require', 'exports', 'module' , 'src/lookup
  *
  * Copyright (c) 2010, Ajax.org B.V.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *     * Redistributions of source code must retain the above copyright
@@ -3395,7 +3397,7 @@ bfe.define('src/lookups/relators', ['require', 'exports', 'module' , 'src/lookup
  *     * Neither the name of Ajax.org B.V. nor the
  *       names of its contributors may be used to endorse or promote products
  *       derived from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
