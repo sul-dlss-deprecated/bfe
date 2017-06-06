@@ -59,7 +59,7 @@
               document.body.scrollTop = document.documentElement.scrollTop = 0;
               bfelog.addMsg(new Error(), "INFO", "Saved " + data.id);
               var $messagediv = $('<div>', {id: "bfeditor-messagediv"});
-              $messagediv.append('<div class="alert alert-success"><strong>Record Created:</strong><a href='+data.url+'>'+data.name+'</a></div>');
+              $messagediv.append('<div class="alert alert-success"><strong>Record Created:</strong><a href='+config.dataURL+data.id+' target="_blank">'+data.name+'</a></div>');
               $('#bfeditor-formdiv').empty();
               $('#save-btn').remove();
               $messagediv.insertBefore('#bfeditor-previewPanel');
@@ -93,6 +93,49 @@
           });
       }
 
+      function toTripleStore(id, csrf, bfelog){
+        var exportUrl = config.exportURL;
+        var dataUrl = config.dataURL+id;
+        var rdfData = [];
+
+        $.getJSON(dataUrl, function(result) {
+          bfelog.addMsg(new Error(), "INFO", "Got id:" + id + " json data");
+          for(var key in result) {
+            var value = result[key];
+            if(typeof value == 'object') {
+              if(value instanceof Array) {
+                for(var i = 0; i < value.length; i++) {
+                  var item = value[i];
+                  rdfData.push(item);
+                }
+              } else {
+                //nada
+              }
+            } else {
+              //nada
+            }
+          }
+        }).done(function() {
+          var jsonData = JSON.stringify(rdfData);
+          $.ajax({
+            type: 'POST',
+            url: 'export.php',
+            data: {
+              'exportUrl': exportUrl,
+              'rdfData': jsonData
+            },
+            dataType: 'html',
+            success: function (data) {
+              bfelog.addMsg(new Error(), "INFO", "Result: "+data+ ", Posted id: " + id + " to triple store");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              bfelog.addMsg(new Error(), "ERROR", "FAILED post to triplestore: " + exportUrl);
+              bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
+            }
+          });
+        })
+      }
+
       function deleteId(id, csrf, bfelog){
           var url = config.dataURL + id;
 
@@ -113,7 +156,6 @@
                   bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
               }
           });
-
       }
 
       var config = {
@@ -121,24 +163,24 @@
           //     "level": "DEBUG",
           //     "toConsole": true
           // },
+          "exportURL": "http://sul-ld4p-blazegraph-dev.stanford.edu/blazegraph/namespace/bfe/sparql",
           "dataURL": "http://localhost:3001/api/bfs/",
           "saveJsonProfile": "http://localhost:8000/bf/static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
-          "saveJsonUrl": "http://localhost:8000/bf/data/",
+          "showLoadDiv":false,
           "baseURI": "http://id.loc.gov/",
           "profiles": [
-	        "static/profiles/bibframe/BIBFRAME 2.0 Agents.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 Agents Contribution.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 Form.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 Language.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 LCC.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 Notated Music.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 Place.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 Publication, Distribution, Manufacturer Activity.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 Related Works and Expressions.json",
-    			"static/profiles/bibframe/BIBFRAME 2.0 Topic.json",
-          "static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
-	        "static/profiles/bibframe/BIBFRAME 2.0 Monograph.json"
-
+  	        "static/profiles/bibframe/BIBFRAME 2.0 Agents.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Agents Contribution.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Form.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Language.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 LCC.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Notated Music.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Place.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Publication, Distribution, Manufacturer Activity.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Related Works and Expressions.json",
+      			"static/profiles/bibframe/BIBFRAME 2.0 Topic.json",
+            "static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
+  	        "static/profiles/bibframe/BIBFRAME 2.0 Monograph.json"
           ],
           "startingPoints": [
                       {"menuGroup": "Monograph",
@@ -218,6 +260,9 @@
           "return": {
               "format": "jsonld-expanded",
               "callback": myCB
+          },
+          "toTripleStore": {
+            "callback": toTripleStore
           }
       }
       var bfeditor = bfe.fulleditor(config, "bfeditor");
