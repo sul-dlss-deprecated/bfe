@@ -275,7 +275,31 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         // Set up logging
         bfelog.init(editorconfig);
 
-        for (var i=0; i < config.profiles.length; i++) {
+        var p = config.profileFiles.callback(config.profileDir, bfelog);
+        for (var key in p) {
+          if (p.hasOwnProperty(key)) {
+            var file = 'static/profiles/bibframe/' + p[key];
+            bfelog.addMsg(new Error(), "INFO", "Loading profile: " + file);
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                url: file,
+                success: function(data) {
+                    $("#bfeditor-loader").width($("#bfeditor-loader").width()+5+"%");
+                    profiles.push(data);
+                    for (var rt=0; rt < data.Profile.resourceTemplates.length; rt++) {
+                        resourceTemplates.push(data.Profile.resourceTemplates[rt]);
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    bfelog.addMsg(new Error(), "ERROR", "FAILED to load profile: " + file);
+                    bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
+                }
+            });
+          }
+        }
+        /*for (var i=0; i < config.profiles.length; i++) {
             var file = config.profiles[i];
             bfelog.addMsg(new Error(), "INFO", "Loading profile: " + config.profiles[i]);
             $.ajax({
@@ -295,7 +319,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                     bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
                 }
             });
-        }
+        }*/
 
         if (config.lookups !== undefined) {
             loadtemplatesANDlookupsCount = loadtemplatesANDlookupsCount + Object.keys(config.lookups).length;
@@ -363,7 +387,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         var $tabul = $('<ul class="nav nav-tabs"></ul>');
         $tabul.append('<li class="active"><a data-toggle="tab" href="#browse">Browse</a></li>');
         $tabul.append('<li><a data-toggle="tab" href="#create">Editor</a></li>');
-        $tabul.append('<li><a data-toggle="tab" href="#load">Load</a></li>');
+
+        if (config.showLoadDiv)
+          $tabul.append('<li><a data-toggle="tab" href="#load">Load</a></li>');
+
         $containerdiv.append($tabul);
 
         var $tabcontentdiv = $('<div class="tab-content"></div>');
@@ -390,10 +417,21 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
              "processing": true,
              "ajax": {
                 "url":config.dataURL,
+ 		            "headers": {
+                  'Access-Control-Allow-Origin': '*',
+		              'Content-Type':'application/json',
+    		          'Access-Control-Allow-Methods': 'DELETE, HEAD, GET, OPTIONS, POST, PUT',
+    	    	      'Access-Control-Allow-Headers': 'Content-Type, Content-Range, Content-Disposition, Content-Description',
+    		          'Access-Control-Max-Age': '1728000'
+                },
                 "dataSrc":""
              },
              "columns": [
-                 { "data": "id" },
+                 { "data": "id",
+                   "render": function(data, type, row){
+                      return '<div><a href="'+config.dataURL+'/'+data+'">'+data+'</a></div>'
+                  }
+                 },
                  { "data": "name" },
                  { "data": "rdf",
                    "render": function(data,type,full,meta){
@@ -401,15 +439,18 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                        if (_.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/titleValue"]}).length > 0){
                          text = _.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/titleValue"]})[0];
                        }
-                       return text["http://id.loc.gov/ontologies/bibframe/titleValue"][0]["@value"];
-
+                       if(text["http://id.loc.gov/ontologies/bibframe/titleValue"]) {
+                         return text["http://id.loc.gov/ontologies/bibframe/titleValue"][0]["@value"];
+                       } else {
+                         return "{no value supplied}";
+                       }
                     }
                  },
                  { "data": "rdf",
                    "render" : function(data,type,full,meta){
                              var text = "";
-                             if (_.filter(data, function(el){return el["http://bibframe.org/vocab2/comment"]}).length > 0)
-                               text = _.filter(data, function(el){return el["http://bibframe.org/vocab2/comment"]})[0]["http://bibframe.org/vocab2/comment"][0]["@value"];
+                             if (_.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/comment"]}).length > 0)
+                               text = _.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/comment"]})[0]["http://id.loc.gov/ontologies/bibframe/comment"][0]["@value"];
                              return text.length > 40 ? text.substr(0,38)+"..." : text;
                             }
                  },
@@ -430,6 +471,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
 
                         return '<div class="btn-group" id="retrieve-btn"><button id="bfeditor-retrieve'+rowData.id+'" type="button" class="btn btn-default">Edit</button> \
                          <button id="bfeditor-delete'+rowData.id+'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#bfeditor-deleteConfirm'+rowData.id+'">Delete</button> \
+                         <button id="bfeditor-export'+rowData.id+'"type="button" class="btn btn-info" data-toggle="modal" data-target="#bfeditor-toTripleStoreConfirm'+rowData.id+'">Export</button> \
                          </div>'
                     },
                     "createdCell": function (td, cellData, rowData, row, col){
@@ -510,6 +552,27 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             bfestore.store = [];
                             table.ajax.reload();
                         });
+
+                        $(td).append($('<div class="modal fade" id="bfeditor-toTripleStoreConfirm'+rowData.id+'" role="dialog"><div class="modal-dialog modal-sm"><div class="modal-content"> \
+                             <div class="modal-body"><h4>Export?</h4></div>\
+                             <div class="modal-footer"><button type="button" class="btn btn-default" id="bfeditor-modalCancel" data-dismiss="modal">Cancel</button> \
+                             <button type="button" id="bfeditor-toTripleStoreConfirmButton'+rowData.id+'" class="btn btn-info btn-ok" data-dismiss="modal">Export</button></div></div></div></div></div>'));
+
+                        $(td).find("#bfeditor-toTripleStoreConfirmButton"+rowData.id).click(function(){
+                             if (editorconfig.toTripleStore.callback !== undefined) {
+                                 editorconfig.toTripleStore.callback(rowData.id, editorconfig.getCSRF.callback(), bfelog);
+                                 var table = $('#table_id').DataTable();
+                                 bfestore.store = [];
+                             } else {
+                             //export disabled
+                             }
+                         });
+
+                        $(td).find("#bfeditor-toTripleStoreConfirm"+rowData.id).on('hidden.bs.modal', function(){
+                            var table = $('#table_id').DataTable();
+                            bfestore.store = [];
+                            table.ajax.reload();
+                        });
                     }
                   }
               ]
@@ -521,20 +584,25 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         $formdiv.append($loader);
 
         $menudiv.append("<h3>Create Resource</h3>");
-        $rowdiv.append($menudiv);
+
+	$(document).ready(function() {
+	  config.loadProfiles.callback(bfelog, config.profileDir);
+	});
+
+	$rowdiv.append($menudiv);
         $rowdiv.append($formdiv);
         //rowdiv.append(optiondiv);
 
         $creatediv.append($rowdiv);
 
         $loaddiv.append($('\
-            <div class="container"> \
-            <form role="form" method="get" action="/tools/transform/process"> \
-            <div class="form-group"> \
-            <label for="url">URL for Bibframe JSON</label> \
-            <input id="bfeditor-loaduriInput" class="form-control" placeholder="Enter URL for Bibframe" type="text" name="url" id="url"></div> \
-            <button id="bfeditor-loaduri" type="button" class="btn btn-primary">Submit URL</button> \
-            </form></div>'));
+        <div class="container"> \
+        <form role="form" method="get" action="/tools/transform/process"> \
+        <div class="form-group"> \
+        <label for="url">URL for Bibframe JSON</label> \
+        <input id="bfeditor-loaduriInput" class="form-control" placeholder="Enter URL for Bibframe" type="text" name="url" id="url"></div> \
+        <button id="bfeditor-loaduri" type="button" class="btn btn-primary">Submit URL</button> \
+        </form></div>'));
 
         $loaddiv.find("#bfeditor-loaduri").click(function(){
             if (editorconfig.retrieve.callback !== undefined) {
@@ -570,7 +638,6 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         $tabcontentdiv.append($browsediv);
         $tabcontentdiv.append($creatediv);
         $tabcontentdiv.append($loaddiv);
-
         $containerdiv.append($tabcontentdiv);
 
         $(editordiv).append($containerdiv);
@@ -759,7 +826,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                             var save_json = {};
                             save_json.name = dirhash;
                             save_json.profile = config.saveJsonProfile;
-                            save_json.url = config.saveJsonUrl + dirhash;
+                            save_json.url = config.dataURL + dirhash;
                             createDate = new Date().toUTCString();
                             save_json.created = createDate;
                             save_json.modified = createDate;
@@ -2509,16 +2576,15 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
 
         this.searching = setTimeout(function() {
             if ( query.length > 2 && query.substr(0,1)!='?') {
+              proxyLookup = 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/lookupNames.php';
                 suggestquery = query;
-                if (rdftype !== "")
-                    suggestquery += "&rdftype=" + rdftype.replace("rdftype:", "")
-
-                u = exports.scheme + "/suggest/?q=" + suggestquery + "&count=50";
-
-                //u = exports.scheme + "/suggest/?q=" + query;
                 $.ajax({
-                    url: u,
-                    dataType: "jsonp",
+                    url: proxyLookup,
+                    data: {
+                      'q': suggestquery,
+                      'rdftype': rdftype.replace("rdftype:", "")
+                    },
+                    dataType: "json",
                     success: function (data) {
                         parsedlist = lcshared.processSuggestions(data, query);
                         cache[q] = parsedlist;
@@ -2526,10 +2592,13 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
                     }
                 });
             } else if (query.length > 2) {
-                u = "http://id.loc.gov/search/?format=jsonp&start=1&count=50&q=" + q.replace("?", "");
+                proxyLookup = 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/namesSearch.php';
                 $.ajax({
-                    url: u,
-                    dataType: "jsonp",
+                    url: proxyLookup,
+                    data: {
+                      'q': q.replace("?", "")
+                    },
+                    dataType: "json",
                     success: function (data) {
                         parsedlist = lcshared.processATOM(data, query);
                         cache[q] = parsedlist;
@@ -2665,7 +2734,8 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
             return typeahead_source;
     }
 
-    exports.processSuggestions = function(suggestions, query) {
+    exports.processSuggestions = function(suggest, query) {
+       var suggestions = JSON.parse(suggest);
         var typeahead_source = [];
         if ( suggestions[1] !== undefined ) {
             for (var s=0; s < suggestions[1].length; s++) {
@@ -2827,14 +2897,15 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
 
         this.searching = setTimeout(function() {
             if ( query.length > 2 && query.substr(0,1)!="?") {
+              proxyLookup = 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/lookupSubjects.php';
                 suggestquery = query;
-                if (rdftype !== "")
-                    suggestquery += "&rdftype=" + rdftype.replace("rdftype:", "")
-
-                u = exports.scheme + "/suggest/?q=" + suggestquery;
                 $.ajax({
-                    url: u,
-                    dataType: "jsonp",
+                    url: proxyLookup,
+                    data: {
+                      'q': suggestquery,
+                      'rdftype': rdftype.replace("rdftype:", "")
+                    },
+                    dataType: "json",
                     success: function (data) {
                         parsedlist = lcshared.processSuggestions(data, query);
                         cache[q] = parsedlist;
@@ -2842,10 +2913,13 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
                     }
                 });
             } else if (query.length > 2) {
-                u = "http://id.loc.gov/search/?format=jsonp&start=1&count=10&q=" + q.replace("?", "");
+                proxyLookup = 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/subjectSearch.php';
                 $.ajax({
-                    url: u,
-                    dataType: "jsonp",
+                    url: proxyLookup,
+                    data: {
+                      'q': q.replace("?", "")
+                    },
+                    dataType: "json",
                     success: function (data) {
                         parsedlist = lcshared.processATOM(data, query);
                         cache[q] = parsedlist;
@@ -2856,7 +2930,6 @@ bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/look
                 return [];
             }
         }, 300); // 300 ms
-
     }
 
     /*
@@ -2906,23 +2979,21 @@ bfe.define('src/lookups/lcgenreforms', ['require', 'exports', 'module' , 'src/lo
         //lcgft
         this.searching = setTimeout(function() {
             if ( query.length > 2 ) {
-                suggestquery = query;
-                if (rdftype !== "")
-                    suggestquery += "&rdftype=" + rdftype.replace("rdftype:", "")
-
-                u = scheme + "/suggest/?q=" + suggestquery;
-
-                //u = "http://id.loc.gov/authorities/genreForms/suggest/?q=" + query;
-                $.ajax({
-                    url: u,
-                    dataType: "jsonp",
-                    success: function (data) {
-                        parsedlist = lcshared.processSuggestions(data, query);
-                        cache[q] = parsedlist;
-                        return process(parsedlist);
-                    }
-
-                });
+              proxyLookup = 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/lookupGenreForms.php';
+              suggestquery = query;
+              $.ajax({
+                url: proxyLookup,
+                data: {
+                  'q': suggestquery,
+                  'rdftype': rdftype.replace("rdftype:", "")
+                },
+                dataType: "json",
+                success: function (data) {
+                    parsedlist = lcshared.processSuggestions(data, query);
+                    cache[q] = parsedlist;
+                    return process(parsedlist);
+                }
+              });
             } else {
                 return [];
             }

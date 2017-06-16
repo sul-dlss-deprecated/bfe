@@ -54,6 +54,9 @@
              data: JSON.stringify(data),
              csrf: csrf,
              dataType: "json",
+	     headers: {
+      		'Content-Type':'application/json'
+   	     },
              contentType: "application/json; charset=utf-8"
           }).done(function (data) {
               document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -94,7 +97,7 @@
       }
 
       function toTripleStore(id, csrf, bfelog){
-        var exportUrl = config.exportURL;
+        var exportUrl = config.toTripleStore.exportURL;
         var dataUrl = config.dataURL+id;
         var rdfData = [];
 
@@ -117,71 +120,119 @@
           }
         }).done(function() {
           var jsonData = JSON.stringify(rdfData);
-          $.ajax({
+	  $.ajax({
             type: 'POST',
-            url: 'export.php',
-            data: {
-              'exportUrl': exportUrl,
-              'rdfData': jsonData
-            },
-            dataType: 'html',
+            url: 'https://ld4p-loc-bfe-dev.stanford.edu/php/export/export.php',
+	    data: {
+		'exportUrl': exportUrl,
+		'rdfData': jsonData,
+		'id': id
+	    },
+ 	    headers: {
+		'Access-Control-Allow-Headers': 'x-requested-with',
+		'Access-Control-Allow-Origin': '*',
+  		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+		'contentType': 'application/x-www-form-urlencoded'
+	    },
             success: function (data) {
-              bfelog.addMsg(new Error(), "INFO", "Result: "+data+ ", Posted id: " + id + " to triple store");
+              bfelog.addMsg(new Error(), "INFO", "ToTripleStore Result:\n"+ data);
+	      if (data.indexOf("data modified") > 0) {
+		alert("Successfully posted id " + id + " to triplestore");
+	      } else {
+		alert("Problem posting to triplestore. Check if you are connected to the Stanford VPN or contact your systems administrator.");
+	      }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-              bfelog.addMsg(new Error(), "ERROR", "FAILED post to triplestore: " + exportUrl);
+              bfelog.addMsg(new Error(), "ERROR", "FAILED to execute AJAX to export");
               bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
             }
           });
         })
       }
 
-      function deleteId(id, csrf, bfelog){
-          var url = config.dataURL + id;
+    function loadProfiles(bfelog, profileDir) {
+	  	$.ajax({
+	    	type: 'GET',
+      		url: 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/profiles.php',
+ 	    		data: {
+						'profileDir': profileDir
+	    		},
+					xhrFields: {
+      			withCredentials: true
+   				},
+ 	   			headers: {
+						'Access-Control-Allow-Headers': 'x-requested-with',
+						'Access-Control-Allow-Origin': '*',
+  					'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+						'contentType': 'application/x-www-form-urlencoded'
+	    		},
+      		success: function (data) {
+						bfelog.addMsg(new Error(), "INFO", data);
+	    		}
+    	});
+    }
 
-          //$.ajaxSetup({
-          //    beforeSend: function(xhr, settings){getCSRF(xhr, settings, csrf);}
-          //});
+    function profileFiles(profileDir, bfelog) {
+      var result;
+      $.ajax({
+        type: 'GET',
+        async:false,
+          url: 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/profileFiles.php',
+          data: {
+            'profileDir': profileDir
+          },
+          dataType: "json",
+          headers: {
+            'Access-Control-Allow-Headers': 'x-requested-with',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, OPTIONS',
+            'contentType': 'application/x-www-form-urlencoded'
+          },
+          success: function (data) {
+            bfelog.addMsg(new Error(), "INFO", "success");
+            result = data;
+          }
+      });
+      return result;
+    }
 
-          $.ajax({
-              type: "DELETE",
-              url: url,
-              dataType: "json",
-              csrf: csrf,
-              success: function (data) {
-                  bfelog.addMsg(new Error(), "INFO", "Deleted " + id);
-                  },
-              error: function(XMLHttpRequest, textStatus, errorThrown) {
-                  bfelog.addMsg(new Error(), "ERROR", "FAILED to delete: " + url);
-                  bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
-              }
-          });
-      }
+    function deleteId(id, csrf, bfelog){
+        var url = config.dataURL + id;
+
+        //$.ajaxSetup({
+        //    beforeSend: function(xhr, settings){getCSRF(xhr, settings, csrf);}
+        //});
+
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            dataType: "json",
+            csrf: csrf,
+            success: function (data) {
+                bfelog.addMsg(new Error(), "INFO", "Deleted " + id);
+                },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                bfelog.addMsg(new Error(), "ERROR", "FAILED to delete: " + url);
+                bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
+            }
+        });
+    }
 
       var config = {
           // "logging": {
           //     "level": "DEBUG",
           //     "toConsole": true
           // },
-          "exportURL": "http://sul-ld4p-blazegraph-dev.stanford.edu/blazegraph/namespace/bfe/sparql",
-          "dataURL": "http://localhost:3001/api/bfs/",
+          "profileDir": "/opt/app/bibframe/bfe-dev/current/static/profiles/bibframe/",
+          "dataURL": "https://ld4p-loc-bfe-dev.stanford.edu/verso/api/bfs/",
           "saveJsonProfile": "http://localhost:8000/bf/static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
           "showLoadDiv":false,
           "baseURI": "http://id.loc.gov/",
-          "profiles": [
-  	        "static/profiles/bibframe/BIBFRAME 2.0 Agents.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 Agents Contribution.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 Form.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 Language.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 LCC.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 Notated Music.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 Place.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 Publication, Distribution, Manufacturer Activity.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 Related Works and Expressions.json",
-      			"static/profiles/bibframe/BIBFRAME 2.0 Topic.json",
-            "static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
-  	        "static/profiles/bibframe/BIBFRAME 2.0 Monograph.json"
-          ],
+          /*"profiles": [
+            // e.g.
+            "static/profiles/bibframe/BIBFRAME 2.0 Agents.json",
+            // currently loaded via php script that reads 'static/profiles/bibframe' file directory
+          ],*/
           "startingPoints": [
                       {"menuGroup": "Monograph",
                       "menuItems": [
@@ -261,8 +312,15 @@
               "format": "jsonld-expanded",
               "callback": myCB
           },
+	  			"loadProfiles": {
+	    			"callback": loadProfiles
+	  			},
+          "profileFiles": {
+            "callback": profileFiles
+          },
           "toTripleStore": {
-            "callback": toTripleStore
+            "callback": toTripleStore,
+          	"exportURL": "http://sul-ld4p-blazegraph-dev.stanford.edu/blazegraph/namespace/bfe/sparql"
           }
       }
       var bfeditor = bfe.fulleditor(config, "bfeditor");

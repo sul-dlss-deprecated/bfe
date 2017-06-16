@@ -129,7 +129,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/OtherDistCharWork",
+            "propertyURI": "http://bibframe.org/vocab2/OtherDistCharWork",
             "propertyLabel": "Other Distinguishing Characteristic of the Work (RDA 6.6)",
             "remark": "http://access.rdatoolkit.org/rdachp6_rda6-3205.html",
             "mandatory": "false",
@@ -146,7 +146,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/contentNature",
+            "propertyURI": "http://bibframe.org/vocab2/contentNature",
             "propertyLabel": "Nature of the Content (RDA 7.2)",
             "remark": "http://access.rdatoolkit.org/7.2.html"
           },
@@ -209,7 +209,7 @@
             },
             "propertyLabel": "Other Person, Family, or Corporate Body Associated With a Work (RDA 19.3)",
             "remark": "http://access.rdatoolkit.org/19.3.html",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/otherPerson"
+            "propertyURI": "http://bibframe.org/vocab2/otherPerson"
           },
           {
             "propertyLabel": "Subject of the Work (RDA Chapter 23)",
@@ -219,6 +219,11 @@
             "valueConstraint": {
               "valueTemplateRefs": [
                 "profile:bf:Topic:Monograph",
+                "profile:bf:Place:Monograph",
+                "profile:bf:Person:Monograph",
+                "profile:bf:Organization:Monograph",
+                "profile:bf:Family:MonographLCSH",
+                "profile:bf:Meeting:Monograph",
                 "profile:bf:Work:Monograph"
               ],
               "useValuesFrom": [],
@@ -245,13 +250,13 @@
             "repeatable": "true"
           },
           {
-            "propertyLabel": "Related Works (RDA Chapter 25)",
+            "propertyLabel": "Related Works (RDA Chapter 25 and Appendix J)",
             "propertyURI": "http://bibframe.org/vocab/relatedWork",
             "resourceTemplates": [],
             "type": "resource",
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf:RelatedWork:Monograph"
+                "profile:bf:Work:Monograph"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
@@ -281,14 +286,28 @@
             "resourceTemplates": [],
             "valueConstraint": {
               "valueTemplateRefs": [
-                "profile:bf:RelatedExpression:Monograph"
+                "profile:bf:RelatedExpression:NotatedMusic"
               ],
               "useValuesFrom": [],
               "valueDataType": {}
             },
             "propertyURI": "http://bibframe.org/vocab/translation",
-            "propertyLabel": "Related Expressions (RDA Chapter 26)",
-            "remark": "http://access.rdatoolkit.org/rdachp26_rda26-24.html"
+            "propertyLabel": "Related Expressions (RDA Chapter 26 and Appendix J)",
+            "remark": "http://access.rdatoolkit.org/rdachp25_rda25-65.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "false",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://bibframe.org/vocab/authorizedAccessPoint",
+            "propertyLabel": "Authorized Access Point Representing the Work (RDA 6.27.1)",
+            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-6415.html"
           },
           {
             "propertyLabel": "LC Control Number for the Work (RDA 6.8)",
@@ -316,25 +335,11 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyLabel": "Authorized Access Point for the Work (RDA 6.27.1)",
-            "propertyURI": "http://bibframe.org/vocab/authorizedAccessPoint",
-            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-6415.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/comment",
+            "propertyURI": "http://bibframe.org/vocab2/comment",
             "propertyLabel": "Your Cataloger Code and Comments"
           }
         ],
-        "resourceLabel": "RDA Work",
+        "resourceLabel": "RDA Work Elements - Monographs",
         "resourceURI": "http://bibframe.org/vocab/Text",
         "remark": ""
       },
@@ -378,20 +383,6 @@
           {
             "mandatory": "false",
             "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/expressionDate",
-            "propertyLabel": "Date of Expression (RDA 6.10)",
-            "remark": "http://access.rdatoolkit.org/rdachp6_rda6-3436.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
             "type": "resource",
             "resourceTemplates": [],
             "valueConstraint": {
@@ -415,7 +406,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/OtherDistCharExp",
+            "propertyURI": "http://bibframe.org/vocab2/OtherDistCharExp",
             "propertyLabel": "Other Distinguishing Characteristic of the Expression (RDA 6.12)",
             "remark": "http://access.rdatoolkit.org/rdachp6_rda6-3585.html"
           },
@@ -473,7 +464,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/illustrativeContent",
+            "propertyURI": "http://bibframe.org/vocab2/illustrativeContent",
             "propertyLabel": "Illustrative Content (RDA 7.15)",
             "remark": "http://access.rdatoolkit.org/7.15.html"
           },
@@ -487,7 +478,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/supplementaryContent",
+            "propertyURI": "http://bibframe.org/vocab2/supplementaryContent",
             "propertyLabel": "Supplementary Content (RDA 7.16)",
             "remark": "http://access.rdatoolkit.org/7.16.html"
           },
@@ -501,7 +492,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/colorContent",
+            "propertyURI": "http://bibframe.org/vocab2/colorContent",
             "propertyLabel": "Colour Content (RDA 7.17)",
             "remark": "http://access.rdatoolkit.org/7.17.html"
           },
@@ -517,7 +508,7 @@
             },
             "propertyLabel": "Details of Colour Content (RDA 7.17.1.4)",
             "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1288.html",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/colorContentDetail"
+            "propertyURI": "http://bibframe.org/vocab2/colorContentDetail"
           },
           {
             "mandatory": "false",
@@ -551,7 +542,7 @@
           },
           {
             "mandatory": "false",
-            "repeatable": "true",
+            "repeatable": "false",
             "type": "literal",
             "resourceTemplates": [],
             "valueConstraint": {
@@ -560,7 +551,7 @@
               "valueDataType": {}
             },
             "propertyURI": "http://bibframe.org/vocab/authorizedAccessPoint",
-            "propertyLabel": "Authorized Access Point for the Expression (RDA 6.27.3)",
+            "propertyLabel": "Authorized Access Point Representing the Expression (RDA 6.27.3)",
             "remark": "http://access.rdatoolkit.org/rdachp6_rda6-7056.html"
           },
           {
@@ -582,7 +573,7 @@
         ],
         "id": "profile:bf:RDAExpression:Monograph",
         "resourceURI": "http://bibframe.org/vocab/Work",
-        "resourceLabel": "RDA Expression"
+        "resourceLabel": "RDA Expression Elements - Monograph"
       },
       {
         "id": "profile:bf:Instance:Monograph",
@@ -663,21 +654,7 @@
             },
             "propertyLabel": "Other Title Information (RDA 2.3.4)",
             "remark": "http://access.rdatoolkit.org/2.3.4.html",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/otherInstanceTitle"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/parallelInstanceTitle",
-            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-3939.html",
-            "propertyLabel": "Parallel Other Title Information (RDA 2.3.5)"
+            "propertyURI": "http://bibframe.org/vocab/instanceTitle"
           },
           {
             "propertyLabel": "Variant Title (RDA 2.3.6)",
@@ -816,7 +793,7 @@
             },
             "propertyLabel": "Series Statement (RDA 2.12)",
             "remark": "http://access.rdatoolkit.org/2.12.html",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/seriesStatement"
+            "propertyURI": "http://bibframe.org/vocab2/seriesStatement"
           },
           {
             "mandatory": "false",
@@ -848,7 +825,7 @@
             },
             "propertyLabel": "Series Numbering (RDA 2.12.9)",
             "remark": "http://access.rdatoolkit.org/2.12.9.html",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/seriesNumber"
+            "propertyURI": "http://bibframe.org/vocab2/seriesNumber"
           },
           {
             "mandatory": "false",
@@ -860,7 +837,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/subSeriesStatement",
+            "propertyURI": "http://bibframe.org/vocab2/subSeriesStatement",
             "remark": "http://access.rdatoolkit.org/2.12.10.html",
             "propertyLabel": "Subseries (RDA 2.12.10)"
           },
@@ -878,7 +855,7 @@
               ],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/subSeriesISSN",
+            "propertyURI": "http://bibframe.org/vocab2/subSeriesISSN",
             "propertyLabel": "ISSN of Subseries (RDA 2.12.16)",
             "remark": "http://access.rdatoolkit.org/2.12.16.html"
           },
@@ -894,7 +871,7 @@
             },
             "remark": "http://access.rdatoolkit.org/2.12.17.html",
             "propertyLabel": "Subseries Numbering (RDA 2.12.17)",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/subSeriesNumber"
+            "propertyURI": "http://bibframe.org/vocab2/subSeriesNumber"
           },
           {
             "mandatory": "false",
@@ -1093,11 +1070,11 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/comment",
+            "propertyURI": "http://bibframe.org/vocab2/comment",
             "propertyLabel": "Your Cataloger Code and Comments"
           }
         ],
-        "resourceLabel": "RDA Manifestation / BIBFRAME Instance - Monograph",
+        "resourceLabel": "Instance/Manifestation - Monograph",
         "resourceURI": "http://bibframe.org/vocab/Monograph"
       },
       {
@@ -1394,20 +1371,6 @@
             "propertyURI": "http://bibframe.org/vocab/providerDate",
             "propertyLabel": "Date of Distribution (RDA 2.9.6)",
             "remark": "http://access.rdatoolkit.org/2.9.6.html"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyLabel": "Note on Distribution Statement (RDA 2.17.8)",
-            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-9267.html",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/providerNote"
           }
         ],
         "id": "profile:bf:Distributor:Provider",
@@ -1609,7 +1572,7 @@
               ],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/hasGenreForm",
+            "propertyURI": "http://bibframe.org/vocab2/hasGenreForm",
             "propertyLabel": "hasGenreForm"
           }
         ],
@@ -1633,7 +1596,7 @@
               "valueDataType": {}
             },
             "propertyURI": "http://bibframe.org/vocab/hasAuthority",
-            "propertyLabel": "Search Subject (LCSH and the Name Authority File)"
+            "propertyLabel": "Search LCSH"
           },
           {
             "mandatory": "false",
@@ -1646,7 +1609,7 @@
               "valueDataType": {}
             },
             "propertyURI": "http://bibframe.org/vocab/authorizedAccessPoint",
-            "propertyLabel": "Input Subject (For example, when an LCSH free-floating construction is not represented by an authorized heading)"
+            "propertyLabel": "Enter LCSH"
           },
           {
             "mandatory": "false",
@@ -1666,8 +1629,7 @@
         ],
         "id": "profile:bf:Topic:Monograph",
         "resourceURI": "http://bibframe.org/vocab/Topic",
-        "resourceLabel": "Subjects",
-        "remark": ""
+        "resourceLabel": "Topic"
       },
       {
         "propertyTemplates": [
@@ -1738,7 +1700,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "Invalid/Canceled ISBN 10",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/isbnInvalid"
+            "propertyURI": "http://bibframe.org/vocab2/isbnInvalid"
           },
           {
             "mandatory": "false",
@@ -1751,7 +1713,7 @@
               "valueDataType": {}
             },
             "propertyLabel": "Qualifier",
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/isbnQualifier"
+            "propertyURI": "http://bibframe.org/vocab2/isbnQualifier"
           },
           {
             "mandatory": "false",
@@ -1776,7 +1738,7 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/isbnInvalid",
+            "propertyURI": "http://bibframe.org/vocab2/isbnInvalid",
             "propertyLabel": "Invalid/Canceled ISBN 13"
           },
           {
@@ -1789,12 +1751,12 @@
               "useValuesFrom": [],
               "valueDataType": {}
             },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/isbnQualifier",
+            "propertyURI": "http://bibframe.org/vocab2/isbnQualifier",
             "propertyLabel": "Qualifier"
           }
         ],
         "id": "profile:bf:identifier:Monograph",
-        "resourceURI": "http://bibframe.org/vocab/identifier",
+        "resourceURI": "http://bibframe.org/vocab/identifier.html",
         "resourceLabel": "ISBN"
       },
       {
@@ -1833,103 +1795,6 @@
         "id": "profile:bf:lccn:Monograph",
         "resourceURI": "http://bibframe.org/vocab/Identifier",
         "resourceLabel": "LCCN"
-      },
-      {
-        "propertyTemplates": [
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "resource",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf:Work:Monograph"
-              ],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab/relatedWork",
-            "propertyLabel": "Search Related Work Authorized Access Point"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab/relatedWork",
-            "propertyLabel": "Record Related Work Authorized Access Point"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab/relator",
-            "propertyLabel": "Record Relationship Designator for Related Work (RDA Appendix J)"
-          }
-        ],
-        "id": "profile:bf:RelatedWork:Monograph",
-        "resourceURI": "http://bibframe.org/vocab/relatedWork",
-        "resourceLabel": "Related Work"
-      },
-      {
-        "propertyTemplates": [
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "resource",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [
-                "profile:bf:Work:Monograph"
-              ],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/relatedExpression",
-            "propertyLabel": "Search Related Expression Authorized Access Point"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab-lcpilot/relatedExpression",
-            "propertyLabel": "Record Related Expression Authorized Access Point"
-          },
-          {
-            "mandatory": "false",
-            "repeatable": "true",
-            "type": "literal",
-            "resourceTemplates": [],
-            "valueConstraint": {
-              "valueTemplateRefs": [],
-              "useValuesFrom": [],
-              "valueDataType": {}
-            },
-            "propertyURI": "http://bibframe.org/vocab/relator",
-            "propertyLabel": "Record Relationship Designator for Related Expression (RDA Appendix J)",
-            "remark": "http://access.rdatoolkit.org/rdaappj_rdaj-389.html"
-          }
-        ],
-        "id": "profile:bf:RelatedExpression:Monograph",
-        "resourceURI": "http://bibframe.org/vocab-lcpilot/relatedExpression",
-        "resourceLabel": "Related Expression"
       }
     ],
     "contact": "NDMSO",

@@ -23,7 +23,7 @@
         }
 
         function getCSRF(){
-           //eventually you'll have to login       
+           //eventually you'll have to login
            var cookieValue = null;
            if (document.cookie && document.cookie != '') {
                var cookies = document.cookie.split(';');
@@ -35,8 +35,8 @@
                        break;
                    }
                 }
-            }       
-            return cookieValue;            
+            }
+            return cookieValue;
         }
 
         function setCSRF(xhr, settings, csrf) {
@@ -70,7 +70,7 @@
                 bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
                 $messagediv.append('<div class="alert alert-danger"><strong>Save Failed:</strong>'+errorThrown+'</span>');
                 $messagediv.insertBefore('#bfeditor-previewPanel');
-            }).always(function(){                       
+            }).always(function(){
                 $('#table_id').DataTable().ajax.reload();
             });
         }
@@ -86,7 +86,7 @@
                     tempstore = bfestore.jsonld2store(data);
                     callback();
                     },
-                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
                     bfelog.addMsg(new Error(), "ERROR", "FAILED to load external source: " + url);
                     bfelog.addMsg(new Error(), "ERROR", "Request status: " + textStatus + "; Error msg: " + errorThrown);
                 }
@@ -101,7 +101,7 @@
             //});
 
             $.ajax({
-                type: "DELETE",                
+                type: "DELETE",
                 url: url,
                 dataType: "json",
                 csrf: csrf,
@@ -123,19 +123,18 @@
             },*/
             "baseURI": "http://id.loc.gov/",
             "profiles": [
-		        "static/profiles/bibframe/BIBFRAME 2.0 Agents.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 Agents Contribution.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 Form.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 Language.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 LCC.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 Notated Music.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 Place.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 Publication, Distribution, Manufacturer Activity.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 Related Works and Expressions.json",
-			"static/profiles/bibframe/BIBFRAME 2.0 Topic.json",
-	                "static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
-        	        "static/profiles/bibframe/BIBFRAME 2.0 Monograph.json"			
-
+              "static/profiles/bibframe/BIBFRAME 2.0 Agents.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 Agents Contribution.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 Form.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 Language.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 LCC.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 Notated Music.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 Place.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 Publication, Distribution, Manufacturer Activity.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 Related Works and Expressions.json",
+        			"static/profiles/bibframe/BIBFRAME 2.0 Topic.json",
+              "static/profiles/bibframe/BIBFRAME 2.0 Serial.json",
+    	        "static/profiles/bibframe/BIBFRAME 2.0 Monograph.json"
             ],
             "startingPoints": [
                         {"menuGroup": "Notated Music",
@@ -146,7 +145,7 @@
                                 useResourceTemplates: [ "profile:bf2:NotatedMusic:Instance" ]
                             },
                             {
-                                label: "Work", 
+                                label: "Work",
                                 type: ["http://id.loc.gov/ontologies/bibframe/Work"],
                                 useResourceTemplates: [ "profile:bf2:NotatedMusic:Work" ]
                             },
@@ -185,7 +184,7 @@
             },
             "deleteId": {
                 "callback": deleteId
-            },            
+            },
             "getCSRF":{
                 "callback": getCSRF
             },
