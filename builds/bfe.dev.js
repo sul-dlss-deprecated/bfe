@@ -429,7 +429,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
              "columns": [
                  { "data": "id",
                    "render": function(data, type, row){
-                      return '<div><a href="'+config.dataURL+'/'+data+'">'+data+'</a></div>'
+                      return '<div><a href="'+config.dataURL+'/'+data+'" target="_blank">'+data+'</a></div>'
                   }
                  },
                  { "data": "name" },
