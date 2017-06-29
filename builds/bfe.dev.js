@@ -586,7 +586,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
         $menudiv.append("<h3>Create Resource</h3>");
 
 	$(document).ready(function() {
-    $('[href=#create]').click(function() {
+    $('.dropdown-toggle').click(function() {
   	  config.loadProfiles.callback(bfelog, config.profileDir);
   	});
 	});
