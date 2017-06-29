@@ -47,6 +47,7 @@ namespace :deploy do
         execute 'pkill php && sleep 5; true'
         execute "cd #{release_path.join('include')} && forever start -c sh phpServer.sh && sleep 5"
         execute 'cd /opt/app/bibframe/verso && forever start server/server.js'
+        execute 'forever list'
       end
     end
   end
