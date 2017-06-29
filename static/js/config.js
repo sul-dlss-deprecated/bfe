@@ -156,7 +156,7 @@
       		url: 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/profiles.php',
  	    		data: {
 						'profileDir': profileDir
-	    		},     
+	    		},
  	   			headers: {
 						'Access-Control-Allow-Headers': 'x-requested-with',
 						'Access-Control-Allow-Origin': '*',
@@ -235,15 +235,15 @@
                       "menuItems": [
                           {
                               label: "Instance",
-                              useResourceTemplates: [ "profile:bf2:Instance:Monograph" ]
+                              useResourceTemplates: [ "profile:bf:Instance:Monograph" ]
                           },
                           {
                               label: "Work",
-                              useResourceTemplates: [ "profile:b2f:Work:Monograph", "profile:bf2:RDAExpression:Monograph" ]
+                              useResourceTemplates: [ "profile:bf:Work:Monograph", "profile:bf:RDAExpression:Monograph" ]
                           },
                           {
                               label: "Work, Instance",
-                              useResourceTemplates: [ "profile:bf2:Work:Monograph", "profile:bf2:RDAExpression:Monograph", "profile:bf2:Instance:Monograph" ]
+                              useResourceTemplates: [ "profile:bf:Work:Monograph", "profile:bf:RDAExpression:Monograph", "profile:bf:Instance:Monograph" ]
                           }
                       ]},
                       {"menuGroup": "Notated Music",
@@ -251,17 +251,17 @@
                           {
                               label: "Instance",
                               type: ["http://id.loc.gov/ontologies/Instance"],
-                              useResourceTemplates: [ "profile:bf2:Instance:NotatedMusic" ]
+                              useResourceTemplates: [ "profile:bf:Instance:NotatedMusic" ]
                           },
                           {
                               label: "Work",
                               type: ["http://id.loc.gov/ontologies/bibframe/Work"],
-                              useResourceTemplates: [ "profile:bf2:Work:NotatedMusic" ]
+                              useResourceTemplates: [ "profile:bf:Work:NotatedMusic" ]
                           },
                           {
                               label: "Work, Instance",
                               type: ["http://id.loc.gov/ontologies/bibframe/Work","http://id.loc.gov/ontologies/bibframe/Instance"],
-                              useResourceTemplates: [ "profile:bf2:Work:NotatedMusic", "profile:bf2:RDAExpression:NotatedMusic", "profile:bf2:Instance:NotatedMusic"]
+                              useResourceTemplates: [ "profile:bf:Work:NotatedMusic", "profile:bf:RDAExpression:NotatedMusic", "profile:bf:Instance:NotatedMusic"]
                           }
 
                       ]},
@@ -269,15 +269,15 @@
                       "menuItems": [
                           {
                               label: "Instance",
-                              useResourceTemplates: [ "profile:bf2:Instance:Serial" ]
+                              useResourceTemplates: [ "profile:bf:Instance:Serial" ]
                           },
                           {
                               label: "Work",
-                              useResourceTemplates: [ "profile:bf2:Work:Serial", "profile:bf2:RDAExpression:Serial" ]
+                              useResourceTemplates: [ "profile:bf:Work:Serial", "profile:bf:RDAExpression:Serial" ]
                           },
                           {
                               label: "Work, Instance",
-                              useResourceTemplates: [ "profile:bf2:Work:Serial", "profile:bf2:RDAExpression:Serial", "profile:bf:Instance:Serial" ]
+                              useResourceTemplates: [ "profile:bf:Work:Serial", "profile:bf:RDAExpression:Serial", "profile:bf:Instance:Serial" ]
                           }
                       ]}
           ],
