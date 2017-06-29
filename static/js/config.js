@@ -156,10 +156,7 @@
       		url: 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/profiles.php',
  	    		data: {
 						'profileDir': profileDir
-	    		},
-					xhrFields: {
-      			withCredentials: true
-   				},
+	    		},     
  	   			headers: {
 						'Access-Control-Allow-Headers': 'x-requested-with',
 						'Access-Control-Allow-Origin': '*',
