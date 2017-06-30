@@ -441,7 +441,11 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                        }
                        if(text["http://id.loc.gov/ontologies/bibframe/titleValue"]) {
                          return text["http://id.loc.gov/ontologies/bibframe/titleValue"][0]["@value"];
-                       } else {
+                       }
+                       else if(text["http://id.loc.gov/ontologies/bibframe/workTitle"]) {
+                         return text["http://id.loc.gov/ontologies/bibframe/workTitle"][0]["@value"];
+                       }
+                       else {
                          return "{no value supplied}";
                        }
                     }
