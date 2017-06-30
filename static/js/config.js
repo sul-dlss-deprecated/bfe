@@ -136,11 +136,11 @@
 	    },
             success: function (data) {
               bfelog.addMsg(new Error(), "INFO", "ToTripleStore Result:\n"+ data);
-	      if (data.indexOf("data modified") > 0) {
-		alert("Successfully posted id " + id + " to triplestore");
-	      } else {
-		alert("Problem posting to triplestore. Check if you are connected to the Stanford VPN or contact your systems administrator.");
-	      }
+      	      // if (data.indexOf("data modified") > 0) {
+      		    //     alert("Successfully posted id " + id + " to triplestore");
+      	      // } else {
+      		    //     alert("Problem posting to triplestore. Check if you are connected to the Stanford VPN or contact your systems administrator.");
+      	      // }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
               bfelog.addMsg(new Error(), "ERROR", "FAILED to execute AJAX to export");
