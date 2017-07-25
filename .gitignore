@@ -7,3 +7,4 @@ static/profiles/
 include/export/temp*
 log/
 src/*/*.min.*
+src/fonts
