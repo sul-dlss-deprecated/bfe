@@ -231,21 +231,64 @@
             // currently loaded via php script that reads 'static/profiles/bibframe' file directory
           ],*/
           "startingPoints": [
-                      {"menuGroup": "Monograph",
-                      "menuItems": [
+											{"menuGroup": "Monograph",
+                      	"menuItems": [
                           {
                               label: "Instance",
-                              useResourceTemplates: [ "profile:bf:Instance:Monograph" ]
+                              useResourceTemplates: [ "profile:bf2:Monograph:Instance" ]
                           },
                           {
                               label: "Work",
-                              useResourceTemplates: [ "profile:bf:Work:Monograph", "profile:bf:RDAExpression:Monograph" ]
+                              useResourceTemplates: [ "profile:bf2:Monograph:Work"]
+                              //useResourceTemplates: [ "profile:bf2:Monograph:Work", "profile:bf2:Monograph:Expression" ]
+                          },
+                          {
+                              label: "Expression",
+                              useResourceTemplates: [ "profile:bf2:Monograph:Expression" ]
                           },
                           {
                               label: "Work, Instance",
-                              useResourceTemplates: [ "profile:bf:Work:Monograph", "profile:bf:RDAExpression:Monograph", "profile:bf:Instance:Monograph" ]
+                              useResourceTemplates: [ "profile:bf2:Monograph:Work", "profile:bf2:Monograph:Instance" ]
+                          },
+                          {
+                              label: "Work, Expression",
+                              //useResourceTemplates: [ "profile:bf2:Monograph:Work", "profile:bf2:Monograph:Expression", "profile:bf2:Monograph:Instance" ]
+                              useResourceTemplates: [ "profile:bf2:Monograph:Work", "profile:bf2:Monograph:Expression" ]
+                          },
+                          {
+                              label: "Instance, Expression",
+                              useResourceTemplates: [ "profile:bf2:Monograph:Expression", "profile:bf2:Monograph:Instance" ]
                           }
                       ]},
+                      /*{"menuGroup": "Monograph",
+                      "menuItems": [
+                          {
+                              label: "Instance",
+                              useResourceTemplates: [ "profile:stf:bf:Instance:Monograph" ]
+                          },
+                          {
+                              label: "Work",
+                              useResourceTemplates: [ "profile:stf:bf:Work:Monograph", "profile:stf:bf:RDAExpression:Monograph" ]
+                          },
+                          {
+                              label: "Work, Instance",
+                              useResourceTemplates: [ "profile:stf:bf:Work:Monograph", "profile:stf:bf:RDAExpression:Monograph", "profile:stf:bf:Instance:Monograph" ]
+                          }
+                      ]},*/
+											{"menuGroup": "Performed Music",
+                      "menuItems": [
+                          {
+                              label: "Work, Instance",
+                              type: ["http://id.loc.gov/ontologies/bibframe/Work","http://id.loc.gov/ontologies/bibframe/Instance"],
+                              useResourceTemplates: [ "profile:stf:bf:Work:PerformedMusic", "profile:stf:bf:RDAExpression:PerformedMusic", "profile:stf:bf:Instance:PerformedMusic"]
+                          },
+                          {
+                              label: "Event",
+                              type: ["http://performedmusicontology.org/ontology/Performance"],
+                              useResourceTemplates: ["profile:stf:bf:Performance"]
+                          }
+
+                      ]}/*,
                       {"menuGroup": "Notated Music",
                       "menuItems": [
                           {
@@ -279,7 +322,7 @@
                               label: "Work, Instance",
                               useResourceTemplates: [ "profile:bf:Work:Serial", "profile:bf:RDAExpression:Serial", "profile:bf:Instance:Serial" ]
                           }
-                      ]}
+                      ]}*/
           ],
           "save": {
               "callback": save
@@ -295,7 +338,7 @@
           },
           // "load": [
           //     {
-          //         "templateID": ["profile:bf2:Work:Monograph", "profile:bf2:Instance:Monograph", "profile:bf2:Annotation:AdminMeta"],
+          //         "templateID": ["profile:bf:Work:Monograph", "profile:bf:Instance:Monograph", "profile:bf:Annotation:AdminMeta"],
           //         "defaulturi": "http://id.loc.gov/resources/bibs/5226",
           //         "_remark": "Source must be JSONLD expanded, so only jsonp and json are possible requestTypes",
           //         "source": {

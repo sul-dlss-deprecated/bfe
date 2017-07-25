@@ -594,8 +594,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
 	});
 
   $(document).ready(function() {
-    $('.dropdown-toggle').click(function() {
+    $('.dropdown-toggle, .caret').click(function() {
   	  config.loadProfiles.callback(bfelog, config.profileDir);
+			//location.reload(true);
+			//$('href[#create]').click(function() {  });
   	});
 	});
 
@@ -1195,7 +1197,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                 var vtrs = vtRefs[v];
                                 //console.log(rt.resourceURI);
                                 //console.log(property.propertyURI);
-                                //console.log(vtrs);
+                                console.log(vtrs);
                                 /*
                                     The following will be true, for example, when two
                                     profiles are to be rendered in one form.  Say that
