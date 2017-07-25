@@ -3,5 +3,5 @@ examples
 node_modules
 package.json
 stanford.html
-static/profiles/*/*
+static/profiles/
 include/export/temp*
