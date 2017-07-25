@@ -5,3 +5,5 @@ package.json
 stanford.html
 static/profiles/
 include/export/temp*
+log/
+src/*/*.min.*
