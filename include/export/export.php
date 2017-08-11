@@ -17,5 +17,5 @@
 
   exec($cmd, $output, $return);
 
-  echo $output[3];
+  echo $output[0];
 ?>

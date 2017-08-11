@@ -436,14 +436,18 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                  { "data": "rdf",
                    "render": function(data,type,full,meta){
                        var text = "";
-                       if (_.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/titleValue"]}).length > 0){
-                         text = _.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/titleValue"]})[0];
+                       if (_.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/mainTitle"]}).length > 0){
+                         text = _.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/mainTitle"]})[0];
                        }
-                       if(text["http://id.loc.gov/ontologies/bibframe/titleValue"]) {
-                         return text["http://id.loc.gov/ontologies/bibframe/titleValue"][0]["@value"];
+                       else if (_.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/variantTitle"]}).length > 0){
+                         text = _.filter(data, function(el){return el["http://id.loc.gov/ontologies/bibframe/variantTitle"]})[0];
                        }
-                       else if(text["http://id.loc.gov/ontologies/bibframe/workTitle"]) {
-                         return text["http://id.loc.gov/ontologies/bibframe/workTitle"][0]["@value"];
+
+                       if(text["http://id.loc.gov/ontologies/bibframe/mainTitle"]) {
+                         return text["http://id.loc.gov/ontologies/bibframe/mainTitle"][0]["@value"];
+                       }
+                       else if(text["http://id.loc.gov/ontologies/bibframe/variantTitle"]) {
+                         return text["http://id.loc.gov/ontologies/bibframe/variantTitle"][0]["@value"];
                        }
                        else {
                          return "{no value supplied}";
@@ -471,12 +475,18 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                    "filterable": false,
                    "sortable": false,
                    "render": function ( td, cellData, rowData, row ) {
-                    //             return '<a href="'+data+'">edit</a>';
-
-                        return '<div class="btn-group" id="retrieve-btn"><button id="bfeditor-retrieve'+rowData.id+'" type="button" class="btn btn-default">Edit</button> \
-                         <button id="bfeditor-delete'+rowData.id+'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#bfeditor-deleteConfirm'+rowData.id+'">Delete</button> \
-                         <button id="bfeditor-export'+rowData.id+'"type="button" class="btn btn-info" data-toggle="modal" data-target="#bfeditor-toTripleStoreConfirm'+rowData.id+'">Export</button> \
-                         </div>'
+                    		//return '<a href="'+data+'">edit</a>';
+                        var buttons = '<div class="btn-group" id="retrieve-btn"><button id="bfeditor-retrieve'+rowData.id+'" type="button" class="btn btn-default">Edit</button><button id="bfeditor-delete'+rowData.id+'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#bfeditor-deleteConfirm'+rowData.id+'">Delete</button>';
+                         buttons += '<button id="bfeditor-export'+rowData.id+'"type="button" class="btn btn-info" data-toggle="modal" ';
+												 if (localStorage.getItem('exported'+rowData.id)) {
+														buttons += ' style="opacity:0.2;" ';
+													}
+													else {
+														buttons += ' data-target="#bfeditor-toTripleStoreConfirm'+rowData.id+'"';
+													}
+												 buttons += '>Export</button>'
+                         buttons += '</div>'
+												return buttons;
                     },
                     "createdCell": function (td, cellData, rowData, row, col){
                         var useguid = guid();
@@ -574,7 +584,9 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
 
                         $(td).find("#bfeditor-toTripleStoreConfirm"+rowData.id).on('hidden.bs.modal', function(){
                             var table = $('#table_id').DataTable();
+														var tdId = rowData.id;
                             bfestore.store = [];
+														localStorage.setItem('exported'+tdId, true);
                             table.ajax.reload();
                         });
                     }
@@ -596,8 +608,6 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
   $(document).ready(function() {
     $('.dropdown-toggle, .caret').click(function() {
   	  config.loadProfiles.callback(bfelog, config.profileDir);
-			//location.reload(true);
-			//$('href[#create]').click(function() {  });
   	});
 	});
 
@@ -1197,7 +1207,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                 var vtrs = vtRefs[v];
                                 //console.log(rt.resourceURI);
                                 //console.log(property.propertyURI);
-                                console.log(vtrs);
+                                //console.log(vtrs);
                                 /*
                                     The following will be true, for example, when two
                                     profiles are to be rendered in one form.  Say that
@@ -1211,15 +1221,17 @@ bfe.define('src/bfe', ['require', 'exports', 'module' , 'src/lib/jquery-2.1.0.mi
                                 */
                                 if ( fobject.resourceTemplateIDs.indexOf(vtrs) > -1 && vtrs != rt.id ) {
                                     var relatedTemplates = _.where(bfestore.store, {rtID: vtrs});
-                                    triple = {};
-                                    triple.guid = guid();
-                                    triple.s = uri;
-                                    triple.p = property.propertyURI;
-                                    triple.o = relatedTemplates[0].s;
-                                    triple.otype = "uri";
-                                    fobject.store.push(triple);
-                                    bfestore.store.push(triple);
-                                    property.display = "false";
+																		if (relatedTemplates.length > 0) {
+																			triple = {};
+                                    	triple.guid = guid();
+                                    	triple.s = uri;
+                                    	triple.p = property.propertyURI;
+                                    	triple.o = relatedTemplates[0].s;
+                                    	triple.otype = "uri";
+                                    	fobject.store.push(triple);
+                                    	bfestore.store.push(triple);
+                                    	property.display = "false";
+																		}
                                 }
                             }
                         }
@@ -2605,10 +2617,11 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
                 });
             } else if (query.length > 2) {
                 proxyLookup = 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/namesSearch.php';
+                suggestquery = query.replace('?','');
                 $.ajax({
                     url: proxyLookup,
                     data: {
-                      'q': q.replace("?", "")
+                      'q': suggestquery
                     },
                     dataType: "json",
                     success: function (data) {
@@ -2764,9 +2777,9 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
         return typeahead_source;
     }
 
-    exports.processATOM = function(atomjson, query) {
-        var typeahead_source = [];
-        for (var k in atomjson) {
+    exports.processATOM = function(json, query) {
+			var typeahead_source = [];
+        /*for (var k in atomjson) {
             if (atomjson[k][0] == "atom:entry") {
                 var t = "";
                 var u = "";
@@ -2788,7 +2801,7 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
         }
         if (typeahead_source.length === 0) {
             typeahead_source[0] = { uri: "", value: "[No suggestions found for " + query + ".]" };
-        }
+        }*/
         //console.log(typeahead_source);
         return typeahead_source;
     }
@@ -2805,35 +2818,22 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module' ], function(r
             process([]);
         }
         this.searching = setTimeout(function() {
-
-            if ( query === '' || query === ' ') {
-                u = scheme + "/suggest/?count=100&q=";
-                $.ajax({
-                    url: u,
-                    dataType: "jsonp",
-                    success: function (data) {
-                        parsedlist = exports.processSuggestions(data, "");
-                        return process(parsedlist);
-                    }
-                });
-            } else if ( query.length >= 1 ) {
-                u = scheme + "/suggest/?q=" + q;
-                $.ajax({
-                    url: u,
-                    dataType: "jsonp",
-                    success: function (data) {
-                        parsedlist = exports.processSuggestions(data, query);
-                        cache[q] = parsedlist;
-                        return process(parsedlist);
-                    }
-                });
-            } else {
-                return [];
-            }
+						proxyLookup = 'https://ld4p-loc-bfe-dev.stanford.edu/php/import/lookupLanguages.php';
+            $.ajax({
+							data: {
+								q: query,
+								scheme: scheme
+							},
+              url: proxyLookup,
+              dataType: "json",
+              success: function (data) {
+								//console.log(data);
+              	parsedlist = exports.processSuggestions(data, query);
+                return process(parsedlist);
+           		}
+        	});
         }, 300); // 300 ms
-
     }
-
 });
 bfe.define('src/lookups/lcsubjects', ['require', 'exports', 'module' , 'src/lookups/lcshared'], function(require, exports, module) {
     var lcshared = require("src/lookups/lcshared");
@@ -3463,6 +3463,20 @@ bfe.define('src/lookups/relators', ['require', 'exports', 'module' , 'src/lookup
 
 });
 
+bfe.define('src/lookups/lclanguages', ['require', 'exports', 'module' , 'src/lookups/lcshared'], function(require, exports, module) {
+    var lcshared = require("src/lookups/lcshared");
+
+    var cache = [];
+
+    exports.scheme = "http://id.loc.gov/vocabulary/languages";
+
+    exports.source = function(query, process){
+        return lcshared.simpleQuery(query, cache, exports.scheme, process);
+    }
+
+    exports.getResource = lcshared.getResource;
+
+});
 /* *
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
