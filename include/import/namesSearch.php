@@ -1,19 +1,17 @@
 <?php
-  header('Content-Type: application/json');
+  #header('Content-Type: application/json');
 
   $query = http_build_query([
-    'format' => 'jsonp',
+    'format' => 'json',
     'start' => '1',
     'count' => '50',
     'q' => $_GET['q']
   ]);
 
-
   $url = "http://id.loc.gov/search/?" . $query;
 
-  $cmd = "curl -G " . $url;
-
+  $cmd = "curl -G \"" . $url . "\"";
   exec($cmd, $output, $return);
 
-  echo json_encode($output[0]);
+  echo json_encode($output);
 ?>
