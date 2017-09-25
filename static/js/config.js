@@ -281,23 +281,46 @@ var config = {
         useResourceTemplates: [ "profile:bf2:Serial:Work", "profile:bf2:Serial:Expression", "profile:bf2:Serial:Instance" ]
       }
     ]},
-    {"menuGroup": "BlueRay DVD",
+    {"menuGroup": "Video",
     "menuItems": [
       {
         label: "Work",
-        useResourceTemplates: [ "profile:bf2:MIBluRayDVD:Work" ]
+        useResourceTemplates: [ "profile:bf2:Video:Work" ]
       },
       {
         label: "Expression",
-        useResourceTemplates: [ "profile:bf2:MIBluRayDVD:Expression" ]
+        useResourceTemplates: [ "profile:bf2:Video:Expression" ]
       },
       {
         label: "Instance",
-        useResourceTemplates: [ "profile:bf2:MIBluRayDVD:Instance" ]
+        useResourceTemplates: [ "profile:bf2:Video:Instance" ]
       },
       {
         label: "Work, Expression, Instance",
-        useResourceTemplates: [ "profile:bf2:MIBluRayDVD:Work", "profile:bf2:MIBluRayDVD:Expression", "profile:bf2:MIBluRayDVD:Instance" ]
+        useResourceTemplates: [ "profile:bf2:Video:Work", "profile:bf2:Video:Expression", "profile:bf2:Video:Instance" ]
+      }
+    ]},
+    {"menuGroup": "PMO Sound Recording",
+    "menuItems": [
+      {
+        label: "Work",
+        useResourceTemplates: [ "profile:PMO:Work" ]
+      },
+      {
+        label: "Expression",
+        useResourceTemplates: [ "profile:PMO:SoundRecording:Expression" ]
+      },
+      {
+        label: "Instance",
+        useResourceTemplates: [ "profile:PMO:SoundRecording:Instance" ]
+      },
+      {
+        label: "Performance",
+        useResourceTemplates: [ "profile:PMO:Event:Performance" ]
+      },
+      {
+        label: "Work, Expression, Instance, Performance",
+        useResourceTemplates: [ "profile:PMO:Work", "profile:PMO:SoundRecording:Expression", "profile:PMO:SoundRecording:Instance", "profile:PMO:Event:Performance" ]
       }
     ]}
   ],
