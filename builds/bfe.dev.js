@@ -276,6 +276,27 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
 										"name": "RDA-Carrier-Types",
 										"load": require("src/lookups/rdacarriertypes")
 								}
+								/*,
+ 								 * "http://rdaregistry.info/termList/RDAContentType": {
+										"name": "RDA-Content-Types",
+										"load": require("src/lookups/rdacontenttypes")
+								},
+								"http://rdaregistry.info/termList/ModeIssue": {
+										"name": "RDA-Mode-of-Issue",
+										"load": require("src/lookups/rdamodeofissue")
+								},
+								"http://rdaregistry.info/termList/RDAMediaType": {
+										"name": "RDA-Media-Types",
+										"load": require("src/lookups/rdamediatypes")
+								},
+								"http://rdaregistry.info/termList/formatNoteMus.jsonld": {
+										"name": "RDA-Format-Note-Music",
+										"load": require("src/lookups/rdaformatnotemus")
+								},
+								"http://rdaregistry.info/termList/frequency": {
+										"name": "RDA-frequency",
+										"load": require("src/lookups/rdafrequency")
+								}*/
             };
 
     /*
@@ -438,7 +459,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
             var $datatable = $('<table id="table_id" class="display"><thead><tr><th>id</th><th>name</th><th>title</th><th>comment</th><th>modified</th><th>edit</th></tr></thead></table>');
             var table = $(function () {
             $('#table_id').DataTable({
-             "processing": true,
+						 "processing": true,
              "ajax": {
                 "url":config.dataURL,
  		            "headers": {
@@ -490,18 +511,21 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
                    "width": "10%",
                    "render": function(data, type,row){
                         var d = new Date(data);
-                        return d.getDate() +'-'+ (d.getMonth()+1) +'-'+ d.getFullYear() + ' ' + d.getHours()+':'+d.getMinutes();
+												var day = d.getDate();
+												var month = d.getMonth()+1;
+												var year = d.getFullYear();
+                        return month + '-' + day + '-' + year + ' ' + d.getHours()+':'+ (d.getMinutes()<10?'0':'') + d.getMinutes();
                     }
                  },
                  { "data": "url",
-                   "width":"10%",
+                   "width":"20%",
                    "searchable": false,
                    "filterable": false,
                    "sortable": false,
                    "render": function ( td, cellData, rowData, row ) {
                     		//return '<a href="'+data+'">edit</a>';
-                        var buttons = '<div class="btn-group" id="retrieve-btn"><button id="bfeditor-retrieve'+rowData.id+'" type="button" class="btn btn-default">Edit</button><button id="bfeditor-delete'+rowData.id+'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#bfeditor-deleteConfirm'+rowData.id+'">Delete</button>';
-                         buttons += '<button id="bfeditor-export'+rowData.id+'"type="button" class="btn btn-info" data-toggle="modal" ';
+                        var buttons = '<div class="btn-group"><button id="bfeditor-retrieve'+rowData.id+'" type="button" class="btn btn-default">Edit</button></div><div class="btn-group"><button id="bfeditor-delete'+rowData.id+'"type="button" class="btn btn-danger" data-toggle="modal" data-target="#bfeditor-deleteConfirm'+rowData.id+'">Delete</button></div>';
+                         buttons += '<div class="btn-group"><button id="bfeditor-export'+rowData.id+'"type="button" class="btn btn-info" data-toggle="modal" ';
 												 if (localStorage.getItem('exported'+rowData.id)) {
 														buttons += ' style="opacity:0.2;" ';
 													}
