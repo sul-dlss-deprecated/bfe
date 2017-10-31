@@ -826,33 +826,62 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
                 $("#bfeditor-cancel", form.form).attr("tabindex", tabIndices++);
 
                 $("#bfeditor-preview", form.form).click(function(){
-                     var humanized = bfeditor.bfestore.store2text();
-                     //var n3 = bfeditor.bfestore.store2n3();
-                     var jsonld = bfeditor.bfestore.store2jsonldExpanded();
-                     document.body.scrollTop = document.documentElement.scrollTop = 0;
-                     var $saveButtonGroup = $('<div class="btn-group" id="save-btn"> \
+                    var humanized = bfeditor.bfestore.store2text();
+										var jsonstr = bfeditor.bfestore.store2jsonldExpanded();
+										 
+										bfeditor.bfestore.store2jsonldcompacted(jsonstr, jsonPanel);
+
+                    function humanizedPanel(data) {
+                        $("#humanized .panel-body pre").text(data);
+                    }
+
+                    function nquadsPanel(nquads) {
+
+                        $("#nquads .panel-body pre").text(nquads);
+                    }
+
+                    function jsonPanel(data) {
+                        bfeditor.bfestore.store2turtle(data, humanizedPanel);
+                        bfeditor.bfestore.store2nquads(data, nquadsPanel);
+                        $("#jsonld .panel-body pre").text(JSON.stringify(data, undefined, " "));
+
+                        bfeditor.bfestore.store2jsonldnormalized(data, function(expanded) {
+                            d3.jsonldVis(expanded, '#jsonld-vis .panel-body', {
+                                w: 800,
+                                h: 600,
+                                maxLabelWidth: 250
+                            });
+                        });
+                    }
+
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    var $saveButtonGroup = $('<div class="btn-group" id="save-btn"> \
                          <button id="bfeditor-exitback" type="button" class="btn btn-default">&#9664;</button> \
                          <button id="bfeditor-exitcancel" type="button" class="btn btn-default">Cancel</button> \
                          <button id="bfeditor-exitsave" type="button" class="btn btn-primary">Save</button> \
                          </div>');
 
-                     var $bfeditor = $('#create > .row');
-                     var $preview = $('<div id="bfeditor-previewPanel" class="col-md-10 main panel-group">\
-                         <div class="panel panel-default"><div class="panel-heading">\
-                         <h3 class="panel-title"><a role="button" data-toggle="collapse" href="#humanized">Preview</a></h3></div>\
-                         <div class="panel-collapse collapse in" id="humanized"><div class="panel-body"><pre>' + humanized + '</pre></div></div>\
-                         <div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><a role="button" data-toggle="collapse" href="#jsonld">JSONLD-Expanded</a></h3></div>\
-                         <div class="panel-collapse collapse in" id="jsonld"><div class="panel-body"><pre>' + JSON.stringify(jsonld, undefined, " ") + '</pre></div></div></div>\
-                         </div>');
+                    var $bfeditor = $('#create > .row');
+                    var $preview = $('<div id="bfeditor-previewPanel" class="col-md-10 main panel-group">\
+                        <div class="panel panel-default"><div class="panel-heading">\
+                        <h3 class="panel-title"><a role="button" data-toggle="collapse" href="#humanized">Preview</a></h3></div>\
+                        <div class="panel-collapse collapse in" id="humanized"><div class="panel-body"><pre>' + humanized + '</pre></div></div>\
+                        <div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><a role="button" data-toggle="collapse" href="#jsonld">JSON-LD</a></h3></div>\
+                        <div class="panel-collapse collapse in" id="jsonld"><div class="panel-body"><pre>' + JSON.stringify(jsonstr, undefined, " ") + '</pre></div></div></div>\
+												<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><a role="button" data-toggle="collapse" href="#nquads">NQuads</a></h3></div>\
+                        <div class="panel-collapse collapse in" id="nquads"><div class="panel-body"><pre></pre></div></div>\
+			 									<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><a role="button" data-toggle="collapse" href="#jsonld-vis">Visualize</a></h3</div></div>\
+			 									<div class="panel-collapse collapse in" id="jsonld-vis"><div class="panel-body"></div></div></div>\
+                        </div>');
 
-                     $bfeditor.append($saveButtonGroup);
+                    $bfeditor.append($saveButtonGroup);
 
-                     $("#bfeditor-exitback").click(function(){
+                    $("#bfeditor-exitback").click(function(){
                         $('#save-btn').remove();
                         $('#bfeditor-previewPanel').remove();
                         $('#bfeditor-messagediv').remove();
                         $('#bfeditor-formdiv').show();
-                     });
+                    });
                     $("#bfeditor-exitcancel").click(function(){
                         $('#save-btn').remove();
                         $('#bfeditor-previewPanel').remove();
@@ -1594,7 +1623,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
 				};
 
 				data.push(resourceType);
-
+        
 				callingformobject.resourceTemplates.forEach(function(t) {
             var properties = _.where(t.propertyTemplates, {"guid": propertyguid});
             if ( properties[0] !== undefined ) {
@@ -1624,13 +1653,13 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
                             if (displaydata === undefined) {
                                 displaydata = "";
                             }
-														if ( (data[i].p != "http://www.w3.org/1999/02/22-rdf-syntax-ns#label") &&
+														if ( (data[i].p != "http://www.w3.org/1999/02/22-rdf-syntax-ns#label") && 
 																 (data[i].p != "http://www.w3.org/2000/01/rdf-schema#label")	) {
                             	displaydata += data[i].o + " ";
 														}
                         }
                     }
-
+										
 										displayuri = data[0].s;
                     if (displaydata === undefined){
                         displaydata = data[0].s;
@@ -2077,7 +2106,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
 				} else {
 					source = function(query, process){
             return lcshared.simpleQuery(query, cache, scheme, process);
-        	}
+        	}	
 				}
 
         var getResource = function(subjecturi, propertyuri, selected, process) {
@@ -2223,10 +2252,10 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
     function whichrt(rt, baseURI){
         //for resource templates, determine if they are works, instances, or other
         var returnval = "_:bnode";
-
+				
 				if (rt.resourceURI.match("bibframe/Work")) {
         	returnval = baseURI + "resources/works/";
-				}
+				} 
 				else if (rt.resourceURI.match("bibframe/Instance")) {
           returnval = baseURI + "resources/instances/";
 				}
@@ -2341,6 +2370,16 @@ bfe.define('src/bfestore', ['require', 'exports', 'module' , 'src/lib/lodash.min
         return exports.store;
     }
 
+		exports.store2nquads = function(doc, callback) {
+        exports.store2jsonldnormalized(doc, function(expanded) {
+					//serialize a document to N-Quads (RDF)
+					jsonld.toRDF(doc, {format: 'application/nquads'}, function(err, nquads) {
+					  // nquads is a string of nquads
+					  callback(nquads);
+					});
+    	});
+    }
+
     exports.jsonld2store = function(jsonld) {
         Array.from(jsonld).forEach(function(resource){
             var s = typeof resource["@id"] !== 'undefined' ? resource["@id"] : '_:b' + guid();
@@ -2424,6 +2463,61 @@ bfe.define('src/bfestore', ['require', 'exports', 'module' , 'src/lib/lodash.min
         }
         return json;
     };
+
+	exports.store2turtle = function(jsonstr, callback) {
+        jsonld.toRDF(jsonstr, {
+            format: 'application/nquads'
+        }, function(err, nquads) {
+            //json2turtle(nquads, callback);
+            var parser = N3.Parser();
+            var turtlestore = N3.Store();
+            parser.parse(nquads, function(error, triple, theprefixes) {
+                if (triple) {
+                    turtlestore.addTriple(triple);
+                } else if (theprefixes) {
+                    turtlestore.addPrefixes(theprefixes);
+                }
+                var turtleWriter = N3.Writer({
+                    prefixes: {
+                        bf: 'http://id.loc.gov/ontologies/bibframe/',
+                        bflc: 'http://id.loc.gov/ontologies/bflc/',
+                        madsrdf: "http://www.loc.gov/mads/rdf/v1#",
+                        rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                        rdfs: "http://www.w3.org/2000/01/rdf-schema#",
+                        xsd: "http://www.w3.org/2001/XMLSchema#"
+                    }
+                });
+                turtleWriter.addTriples(turtlestore.getTriples(null, null, null));
+                //turtleWriter.addTriples(exports.n3store.getTriples(null, null, null));
+                turtleWriter.end(function(error, result) {
+                    callback(result)
+                });
+            });
+
+        });
+    }	
+		
+		exports.store2jsonldcompacted = function(jsonstr, callback) {
+        context = {
+            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+            "xsd": "http://www.w3.org/2001/XMLSchema#",
+            "bf": "http://id.loc.gov/ontologies/bibframe/",
+            "bflc": "http://id.loc.gov/ontologies/bflc/",
+            "madsrdf": "http://www.loc.gov/standards/mads/rdf/v1#"
+        };
+
+        jsonld.compact(jsonstr, context, function(err, compacted) {
+            callback(compacted)
+        });
+
+    }
+
+		exports.store2jsonldnormalized = function(jsonstr, callback) {
+        jsonld.expand(jsonstr, context, function(err, jsonld) {
+            callback(jsonld)
+        });
+    }
 
     exports.store2text = function() {
         var nl = "\n";
@@ -2697,7 +2791,7 @@ bfe.define('src/lookups/lcnames', ['require', 'exports', 'module' , 'src/lookups
 bfe.define('src/lookups/lcshared', ['require', 'exports', 'module'], function(require, exports, module) {
 
     require('https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js');
-
+		
     /*
         subjecturi propertyuri selected.uri
         selected.uri  bf:label selected.value
@@ -2712,7 +2806,7 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module'], function(re
         triple.o = selected.uri;
         triple.otype = "uri";
         triples.push(triple);
-
+		
 				// These create duplicate literals...
         triple = {};
         triple.s = selected.uri;
@@ -2822,10 +2916,10 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module'], function(re
 					}
 				}
 			}
-
+      
 			return typeahead_source;
     }
-
+		
 		exports.processSuggestions = function(suggest, query) {
        var suggestions = JSON.parse(suggest);
         var typeahead_source = [];
@@ -2900,7 +2994,7 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module'], function(re
         	});
         }, 300); // 300 ms
     }
-
+		
 		exports.rdaToolkitQuery=function(query, cache, scheme, process) {
         console.log('q is ' + query);
         q = encodeURI(query);
@@ -3574,12 +3668,12 @@ bfe.define('src/lookups/rdacontenttypes', ['require', 'exports', 'module' , 'src
     var lcshared = require("src/lookups/lcshared");
 
     var cache = [];
-
+    
     exports.scheme = "http://id.loc.gov/vocabulary/contentTypes";
 
     exports.source = function(query, process){
         return lcshared.simpleQuery(query, cache, exports.scheme, process);
-    }
+    }    
 
     exports.getResource = lcshared.getResource;
 
@@ -3588,12 +3682,12 @@ bfe.define('src/lookups/rdamediatypes', ['require', 'exports', 'module' , 'src/l
     var lcshared = require("src/lookups/lcshared");
 
     var cache = [];
-
+    
     exports.scheme = "http://id.loc.gov/vocabulary/mediaTypes";
 
     exports.source = function(query, process){
         return lcshared.simpleQuery(query, cache, exports.scheme, process);
-    }
+    }    
 
     exports.getResource = lcshared.getResource;
 
@@ -3602,12 +3696,12 @@ bfe.define('src/lookups/rdaperformancemediums', ['require', 'exports', 'module' 
     var lcshared = require("src/lookups/lcshared");
 
     var cache = [];
-
+    
     exports.scheme = "http://id.loc.gov/authorities/performanceMediums";
 
     exports.source = function(query, process){
         return lcshared.simpleQuery(query, cache, exports.scheme, process);
-    }
+    }    
 
     exports.getResource = lcshared.getResource;
 
@@ -3616,13 +3710,13 @@ bfe.define('src/lookups/rdacarriers', ['require', 'exports', 'module' , 'src/loo
     var lcshared = require("src/lookups/lcshared");
 
     var cache = [];
-
+    
     exports.scheme = "http://id.loc.gov/vocabulary/carriers";
 
     exports.source = function(query, process){
         return lcshared.simpleQuery(query, cache, exports.scheme, process);
     }
-
+    
     exports.getResource = lcshared.getResource;
 
 });
@@ -3630,13 +3724,13 @@ bfe.define('src/lookups/rdacarriertypes', ['require', 'exports', 'module' , 'src
     var lcshared = require("src/lookups/lcshared");
 
     var cache = [];
-
+    
     exports.scheme = "http://rdaregistry.info/termList/RDACarrierType.jsonld";
 
     exports.source = function(query, process){
         return lcshared.rdaToolkitQuery(query, cache, exports.scheme, process);
     }
-
+   
     exports.getResource = lcshared.getResource;
 
 });
@@ -3644,12 +3738,12 @@ bfe.define('src/lookups/rdamodeissue', ['require', 'exports', 'module' , 'src/lo
     var lcshared = require("src/lookups/lcshared");
 
     var cache = [];
-
+    
     exports.scheme = "http://id.loc.gov/ml38281/vocabulary/rda/ModeIssue";
 
     exports.source = function(query, process){
         return lcshared.simpleQuery(query, cache, exports.scheme, process);
-    }
+    }    
 //"[{"uri":"http://id.loc.gov/vocabulary/rda/ModeIssue/1004","value":"integrating resource"},{"uri":"http://id.loc.gov/vocabulary/rda/ModeIssue/1002","value":"multipart monograph"},{"uri":"http://id.loc.gov/vocabulary/rda/ModeIssue/1003","value":"serial"},{"uri":"http://id.loc.gov/vocabulary/rda/ModeIssue/1001","value":"single unit"}]"
     exports.getResource = function(subjecturi, propertyuri, selected, process) {
         selected.uri = selected.uri.replace("gov/", "gov/ml38281/");
