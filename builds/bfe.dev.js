@@ -579,33 +579,46 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
                         loadtemplate.embedType = "page";
                         loadtemplate.data = tempstore;
                         loadtemplates.push(loadtemplate);*/
-                       $(td).find("#bfeditor-retrieve"+rowData.id).click(function(){
-                            if (editorconfig.retrieve.callback !== undefined) {
-                                loadtemplates = temptemplates;
-                                //editorconfig.retrieve.callback(cellData,bfestore, bfelog, cbLoadTemplates);
-                                bfestore.store = [];
-                                tempstore = bfestore.jsonld2store(rowData.rdf);
-                                $('[href=#create]').tab('show');
-                                cbLoadTemplates();
-                            } else {
-                            //retrieve disabled
-                            }
-                        });
+                       	$(td).find("#bfeditor-retrieve" + rowData.id).click(function() {
+													if (editorconfig.retrieve.callback !== undefined) {
+														loadtemplates = temptemplates;
+														//editorconfig.retrieve.callback(cellData,bfestore, bfelog, cbLoadTemplates);
+														bfestore.store = [];
+														bfestore.state = "edit";
+														tempstore = bfestore.jsonld2store(rowData.rdf);
+														bfestore.name = rowData.name;
+														bfestore.created = rowData.created;
+														bfestore.url = rowData.url;
+														bfestore.profile = rowData.profile;
+														$('[href=#create]').tab('show');
 
-                       $(td).append($('<div class="modal fade" id="bfeditor-deleteConfirm'+rowData.id+'" role="dialog"><div class="modal-dialog modal-sm"><div class="modal-content"> \
-                            <div class="modal-body"><h4>Delete?</h4></div>\
-                            <div class="modal-footer"><button type="button" class="btn btn-default" id="bfeditor-modalCancel" data-dismiss="modal">Cancel</button> \
-                            <button type="button" id="bfeditor-deleteConfirmButton'+rowData.id+'" class="btn btn-danger btn-ok" data-dismiss="modal">Delete</button></div></div></div></div></div>'));
+														if($('#bfeditor-messagediv').length){
+															$('#bfeditor-messagediv').remove();
+															$('#bfeditor-formdiv').show();
+															$('#save-btn').remove();
+															$('#bfeditor-previewPanel').remove();
+														}
 
-                       $(td).find("#bfeditor-deleteConfirmButton"+rowData.id).click(function(){
-                            if (editorconfig.deleteId.callback !== undefined) {
-                                editorconfig.deleteId.callback(rowData.id, editorconfig.getCSRF.callback(), bfelog);
-                                var table = $('#table_id').DataTable();
-                                //table.row($(this).parents('tr')).remove().draw();
-                                bfestore.store = [];
-                                //table.ajax.reload();
-                            } else {
-                            //delete disabled
+															cbLoadTemplates();
+														} else {
+															//retrieve disabled
+														}
+												});
+
+												$(td).append($('<div class="modal fade" id="bfeditor-deleteConfirm'+rowData.id+'" role="dialog"><div class="modal-dialog modal-sm"><div class="modal-content"> \
+																								<div class="modal-body"><h4>Delete?</h4></div>\
+																								<div class="modal-footer"><button type="button" class="btn btn-default" id="bfeditor-modalCancel" data-dismiss="modal">Cancel</button> \
+																								<button type="button" id="bfeditor-deleteConfirmButton'+rowData.id+'" class="btn btn-danger btn-ok" data-dismiss="modal">Delete</button></div></div></div></div></div>'));
+
+												$(td).find("#bfeditor-deleteConfirmButton"+rowData.id).click(function(){
+																				if (editorconfig.deleteId.callback !== undefined) {
+																				editorconfig.deleteId.callback(rowData.id, editorconfig.getCSRF.callback(), bfelog);
+																				var table = $('#table_id').DataTable();
+																				//table.row($(this).parents('tr')).remove().draw();
+																				bfestore.store = [];
+																				//table.ajax.reload();
+																				} else {
+																				//delete disabled
                             }
                         });
 
