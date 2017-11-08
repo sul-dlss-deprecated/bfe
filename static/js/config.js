@@ -266,19 +266,19 @@
           "menuItems": [
             {
               label: "Work",
-              useResourceTemplates: [ "profile:bf2:Serial:Work" ]
+              useResourceTemplates: [ "profile:Stanford:bf2:Serial:Work" ]
             },
             {
               label: "Expression",
-              useResourceTemplates: [ "profile:bf2:Serial:Expression" ]
+              useResourceTemplates: [ "profile:Stanford:bf2:Serial:Expression" ]
             },
             {
               label: "Instance",
-              useResourceTemplates: [ "profile:bf2:Serial:Instance" ]
+              useResourceTemplates: [ "profile:Stanford:bf2:Serial:Instance" ]
             },
             {
               label: "Work, Expression, Instance",
-              useResourceTemplates: [ "profile:bf2:Serial:Work", "profile:bf2:Serial:Expression", "profile:bf2:Serial:Instance" ]
+              useResourceTemplates: [ "profile:Stanford:bf2:Serial:Work", "profile:Stanford:bf2:Serial:Expression", "profile:Stanford:bf2:Serial:Instance" ]
             }
           ]},
           {"menuGroup": "Video",

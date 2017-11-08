@@ -261,7 +261,7 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
             				"load": require("src/lookups/rdamediatypes")
         				},
         				"http://id.loc.gov/authorities/performanceMediums": {
-            				"name": "RDA-Media-Types",
+            				"name": "LCMPT",
             				"load": require("src/lookups/rdaperformancemediums")
         				},
         				"http://id.loc.gov/vocabulary/carriers": {
@@ -1636,8 +1636,8 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
         var callingformobject = _.where(forms, {"id": formobjectID});
         callingformobject = callingformobject[0];
 
-				var resourceURI = _.find(_.find(forms, {"id":modalformid}).resourceTemplates, {defaulturi: resourceID}).resourceURI;
-
+				var resourceURI = _.find(_.find(forms, {"id" :modalformid}).resourceTemplates).resourceURI;
+				//var resourceURI = _.find(_.find(forms, {"id" :modalformid}).resourceTemplates, {"defaulturi": resourceID}).resourceURI;
         //add the resourceType for the form
 				var resourceType = { "guid": guid(),
 								"s": resourceID,
@@ -1665,37 +1665,38 @@ bfe.define('src/bfe', ['require', 'exports', 'module', 'src/lib/jquery-2.1.0.min
                     }
                 });
 
-                var tlabel = _.where(temp,{"s":properties[0].propertyURI});
-                //if there's a label, use it. Otherwise, create a label from the literals, and if no literals, use the uri.
-                if ( tlabel.length > 0) {
+                //var tlabel = _.where(temp,{"s":properties[0].propertyURI});
+                var tlabel = _.find(data, {
+                    p: "http://www.w3.org/2000/01/rdf-schema#label"
+                });
+                var tvalue = _.find(data, {
+                    p: "http://www.w3.org/1999/02/22-rdf-syntax-ns#value"
+                });
+								//if there's a label, use it. Otherwise, create a label from the literals, and if no literals, use the uri.
+                
+								if (tlabel !== undefined) {
                     displaydata = tlabel.o;
-                    var displayuri = tlabel.s;
+                    displayuri = tlabel.s;
+                } else if (tvalue !== undefined) {
+                    displaydata = tvalue.o;
+                    displayuri = tvalue.s;
                 } else {
+                    var displaydata = "";
                     for (var i in data) {
-                        var displaydata;
-                        if (data[i].otype === "literal"){
-                            if (displaydata === undefined) {
-                                displaydata = "";
-                            }
-														if ( (data[i].p != "http://www.w3.org/1999/02/22-rdf-syntax-ns#label") && 
-																 (data[i].p != "http://www.w3.org/2000/01/rdf-schema#label")	) {
-                            	displaydata += data[i].o + " ";
-														}
+                        if (data[i].otype === "literal" && !(/^\d/.test(data[i].o))) {
+                            displaydata += data[i].o + " ";
+                            displayuri = data[i].s;
                         }
                     }
-										
-										displayuri = data[0].s;
-                    if (displaydata === undefined){
-                        displaydata = data[0].s;
-                    } else {
-                        //create label
-                        displaydata.trim();
+
+                    if (displaydata === undefined || displaydata === "") {
+                        displaydata = displayuri;
                         var triple = {
-                            "guid":guid(),
-                            "o": displaydata,
+                            "guid": guid(),
+                            "o": displayuri,
                             "otype": "literal",
                             "p": "http://www.w3.org/2000/01/rdf-schema#label",
-                            "s": displayuri
+                            "s": displaydata.trim()
                         }
                         data.push(triple);
                     }
@@ -2993,6 +2994,7 @@ bfe.define('src/lookups/lcshared', ['require', 'exports', 'module'], function(re
 
     exports.simpleQuery=function(query, cache, scheme, process) {
         console.log('q is ' + query);
+        console.log('scheme is ' + scheme);
         q = encodeURI(query);
         if(cache[q]){
             process(cache[q]);
