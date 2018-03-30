@@ -1,12 +1,8 @@
 tmp
 examples
 node_modules
-static/js/config-jodi.js
-builds/bfe.dev.js.typeahead
-jodi.html
-static/profiles/bibframe/Test profile (jodiw).json
-
-builds/bfe.dev.bak
-builds/bfe.jodi.bak
-builds/bfe.jodi.js
-static/profiles/bibframe/Test All (jodiw).json
+package.json
+include/export/temp*
+log/
+src/*/*.min.*
+src/fonts
