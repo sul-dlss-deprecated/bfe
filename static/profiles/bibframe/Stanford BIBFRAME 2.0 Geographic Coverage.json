@@ -1,0 +1,35 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/authorities/names"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Geographic Coverage"
+          }
+        ],
+        "id": "profile:Stanford:bf2:GeographicCoverage",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/GeographicCoverage",
+        "resourceLabel": "Geographic Coverage",
+        "remark": "Geographic coverage of the content of the resource",
+        "contact": "STF"
+      }
+    ],
+    "title": "Stanford BIBFRAME 2.0 Geographic Coverage",
+    "id": "profile:Stanford:bf2:GeographicCoverageOfContent",
+    "description": "Geographic coverage of the content of the resource",
+    "contact": "STF",
+    "date": "2017-09-21"
+  }
+}

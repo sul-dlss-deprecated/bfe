@@ -1,0 +1,78 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Music distributor number"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/qualifier",
+            "propertyLabel": "Qualifier"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Identifier:Status"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/status",
+            "propertyLabel": "Status"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Person"
+              ],
+              "useValuesFrom": [
+                ""
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/assigner",
+            "propertyLabel": "Assigner"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifier:MusicDistributorNumber",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/MusicDistributorNumber",
+        "resourceLabel": "Music distributor number",
+        "contact": "STF"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Identifier:MusicDistributor",
+    "title": "Stanford BIBFRAME 2.0 Music Distributor Number",
+    "date": "2017-08-29",
+    "contact": "STF",
+    "description": "Distributor number on notated music, performed music, or video instance"
+  }
+}

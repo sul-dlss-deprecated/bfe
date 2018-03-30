@@ -1,0 +1,30 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "System requirements"
+          }
+        ],
+        "id": "profile:Stanford:bf2:SystemRequirements",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/SystemRequirement",
+        "resourceLabel": "System requirements"
+      }
+    ],
+    "id": "profile:Stanford:bf2:SystemRequirement",
+    "title": "Stanford BIBFRAME 2.0 sSystem requirement",
+    "date": "2017-11-27",
+    "contact": "STF"
+  }
+}

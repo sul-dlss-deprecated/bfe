@@ -1,0 +1,96 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/authorities/genreForms"
+              ],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Lookup LCGFT",
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "remark": ""
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Input Term",
+            "remark": "http://access.rdatoolkit.org/6.3.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/genreFormSchemes"
+              ],
+              "valueDataType": {},
+              "editable": "false",
+              "repeatable": "true"
+            },
+            "propertyLabel": "Source of term",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/genreForm"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/authorities/subjects"
+              ],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Lookup LCSH (for Gov Docs)",
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/marcgt"
+              ],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Lookup MARC Genre Terms",
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Form",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/GenreForm",
+        "resourceLabel": "Form of Work",
+        "contact": "NDMSO/STF"
+      }
+    ],
+    "id": "profile:Stanford:bf2:FormOfWork",
+    "title": "Stanford BIBFRAME 2.0 Form",
+    "description": "Form of Work",
+    "date": "2017-10-13",
+    "contact": "STF"
+  }
+}

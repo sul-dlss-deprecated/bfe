@@ -1,0 +1,33 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Status",
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Status",
+        "resourceLabel": "Status",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Status",
+        "contact": "STF",
+        "remark": "Designation of the validity or position of something, e.g., whether something is incorrect or available."
+      }
+    ],
+    "title": "Stanford BIBFRAME 2.0 Status",
+    "id": "profile:Stanford:bf2:StatusOfSomething",
+    "contact": "STF",
+    "description": "Designation of the validity or position of something",
+    "date": "2017-09-20"
+  }
+}

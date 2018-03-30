@@ -1,0 +1,34 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                ""
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Mode of work"
+          }
+        ],
+        "id": "profile:PMO:Mode",
+        "resourceURI": "http://performedmusicontology.org/ontology/Mode",
+        "contact": "STF",
+        "resourceLabel": "Music mode (e.g., Dorian)"
+      }
+    ],
+    "id": "profile:PMO:MusicMode",
+    "title": "PMO Music mode",
+    "date": "2017-08-31",
+    "description": "Mode, raga, etc. of musical work (without key)",
+    "contact": "STF"
+  }
+}

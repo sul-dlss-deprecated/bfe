@@ -1,0 +1,48 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Monograph:Instance"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+            "propertyLabel": "Source"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Note:NoteText"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "propertyLabel": "Note on source"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Source:Type",
+        "resourceLabel": "Source",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Source"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Source",
+    "title": "Stanford BIBFRAME 2.0 Source",
+    "description": "Resource from which value or label came or was derived.",
+    "contact": "STF",
+    "date": "2017-10-31"
+  }
+}

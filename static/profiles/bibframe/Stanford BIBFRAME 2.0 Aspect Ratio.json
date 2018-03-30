@@ -1,0 +1,81 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/AspectRatio"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup"
+          }
+        ],
+        "id": "profile:Stanford:bf2:AspectRatio:Designation",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/AspectRatio",
+        "contact": "STF",
+        "resourceLabel": "Aspect Ratio Designation (RDA 7.19.1.4.1.3)",
+        "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1101538.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Aspect Ratio Numerical ratio (RDA 7.19.1.3)"
+          }
+        ],
+        "id": "profile:Stanford:bf2:AspectRatio:NumericalValue",
+        "resourceLabel": "Aspect Ratio Numerical value (RDA 7.19.1.3)  -- Record the numerical ratio in standard format with a denominator of 1, if known",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/AspectRatio",
+        "contact": "STF",
+        "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1495.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Note:NoteText"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "propertyLabel": "Aspect ratio note"
+          }
+        ],
+        "id": "profile:Stanford:bf2:AspectRatio:Note",
+        "resourceLabel": "Aspect Ratio note",
+        "contact": "STF",
+        "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1101541.html",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/AspectRatio"
+      }
+    ],
+    "id": "profile:Stanford:bf2:AspectRatio",
+    "title": "Stanford BIBFRAME 2.0 Aspect Ratio",
+    "description": "Proportional relationship between an image's width and its height",
+    "date": "2017-10-31",
+    "contact": "STF"
+  }
+}

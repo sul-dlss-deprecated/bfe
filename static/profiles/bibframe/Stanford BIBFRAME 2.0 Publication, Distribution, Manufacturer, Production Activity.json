@@ -1,0 +1,238 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Place"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place",
+            "propertyLabel": "Place (RDA 2.8.2)",
+            "remark": "http://access.rdatoolkit.org/2.8.2.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Agent:CorporateBody",
+                "profile:Stanford:bf2:Agent:Person",
+                "profile:Stanford:bf2:Agent:Conference",
+                "profile:Stanford:bf2:Agent:Family"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
+            "propertyLabel": "Name (RDA 2.8.4)",
+            "remark": "http://access.rdatoolkit.org/2.8.4.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/date",
+            "propertyLabel": "Date (RDA 2.8.6)",
+            "remark": "http://access.rdatoolkit.org/2.8.6.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:PublicationInformation",
+        "contact": "",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Publication",
+        "resourceLabel": "Publication Activity"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Place"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place",
+            "propertyLabel": "Place (RDA 2.9.2)",
+            "remark": "http://access.rdatoolkit.org/2.9.2.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Agent:CorporateBody",
+                "profile:Stanford:bf2:Agent:Person",
+                "profile:Stanford:bf2:Agent:Conference",
+                "profile:Stanford:bf2:Agent:Family"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
+            "propertyLabel": "Name (RDA 2.9.4)",
+            "remark": "http://access.rdatoolkit.org/2.9.4.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/date",
+            "propertyLabel": "Date (RDA 2.9.6)",
+            "remark": "http://access.rdatoolkit.org/2.9.6.html"
+          }
+        ],
+        "resourceLabel": "Distribution Activity",
+        "id": "profile:Stanford:bf2:DistributionInformation",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Distribution"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Place"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place",
+            "propertyLabel": "Place (RDA 2.10.2)",
+            "remark": "http://access.rdatoolkit.org/2.10.2.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Agent:CorporateBody",
+                "profile:Stanford:bf2:Agent:Person",
+                "profile:Stanford:bf2:Agent:Conference",
+                "profile:Stanford:bf2:Agent:Family"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
+            "propertyLabel": "Name (RDA 2.10.4)",
+            "remark": "http://access.rdatoolkit.org/2.10.4.html/"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/date",
+            "propertyLabel": "Date (RDA 2.10.6)",
+            "remark": "http://access.rdatoolkit.org/2.10.6.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:ManufactureInformation",
+        "resourceLabel": "Manufacture Activity",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Manufacture"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Place"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/place",
+            "propertyLabel": "Place (RDA 2.7.2)",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-6121.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Agent:CorporateBody",
+                "profile:Stanford:bf2:Agent:Person",
+                "profile:Stanford:bf2:Agent:Conference",
+                "profile:Stanford:bf2:Agent:Family"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
+            "propertyLabel": "Name (RDA 2.7.4)",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-6222.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/date",
+            "propertyLabel": "Date (RDA 2.7.6)",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-6290.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:ProductionInformation",
+        "resourceLabel": "Production activity",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Production",
+        "contact": "STF",
+        "remark": ""
+      }
+    ],
+    "id": "profile:Stanford:bf2:PublicationDistributionManufactureInformationProduction",
+    "title": "Stanford BIBFRAME 2.0 Publication, Distribution, Manufacturer, Production Activity",
+    "description": "Publication, Distribution, Manufacture, Production Activity",
+    "date": "2017-11-07",
+    "contact": "STF"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                ""
+              ],
+              "useValuesFrom": [
+                ""
+              ],
+              "valueDataType": {},
+              "editable": "false",
+              "repeatable": "false",
+              "defaultURI": "http://rdaregistry.info/termList/ModeIssue/1001",
+              "defaultLiteral": "single unit"
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Mode of issuance",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8382.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:IssuanceSingleUnit",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Issuance",
+        "contact": "STF",
+        "resourceLabel": "Mode of issuance for a single unit"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {},
+              "editable": "true",
+              "repeatable": "true",
+              "defaultURI": "http://rdaregistry.info/termList/ModeIssue/1002",
+              "defaultLiteral": "multipart monograph"
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Mode of issuance",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8382.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:IssuanceMultipart",
+        "resourceLabel": "Mode of issuance for a multipart monograph",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Issuance",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {},
+              "editable": "false",
+              "repeatable": "true",
+              "defaultURI": "http://rdaregistry.info/termList/ModeIssue/1003",
+              "defaultLiteral": "serial"
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Mode of issuance",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8382.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:IssuanceSerial",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Is",
+        "contact": "STF",
+        "resourceLabel": "Mode of issuance for a serial"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {},
+              "editable": "true",
+              "repeatable": "true",
+              "defaultURI": "http://rdaregistry.info/termList/ModeIssue/1004",
+              "defaultLiteral": "integrating resource"
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syn",
+            "propertyLabel": "Mode of issuance",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8382.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:IssuanceIntegrating",
+        "resourceLabel": "Mode of issuance for an integrating resource",
+        "contact": "STF",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Is"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/issuance"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup",
+            "remark": ""
+          }
+        ],
+        "id": "profile:Stanford:bf2:IssuanceLookUp",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Issuance",
+        "resourceLabel": "Mode of Issuance (RDA 2.13)",
+        "contact": "STF"
+      }
+    ],
+    "id": "profile:Stanford:bf2:ModesOfIssuance",
+    "title": "Stanford BIBFRAME 2.0 Modes of issuance",
+    "date": "2017-08-30",
+    "contact": "STF",
+    "description": "RDA modes of issuance"
+  }
+}

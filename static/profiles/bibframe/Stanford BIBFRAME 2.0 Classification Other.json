@@ -1,0 +1,60 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/classificationPortion",
+            "propertyLabel": "Classification Portion"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/itemPortion",
+            "propertyLabel": "Item Portion"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "false",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/classSchemes"
+              ],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Classification Source",
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value"
+          }
+        ],
+        "id": "profile:Stanford:bf2:OtherClassification",
+        "contact": "STF",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Classification",
+        "resourceLabel": "Other Classification"
+      }
+    ],
+    "id": "profile:Stanford:bf2:ClassificationOther",
+    "title": "Stanford BIBFRAME 2.0 Classification Other",
+    "description": "Other classification",
+    "date": "2017-12-08",
+    "contact": "STF"
+  }
+}

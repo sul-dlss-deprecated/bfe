@@ -1,0 +1,51 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/maudience"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup",
+            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-645.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Note:NoteText"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Note on Intended Audience",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-645.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Audience",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/IntendedAudience",
+        "contact": "STF",
+        "resourceLabel": "Intended Audience"
+      }
+    ],
+    "id": "profile:Stanford:bf2:IntendedAudience",
+    "title": "Stanford BIBFRAME 2.0 Intended Audience",
+    "date": "2017-08-31",
+    "contact": "STF",
+    "description": "Intended Audience"
+  }
+}

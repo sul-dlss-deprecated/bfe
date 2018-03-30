@@ -1,0 +1,222 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/typeRec"
+              ],
+              "valueDataType": {},
+              "languageURI": "http://id.loc.gov/vocabulary/languages/eng"
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Type of recording",
+            "remark": "http://access.rdatoolkit.org/rdachp3_rda3-4787.html"
+          }
+        ],
+        "id": "profile:bf2:SoundCharacteristics:TypeOfRecording",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/RecordingMethod",
+        "remark": "",
+        "contact": "STF",
+        "resourceLabel": "Type of recording (RDA 3.16.2)"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/recMedium",
+                ""
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Recording medium",
+            "remark": "http://access.rdatoolkit.org/rdachp3_rda3-4772.html"
+          }
+        ],
+        "id": "profile:bf2:SoundCharacteristics:RecordingMedium",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/RecordingMedium",
+        "contact": "STF",
+        "resourceLabel": "Recording medium (RDA 3.16.3)"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                ""
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Playing speed"
+          }
+        ],
+        "id": "profile:bf2:SoundCharacteristics:PlayingSpeed",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/PlayingSpeed",
+        "contact": "STF",
+        "resourceLabel": "Playing speed (RDA 3.16.4)"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/trackConfig"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Configuration of tracks"
+          }
+        ],
+        "id": "profile:bf2:SoundCharacteristics:TrackConfig",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/TrackConfig",
+        "contact": "STF",
+        "resourceLabel": "Track configuration (RDA 3.16.6)"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Tape configuration",
+            "remark": "http://access.rdatoolkit.org/rdachp3_rda3-4893.html"
+          }
+        ],
+        "id": "profile:bf2:SoundCharacteristics:TapeConfig",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/TapeConfig",
+        "resourceLabel": "Tape configuration (RDA 3.16.7)",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/configPlayback"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Configuration of Playback Channels"
+          }
+        ],
+        "id": "profile:bf2:SoundCharacteristics:PlaybackChannels",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/PlaybackChannels",
+        "resourceLabel": "Configuration of Playback Channels (RDA 3.16.8)",
+        "contact": "http://access.rdatoolkit.org/rdachp3_rda3-4909.htmlth"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/specPlayback"
+              ],
+              "valueDataType": {},
+              "languageURI": "http://id.loc.gov/vocabulary/languages/eng"
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Playback characteristics"
+          }
+        ],
+        "id": "profile:bf2:SoundCharacteristics:PlaybackCharacteristic",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/PlaybackCharacteristic",
+        "resourceLabel": "Special Playback Characteristic (RDA 3.16.9)",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Disc cutting technique"
+          }
+        ],
+        "id": "profile:PMO:SoundCharacteristics:DiscCutting",
+        "resourceURI": "http://performedmusicontology.org/ontology/DiscCutting",
+        "resourceLabel": "Disc Cutting Technique",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/grooveWidth",
+                "http://rdaregistry.info/termList/groovePitch"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Groove characteristics"
+          }
+        ],
+        "id": "profile:bf2:SoundCharacteristics:GrooveCharacteristic",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/GrooveCharacteristic",
+        "resourceLabel": "Groove characteristics"
+      }
+    ],
+    "id": "profile:PMO:SoundCharacteristics",
+    "title": "PMO Sound characteristics",
+    "contact": "STF",
+    "remark": "only different from BF in terms of one added element",
+    "date": "2017-09-01",
+    "description": ""
+  }
+}

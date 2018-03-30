@@ -1,0 +1,32 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "System Requirement"
+          }
+        ],
+        "id": "profile:Stanford:bf2:SystemRequirement:Text",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/SystemRequirement",
+        "resourceLabel": "System Requirement (RDA 3.20)",
+        "remark": "http://access.rdatoolkit.org/rdachp3_rda3-5468.html"
+      }
+    ],
+    "id": "profile:Stanford:bf2:SystemRequirement",
+    "title": "Stanford BIBFRAME 2.0 System Requirement",
+    "description": "A system or equipment required for use, playback, etc., of an analog, digital, etc., manifestation.",
+    "contact": "STF",
+    "date": "2017-10-31"
+  }
+}

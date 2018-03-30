@@ -1,0 +1,34 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Note on details of color content",
+            "remark": ""
+          }
+        ],
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Note",
+        "id": "profile:Stanford:bf2:ColorDetail",
+        "resourceLabel": "Details of color content (RDA 7.17.1.4)",
+        "remark": "",
+        "contact": "STF"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Details of Color",
+    "title": "Stanford BIBFRAME 2.0 Details of Color",
+    "contact": "STF",
+    "date": "2017-09-21",
+    "description": "For recording details of color content"
+  }
+}

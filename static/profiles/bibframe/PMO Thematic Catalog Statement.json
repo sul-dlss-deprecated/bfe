@@ -1,0 +1,118 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Thematic Catalog Statement"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:PMO:ThematicCatalogPrefix"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Thematic Catalog Prefix"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:PMO:ThematicCatalogNumber"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Thematic Catalog Number"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Source:Type"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/source",
+            "propertyLabel": "Source"
+          }
+        ],
+        "id": "profile:PMO:Identifier:ThematicStatement",
+        "resourceURI": "http://performedmusicontology.org/ontology/ThematicCatalogStatement",
+        "contact": "STF",
+        "resourceLabel": "Thematic catalog statement"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/TR/rdf-schema/label",
+            "propertyLabel": "Thematic Catalog Prefix"
+          }
+        ],
+        "id": "profile:PMO:ThematicCatalogPrefix",
+        "resourceURI": "http://performedmusicontology.org/ontology/ThematicCatalogPrefix",
+        "contact": "STF",
+        "resourceLabel": "Thematic Catalog Prefix"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/TR/rdf-schema/label",
+            "propertyLabel": "Thematic Catalog Number"
+          }
+        ],
+        "id": "profile:PMO:Identifier:ThematicCatalogNumber",
+        "resourceURI": "http://performedmusicontology.org/ontology/ThematicCatalogNumber",
+        "contact": "STF",
+        "resourceLabel": "Thematic catalog number"
+      }
+    ],
+    "id": "profile:PMO:Identifier:ThematicCatalogStatement",
+    "title": "PMO Thematic Catalog Statement",
+    "date": "2017-08-31",
+    "contact": "STF"
+  }
+}

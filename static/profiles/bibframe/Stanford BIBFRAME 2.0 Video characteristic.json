@@ -1,0 +1,59 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/broadcastStand"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup"
+          }
+        ],
+        "id": "profile:Stanford:bf2:VideoCharacteristic:BroadcastStandard",
+        "resourceLabel": "Broadcast Standard (RDA 3.18.3)",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/BroadcastStandard",
+        "contact": "STF",
+        "remark": "http://access.rdatoolkit.org/rdachp3_rda3-5137.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/videoFormat"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup"
+          }
+        ],
+        "id": "profile:Stanford:bf2:VideoCharacteristic:VideoFormat",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/VideoFormat",
+        "resourceLabel": "VIdeo Format (RDA3.18.2)",
+        "contact": "STF",
+        "remark": "3.17 Projection Characteristic of Motion Picture Film 3.17.1 Basic Instructions on Recording Projection Characteristic of Motion Picture Film 3.17.1.1 Scope projection characteristic of motion picture film▼: A technical specification relating to the projection of a motion picture film. For instructions on recording the aspect ratio of a motion picture film, see 7.19. For instructions on recording the colour characteristics of a motion picture film, see 7.17. For instructions on recording the sound characteristics of a motion picture film, see 3.16 and 7.18. 3.17.1.2 Sources of Information Use evidence presented by the manifestation itself (or on any accompanying material or container) as the basis for recording a projection characteristic of motion picture film. Take additional evidence from any source. 3.17.1.3 Recording Projection Characteristic of Motion Picture Film Record a projection characteristic if considered important for identification or selection. Record the following characteristics, as applicable: a) presentation format (see 3.17.2) b) projection speed (see 3.17.3). Record details of projection characteristic of motion picture film as instructed at 3.17.1.4. 3.17.1.4 Details of Projection Characteristic of Motion Picture Film details of projection characteristic of motion picture film ▼: Details of a technical specification relating to the projection of a motion picture film. Record details of projection characteristic of motion picture film if considered important for identification or selection. For sources of information, see 3.17.1.2. For details of any special equipment requirements for projection, see 3.20.1.3. 3.17.2 Presentation Format 3.17.2.1 Scope presentation format▼: A format used in the production of a projected image. 3.17.2.2 Sources of Information Use evidence presented by the manifestation itself (or on any accompanying material or container) as the basis for recording a presentation format. Take additional evidence from any source. 3.17.2.3 Recording Presentation Format Record a presentation format of a motion picture film if considered important for identification or selection. Use one or more appropriate terms from the following list: 3D Cinemiracle Cinerama Circarama IMAX multiprojector multiscreen Panavision standard silent aperture standard sound aperture stereoscopic Techniscope       EXAMPLE Panavision Presentation format of a motion picture film       If none of the terms in the list is appropriate or sufficiently specific, use another concise term or terms to indicate a presentation format.       EXAMPLE Disney Digital 3-D       Record details of presentation format as instructed at 3.17.2.4. 3.17.2.4 Details of Presentation Format details of presentation format▼: Details of a format used in the production of a projected image. Record details of presentation format if considered important for identification or selection. For sources of information, see 3.17.2.2. 3.17.3 Projection Speed 3.17.3.1 Scope projection speed▼: A speed at which a projected carrier must be operated to produce the moving image intended. 3.17.3.2 Sources of Information Use evidence presented by the manifestation itself (or on any accompanying material or container) as the basis for recording a projection speed. Take additional evidence from any source. 3.17.3.3 Recording Projection Speed Record a projection speed of a motion picture film in frames per second (fps) if considered important for identification or selection.       EXAMPLE 20 fps       Record details of projection speed as instructed at 3.17.3.4. 3.17.3.4 Details of Projection Speed details of projection speed▼: Details of a speed at which a projected carrier must be operated to produce the moving image intended. Record details of projection speed if considered important for identification or selection. For sources of information, see 3.17.3.2. 3.18 Video Characteristic 3.18.1 Basic Instructions on Recording Video Characteristic 3.18.1.1 Scope video characteristic▼: A technical specification relating to the encoding of video images in a manifestation. For instructions on recording the aspect ratio of a video, see 7.19. For instructions on recording the colour characteristics of a video, see 7.17. For instructions on recording the sound characteristics of a video, see 3.16. For instructions on recording additional characteristics of digitally encoded video, see 3.19. 3.18.1.2 Sources of Information Use evidence presented by the manifestation itself (or on any accompanying material or container) as the basis for recording a video characteristic of the manifestation. Take additional evidence from any source. 3.18.1.3 Recording Video Characteristic Record a video characteristic if considered important for identification or selection. Record the following characteristics, as applicable: a) video format (see 3.18.2) b) broadcast standard (see 3.18.3). Record details of video characteristic as instructed at 3.18.1.4. 3.18.1.4 Details of Video Characteristic details of video characteristic▼: Details of a technical specification relating to the encoding of video images in a manifestation. Record details of video characteristic if considered important for identification or selection. For sources of information, see 3.18.1.2.       EXAMPLE Resolution: 1080i Standard: 405 lines, 50 fields, high band One side CAV, one side CLV       For details of any special equipment requirements for video playback, see 3.20.1.3. 3.18.2 Video Format 3.18.2.1 Scope video format▼: A standard, etc., used to encode the analog video content of a manifestation. For instructions on re"
+      }
+    ],
+    "id": "profile:Stanford:bf2:VideoCharacteristic",
+    "title": "Stanford BIBFRAME 2.0 Video characteristic",
+    "date": "2017-10-30",
+    "contact": "STf",
+    "description": "Video Characteristic"
+  }
+}

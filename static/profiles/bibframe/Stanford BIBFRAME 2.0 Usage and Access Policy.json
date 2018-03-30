@@ -1,0 +1,100 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Usage and Access Policy (RDA 4.0)"
+          }
+        ],
+        "id": "profile:Stanford:bf2:UsageAndAccess",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/UsageAndAccessPolicy",
+        "contact": "STF",
+        "resourceLabel": "Usage and Access Policy",
+        "remark": "http://access.rdatoolkit.org/rdachp4_rda4-34.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Use Policy (RDA 4.5)",
+            "remark": "http://access.rdatoolkit.org/rdachp4_rda4-153.html",
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          }
+        ],
+        "id": "profile:Stanford:bf2:UsageAndAccess:UsePolicy",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/UsePolicy",
+        "contact": "STF",
+        "resourceLabel": "Use Policy",
+        "remark": "http://access.rdatoolkit.org/rdachp4_rda4-153.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "remark": "http://access.rdatoolkit.org/rdachp4_rda4-121.html",
+            "propertyLabel": "Access Policy (RDA 4.4)",
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          }
+        ],
+        "id": "profile:Stanford:bf2:UsageAndAccess:AccessPolicy",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/AccessPolicy",
+        "contact": "STF",
+        "resourceLabel": "Access Policy",
+        "remark": "http://access.rdatoolkit.org/rdachp4_rda4-121.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Retention Policy",
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          }
+        ],
+        "id": "profile:Stanford:bf2:UsageAndAccess:RetentionPolicy",
+        "resourceLabel": "Retention Policy",
+        "contact": "STF",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/RetentionPolicy"
+      }
+    ],
+    "id": "profile:Stanford:bf2:UsageAndAccessPolicy",
+    "title": "Stanford BIBFRAME 2.0 Usage and Access Policy",
+    "description": "Usage and Access Policy",
+    "date": "2017-10-02",
+    "contact": "STF"
+  }
+}

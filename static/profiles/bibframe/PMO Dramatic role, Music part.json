@@ -1,0 +1,51 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/TR/2014/REC-rdf-schema-20140225/label",
+            "propertyLabel": "Dramatic role"
+          }
+        ],
+        "id": "profile:PMO:DramaticRoleType",
+        "resourceURI": "http://performedmusicontology.org/ontology/DramaticRole",
+        "contact": "STF",
+        "resourceLabel": "Dramatic role"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Music part"
+          }
+        ],
+        "id": "profile:PMO:MusicPart",
+        "resourceURI": "http://performedmusicontology.org/ontology/MusicPart",
+        "resourceLabel": "Music part"
+      }
+    ],
+    "id": "profile:PMO:DramaticRoleMusicPart",
+    "title": "PMO Dramatic role, Music part",
+    "date": "2017-10-20",
+    "contact": "STF"
+  }
+}

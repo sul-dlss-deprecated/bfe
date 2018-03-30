@@ -1,0 +1,119 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "false",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/frequencies"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Current Frequency (RDA 2.14)",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8397.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Note:NoteText"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "propertyLabel": "Note on Current Frequency (RDA 2.17.12)",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-9396.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/qualifier",
+            "propertyLabel": "Qualifier for Current Frequency"
+          }
+        ],
+        "contact": "STF",
+        "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8397.html",
+        "resourceLabel": "Current Frequency",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Frequency",
+        "id": "profile:Stanford:bf2:CurrentFrequency"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/frequencies"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Former Frequency (RDA 2.14)",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8397.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Note:NoteText"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Note on Former Frequency (RDA 2.17.12)",
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-9396.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/qualifier",
+            "propertyLabel": "Qualifier for Former Frequency"
+          }
+        ],
+        "id": "profile:Stanford:bf2:FormerFrequency",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Frequency",
+        "resourceLabel": "Former Frequency",
+        "contact": "STF",
+        "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8397.html"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Frequency",
+    "title": "Stanford BIBFRAME 2.0 Frequency",
+    "description": "Frequency",
+    "date": "2017-09-21",
+    "contact": "STF"
+  }
+}

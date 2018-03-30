@@ -1,0 +1,32 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Illustrative content (RDA 7.15)",
+            "remark": ""
+          }
+        ],
+        "id": "profile:Stanford:bf2:IllusContent",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Illustration",
+        "resourceLabel": "Illustrative content"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Illustrative Content",
+    "title": "Stanford BIBFRAME 2.0 Illustrative Content",
+    "date": "2017-09-20",
+    "contact": "STF",
+    "description": "For recording the illustrative content of an expression"
+  }
+}

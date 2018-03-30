@@ -1,0 +1,35 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                ""
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Pitch center"
+          }
+        ],
+        "id": "profile:PMO:PitchCenter",
+        "resourceURI": "http://performedmusicontology.org/ontology/PitchCenter",
+        "contact": "STF",
+        "resourceLabel": "Pitch center (e.g., D)",
+        "remark": "Use when a musical work is centered around a particular pitch, but has no given mode"
+      }
+    ],
+    "id": "profile:PMO:Pitch",
+    "title": "PMO Pitch center",
+    "date": "2017-08-31",
+    "description": "Pitch center of musical work (no mode)",
+    "contact": "STF"
+  }
+}

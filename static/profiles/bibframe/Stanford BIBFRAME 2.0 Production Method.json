@@ -1,0 +1,34 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/RDAproductionMethod"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup"
+          }
+        ],
+        "id": "profile:Stanford:bf2:ProductionMethodNew:Value",
+        "resourceLabel": "Production Method (RDA 3.9)",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/ProductioMethod",
+        "remark": "http://access.rdatoolkit.org/rdachp3_rda3-4017.html"
+      }
+    ],
+    "id": "profile:Stanford:bf2:ProductionMethodNew",
+    "title": "Stanford BIBFRAME 2.0 Production Method",
+    "description": "Process used to produce a resource",
+    "contact": "STF",
+    "date": "2017-10-31"
+  }
+}

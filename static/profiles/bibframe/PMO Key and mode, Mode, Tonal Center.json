@@ -1,0 +1,74 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Key and mode"
+          }
+        ],
+        "id": "profile:PMO:KeyMode:Key",
+        "resourceURI": "http://performedmusicontology.org/ontology/KeyMode",
+        "resourceLabel": "Key and mode (e.g., G major)",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Mode"
+          }
+        ],
+        "id": "profile:PMO:KeyMode:Mode",
+        "resourceURI": "http://performedmusicontology.org/ontology/Mode",
+        "contact": "STF",
+        "resourceLabel": "Music mode"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Tonal center"
+          }
+        ],
+        "id": "profile:PMO:KeyMode:TonalCenter",
+        "resourceURI": "http://performedmusicontology.org/ontology/TonalCenter",
+        "contact": "STF",
+        "resourceLabel": "Tonal Center"
+      }
+    ],
+    "id": "profile:PMO:KeyMode",
+    "title": "PMO Key and mode, Mode, Tonal Center",
+    "date": "2017-08-31",
+    "contact": "STF",
+    "description": "Key and mode of work"
+  }
+}

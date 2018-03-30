@@ -1,0 +1,34 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/soundCont"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup",
+            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1450.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:SoundContent:Value",
+        "resourceLabel": "Sound Content",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/SoundContent"
+      }
+    ],
+    "id": "profile:Stanford:bf2:SoundContent",
+    "title": "Stanford BIBFRAME 2.0 Sound Content",
+    "description": "ndication of whether the production of sound is an integral part of the resource.",
+    "date": "2017-10-31",
+    "contact": "STF"
+  }
+}

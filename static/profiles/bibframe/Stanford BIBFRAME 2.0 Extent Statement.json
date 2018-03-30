@@ -1,0 +1,33 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/TR/rdf-schema/label",
+            "propertyLabel": "Extent",
+            "remark": ""
+          }
+        ],
+        "id": "profile:Stanford:bf2:Extent",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Extent",
+        "contact": "STF",
+        "resourceLabel": "Extent"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Extent Statement",
+    "title": "Stanford BIBFRAME 2.0 Extent Statement",
+    "date": "2017-09-01",
+    "remark": "",
+    "contact": "STF"
+  }
+}

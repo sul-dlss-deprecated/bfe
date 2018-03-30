@@ -1,0 +1,32 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Script (RDA 7.13.2)",
+            "remark": ""
+          }
+        ],
+        "id": "profile:Stanford:bf2:Script",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Script",
+        "resourceLabel": "Script"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Script of Language",
+    "title": "Stanford BIBFRAME 2.0 Script",
+    "date": "2017-09-19",
+    "description": "Script used to express language of content (RDA)",
+    "contact": "STF"
+  }
+}

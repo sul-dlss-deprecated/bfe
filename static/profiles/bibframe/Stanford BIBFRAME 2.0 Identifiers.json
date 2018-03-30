@@ -1,0 +1,534 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "ISSN"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/qualifier",
+            "propertyLabel": "Qualifier"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:ISSN",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Issn",
+        "contact": "STF",
+        "resourceLabel": "ISSN (RDA 2.15)",
+        "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8418.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "LCCN"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Status"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/status",
+            "propertyLabel": "Status"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:LCCN",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Lccn",
+        "contact": "STF",
+        "resourceLabel": "LCCN"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "GTIN-14 number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:GTIN14",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Gtin14Number",
+        "contact": "STF",
+        "resourceLabel": "GTIN-14 number"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "EAN"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:Ean",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Ean",
+        "contact": "STF",
+        "resourceLabel": "EAN"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "UPC"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:UPC",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Upc",
+        "contact": "STF",
+        "resourceLabel": "UPC"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "ISMN"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:ISMN",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Ismn",
+        "resourceLabel": "ISMN",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Person"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/assigner",
+            "propertyLabel": "Assigner of publisher number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:MusicPublisherNumber",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/MusicPublisherNumber",
+        "resourceLabel": "Music Publisher number"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Person"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/assigner",
+            "propertyLabel": "Assigner of plate number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:MusicPlate",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/MusicPlate",
+        "contact": "STF",
+        "resourceLabel": "Music Plate number"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Person"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/assigner",
+            "propertyLabel": "Assigner of distribution number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:MusicDistributorNumber",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/MusicDistributorNumber",
+        "contact": "STF",
+        "resourceLabel": "Music Distributor number"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Sound recording issue number"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Person"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/assigner",
+            "propertyLabel": "Assigner of issue number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:AudioIssueNumber",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/AudioIssueNumber",
+        "contact": "STF",
+        "resourceLabel": "Sound recording issue number"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:ISRC",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Isrc",
+        "resourceLabel": "ISRC",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Matrix number"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Person"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/assigner",
+            "propertyLabel": "Assigner of matrix number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:MatrixNumber",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/MatrixNumber",
+        "contact": "STF",
+        "resourceLabel": "Matrix number"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Take number"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Person"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/assigner",
+            "propertyLabel": "Assigner of take number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:TakeNumber",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/AudioTake",
+        "contact": "STF",
+        "resourceLabel": "Take number"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "false",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "ISSN-L"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:ISSNL",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/IssnL",
+        "resourceLabel": "ISSN-L (RDA 2.15)",
+        "contact": "STF",
+        "remark": "http://access.rdatoolkit.org/rdachp2_rda2-8418.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Local Identifier"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:Local",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Local",
+        "contact": "STF",
+        "resourceLabel": "Local Identifier"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "ISBN (RDA 2.15)",
+            "remark": "http://access.rdatoolkit.org/2.15.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/qualifier",
+            "propertyLabel": "Qualifier"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Status"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/status",
+            "propertyLabel": "Status"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:ISBN",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Isbn",
+        "resourceLabel": "ISBN"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                ""
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Video recording number"
+          },
+          {
+            "mandatory": "true",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Person"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/assigner",
+            "propertyLabel": "Assigner of video recording number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Identifiers:VideoRecordingNumber",
+        "resourceLabel": "Video recording number",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/VideoRecordingNumber"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Identifiers",
+    "title": "Stanford BIBFRAME 2.0 Identifiers",
+    "date": "2017-09-07",
+    "contact": "STF",
+    "description": "Identifiers"
+  }
+}

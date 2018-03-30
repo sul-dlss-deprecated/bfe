@@ -1,0 +1,51 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "",
+                ""
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Illustrative content (RDA 7.15)",
+            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1088.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:Stanford:bf2:Details of Color"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/note",
+            "propertyLabel": "Details of color content (RDA 7.17.1.4)",
+            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1287.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:IllusContentForText",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Illustration",
+        "resourceLabel": "Illustrastrive Content with Details of Color (RDA 7.15 and 7.17)"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Illustrative Content for Text",
+    "title": "Stanford BIBFRAME 2.0 Illustrative Content for Text",
+    "description": "Recording illustrative and color content for expressions of textual resources",
+    "date": "2017-09-21",
+    "contact": "STF"
+  }
+}

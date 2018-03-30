@@ -1,0 +1,81 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "LC Classification",
+            "remark": ""
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "LC Book Number (Cutter)"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/TR/rdf-schema/label",
+            "propertyLabel": "LC Call Number"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Classification:LCC",
+        "resourceLabel": "Library of Congress Classification",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/ClassificationLcc",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "LC Class Number for Work",
+            "remark": ""
+          }
+        ],
+        "id": "profile:Stanford:bf2:Classification:LCCWork",
+        "resourceLabel": "Library of Congress Classification for Work",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/ClassificationLcc",
+        "contact": "STF"
+      }
+    ],
+    "id": "profile:Stanford:bf2:ClassificationLCC",
+    "title": "Stanford BIBFRAME 2.0 Classification LCC",
+    "description": "Library of Congress Classification Number",
+    "date": "2017-11-03",
+    "contact": "STF"
+  }
+}

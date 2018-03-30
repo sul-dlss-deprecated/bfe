@@ -1,0 +1,29 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Tempo"
+          }
+        ],
+        "id": "profile:PMO:Tempo:Tempo",
+        "resourceURI": "http://performedmusicontology.org/ontology/hasTempo",
+        "resourceLabel": "Tempo"
+      }
+    ],
+    "id": "profile:PMO:Tempo",
+    "title": "PMO Tempo",
+    "date": "2017-11-29"
+  }
+}

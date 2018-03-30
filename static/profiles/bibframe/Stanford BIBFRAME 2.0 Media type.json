@@ -1,0 +1,33 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/vocabulary/mediaTypes"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup",
+            "remark": ""
+          }
+        ],
+        "id": "profile:Stanford:bf2:MediaType",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Media",
+        "resourceLabel": "Media type (RDA 3.2)"
+      }
+    ],
+    "id": "profile:Stanford:bf2:NewMediaType",
+    "title": "Stanford BIBFRAME 2.0 Media type",
+    "description": "RDA Media type (bf:Media)",
+    "date": "2017-08-11"
+  }
+}

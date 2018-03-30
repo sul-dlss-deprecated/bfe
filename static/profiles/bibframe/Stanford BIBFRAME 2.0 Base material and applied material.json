@@ -1,0 +1,56 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/RDAMaterial"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Base material"
+          }
+        ],
+        "id": "profile:Stanford:bf2:BaseMaterial",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/BaseMaterial",
+        "contact": "STF",
+        "resourceLabel": "Base material (RDA 3.6)"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://rdaregistry.info/termList/RDAMaterial"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Applied material"
+          }
+        ],
+        "id": "profile:Stanford:bf2:AppliedMaterial",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/AppliedMaterial",
+        "contact": "STF",
+        "resourceLabel": "Applied material (RDA 3.7)"
+      }
+    ],
+    "id": "profile:Stanford:bf2:BaseAppliedMaterial",
+    "title": "Stanford BIBFRAME 2.0 Base material and applied material",
+    "date": "2017-09-07",
+    "contact": "STF"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Contribution",
+        "id": "profile:PMO:Agents:ContributionInfo",
+        "resourceLabel": "Contribution",
+        "propertyTemplates": [
+          {
+            "propertyLabel": "Agent",
+            "valueConstraint": {
+              "repeatable": "true",
+              "useValuesFrom": [],
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:Person",
+                "profile:bf2:Agent:Family",
+                "profile:bf2:Agent:CorporateBody",
+                "profile:bf2:Agent:Jurisdiction",
+                "profile:bf2:Agent:Conference"
+              ]
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/agent",
+            "type": "resource",
+            "mandatory": "false",
+            "repeatable": "true",
+            "resourceTemplates": []
+          },
+          {
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/role",
+            "propertyLabel": "Relationship Designator (RDA Appendix I)",
+            "type": "resource",
+            "mandatory": "false",
+            "repeatable": "true",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:Role"
+              ],
+              "useValuesFrom": []
+            },
+            "remark": "http://access.rdatoolkit.org/rdaappi_rdai-34.html"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:PMO:MOP:IndividualMedium",
+                "profile:PMO:MOP:EnsembleMedium",
+                "profile:PMO:MOP:GenericMedium"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {},
+              "editable": "true",
+              "repeatable": "true"
+            },
+            "propertyURI": "http://performedmusicontology.org/ontology/hasMediumOfPerformance",
+            "propertyLabel": "Performs on medium"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://performedmusicontology.org/ontology/hasMusicPart",
+            "propertyLabel": "Music part"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:PMO:DramaticRoleType"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://performedmusicontology.org/ontology/hasDramaticRole",
+            "propertyLabel": "Dramatic role"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [
+                "profile:bf2:Agent:CorporateBody"
+              ],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://performedmusicontology.org/ontology/asMemberOf",
+            "propertyLabel": "Performs as part of"
+          }
+        ]
+      }
+    ],
+    "id": "profile:PMO:AgentsContribution",
+    "title": "PMO Agents Contribution",
+    "date": "2017-10-20",
+    "description": "Creators and Contributors",
+    "contact": "STF"
+  }
+}

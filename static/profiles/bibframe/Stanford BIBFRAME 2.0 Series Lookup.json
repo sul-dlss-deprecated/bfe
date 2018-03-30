@@ -1,0 +1,33 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "resource",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [
+                "http://id.loc.gov/authorities/names"
+              ],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
+            "propertyLabel": "Lookup"
+          }
+        ],
+        "id": "profile:Stanford:bf2:SeriesRelatedWork",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Work",
+        "resourceLabel": "Series"
+      }
+    ],
+    "id": "profile:Stanford:bf2:SeriesLookUp",
+    "title": "Stanford BIBFRAME 2.0 Series Lookup",
+    "description": "Series lookup in id.loc.gov",
+    "contact": "STF",
+    "date": "2018-01-16"
+  }
+}

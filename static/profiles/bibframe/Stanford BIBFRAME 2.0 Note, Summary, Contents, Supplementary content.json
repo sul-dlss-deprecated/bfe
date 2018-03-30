@@ -1,0 +1,159 @@
+{
+  "Profile": {
+    "resourceTemplates": [
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://id.loc.gov/ontologies/bibframe/noteType",
+            "propertyLabel": "Type of note"
+          },
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/TR/rdf-schema/label",
+            "propertyLabel": "Note"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Note:GeneralNote",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Note",
+        "resourceLabel": "Note",
+        "contact": "STF"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/TR/rdf-schema/label",
+            "propertyLabel": "Summary/Abstract",
+            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-774.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Note:Summary",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Summary",
+        "contact": "STF",
+        "resourceLabel": "Summary/Abstract"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Supplementary content (RDA 7.16)",
+            "remark": "http://access.rdatoolkit.org/rdachp7_rda7-1213.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Note:SupplementaryContent",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/SupplementaryContent",
+        "contact": "STF",
+        "resourceLabel": "Supplementary content"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "propertyLabel": "Contents note (RDA 25.1)",
+            "remark": "http://access.rdatoolkit.org/lcpschp25_lcps25-305.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Note:TOC",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/TableOfContents",
+        "contact": "STF",
+        "resourceLabel": "Table of Contents",
+        "remark": "http://access.rdatoolkit.org/rdachp25_rda25-80.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-9448.html",
+            "propertyLabel": "Description based on note (RDA 2.17.13)",
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Note:DBO",
+        "resourceLabel": "Description based on note",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Note",
+        "contact": "STF",
+        "remark": "http://access.rdatoolkit.org/rdachp2_rda2-9448.html"
+      },
+      {
+        "propertyTemplates": [
+          {
+            "mandatory": "false",
+            "repeatable": "true",
+            "type": "literal",
+            "resourceTemplates": [],
+            "valueConstraint": {
+              "valueTemplateRefs": [],
+              "useValuesFrom": [],
+              "valueDataType": {}
+            },
+            "propertyLabel": "Latest issue consulted (RDA 2.17.13)",
+            "propertyURI": "http://www.w3.org/2000/01/rdf-schema#label",
+            "remark": "http://access.rdatoolkit.org/rdachp2_rda2-9458.html"
+          }
+        ],
+        "id": "profile:Stanford:bf2:Note:LIC",
+        "resourceLabel": "Latest issue consulted",
+        "contact": "STF",
+        "remark": "http://access.rdatoolkit.org/rdachp2_rda2-9448.html",
+        "resourceURI": "http://id.loc.gov/ontologies/bibframe/Note"
+      }
+    ],
+    "id": "profile:Stanford:bf2:Note",
+    "title": "Stanford BIBFRAME 2.0 Note, Summary, Contents, Supplementary content",
+    "description": "any free text note",
+    "date": "2017-08-29",
+    "remark": "",
+    "contact": "STF"
+  }
+}
