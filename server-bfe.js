@@ -1,7 +1,7 @@
 //   Minimal BIBFRAME Editor Node.js server. To run from the command-line:
 //   node server-bfe.js
 //
-var port = 8000;
+var port = 3000;
 var express = require('express');
 var app = express();
 
